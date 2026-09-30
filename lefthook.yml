@@ -1,0 +1,45 @@
+# lefthook.yml
+min_version: 1.5.0
+
+pre-commit:
+    parallel: true
+    commands:
+        # --- Frontend (Next.js) — Biome only on staged files ---
+        biome-check-lint:
+            glob: "frontend/web/**/*.{ts,tsx}"
+            root: "frontend/web/"
+            #run: npx biome check --write --no-errors-on-unmatched {staged_files}
+            run: npm run lint
+            stage_fixed: true
+
+        biome-check-admin-lint:
+            glob: "frontend/admin/**/*.{ts,tsx}"
+            root: "frontend/admin/"
+            #run: npx biome check --write --no-errors-on-unmatched {staged_files}
+            run: npm run lint
+            stage_fixed: true
+
+        # --- Backend (FastAPI) — Ruff on staged Python files ---
+        #ruff-check:
+        #    glob: "apps/api/**/*.py"
+        #    run: uvx ruff check --fix {staged_files}
+        #    stage_fixed: true
+
+        #ruff-format:
+        #    glob: "apps/api/**/*.py"
+        #    run: uvx ruff format {staged_files}
+
+commit-msg:
+    commands:
+        commitlint:
+            run: npx commitlint --edit {1}
+
+pre-push:
+    parallel: true
+    commands:
+        typecheck-web:
+            glob: "frontend/web/**/*.{ts,tsx}"
+            run: npx tsc --noEmit -p frontend/web/tsconfig.json
+        typecheck-admin:
+            glob: "frontend/admin/**/*.{ts,tsx}"
+            run: npx tsc --noEmit -p frontend/admin/tsconfig.json

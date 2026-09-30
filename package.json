@@ -1,0 +1,71 @@
+{
+    "name": "tmod-frontend",
+    "private": true,
+    "author": "Maziyar Isanezhad",
+    "type": "module",
+    "keywords": [
+        "nextjs",
+        "full-stack",
+        "devops",
+        "admin-panel"
+    ],
+    "repository": "https://github.com/maziyar-redox/tmod-game",
+    "workspaces": [
+        "frontend/*",
+        "packages/*"
+    ],
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "lint": "turbo run lint",
+        "format": "turbo run format",
+        "commit": "cz",
+        "prepare": "lefthook install",
+        "pre-commit": "lint-staged"
+    },
+    "packageManager": "npm@12.1.0",
+    "engines": {
+        "node": ">=26"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^21.2.3",
+        "@commitlint/config-conventional": "^21.2.3",
+        "commitizen": "^4.3.2",
+        "cz-conventional-changelog": "^3.3.0",
+        "cz-git": "^1.14.0",
+        "lefthook": "^2.1.15",
+        "turbo": "^2.11.5"
+    },
+    "lint-staged": {
+        "frontend/web/*.{ts,tsx}": [
+            "npm run lint",
+            "npm run format"
+        ]
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog",
+            "useEmoji": true,
+            "scopes": [
+                "web",
+                "admin",
+                "api",
+                "shared",
+                "ci",
+                "deps"
+            ],
+            "skipQuestions": [],
+            "messages": {
+                "type": "Select the type of change you're committing:",
+                "scope": "Select the scope (app/package):",
+                "subject": "Write a short description:",
+                "body": "Provide a longer description (optional):",
+                "breaking": "List any BREAKING CHANGES:",
+                "issues": "List any related issues (optional):"
+            }
+        }
+    },
+    "allowScripts": {
+        "lefthook@2.1.15": true
+    }
+}
