@@ -17,6 +17,8 @@
     "scripts": {
         "build": "turbo run build",
         "dev": "turbo run dev",
+        "dev:admin": "turbo run @frontend/admin#dev",
+        "dev:web": "turbo run @frontend/web#dev",
         "lint": "turbo run lint",
         "format": "turbo run format",
         "commit": "cz",

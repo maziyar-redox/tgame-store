@@ -1,0 +1,18 @@
+// IMPORT: Importing metadata from next for managing page metadata
+import { Metadata } from "next";
+
+// Creating main page metadata
+export const metadata: Metadata = {
+    title: "تی مود | خرید آنلاین محصولات تکنولوژی، گیم و لوازم جانبی",
+    description: "خرید آنلاین جدیدترین محصولات تکنولوژی، کنسول و بازیهای ویدیویی، لوازم جانبی و گجتهای هوشمند با قیمت مناسب، ضمانت اصالت کالا و ارسال سریع به سراسر ایران.",
+};
+
+export default function PublicLayout({ children }: LayoutProps<"/">) {
+    return (
+        <>
+            <div>
+                {children}
+            </div>
+        </>
+    );
+};
