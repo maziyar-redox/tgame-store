@@ -30,7 +30,7 @@ export function SearchItem({
             href={link}
             className="w-full flex flex-row-reverse items-center justify-end border border-border rounded-md gap-x-4"
         >
-            <div className="flex flex-col items-start justify-between h-full">
+            <div className="flex flex-col items-start justify-between h-full py-1.5">
                 <h1 className="font-semibold text-base text-foreground">
                     {title}
                 </h1>
