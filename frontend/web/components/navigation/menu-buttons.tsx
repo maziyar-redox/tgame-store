@@ -13,9 +13,6 @@ import { useNavigationStore } from "@/provider/navigation-store-provider";
 // Importing Constant Data
 import { navigationLinks } from "@/constants/navigation";
 
-// React utilities
-import { useEffect, useRef } from "react";
-
 export function NavigationButtonsLg() {
     const pathname = usePathname();
     return (
@@ -33,36 +30,14 @@ export function NavigationButtonsLg() {
 };
 
 export function NavigationBUttonsSm() {
-    const {isOpen, setIsOpen} = useNavigationStore((state) => state);
+    const {isOpen} = useNavigationStore((state) => state);
     const pathname = usePathname();
-    const navRef = useRef<HTMLElement>(null);
-
-    useEffect(() => {
-        if (!isOpen) return;
-
-        const handleClickOutside = (event: MouseEvent): void => {
-        // If click is outside the nav, close it
-        if (navRef.current && !navRef.current.contains(event.target as Node)) {
-            setIsOpen(false);
-        }
-        };
-
-        // Add listener on next tick to avoid catching the opening click
-        const timeoutId = setTimeout(() => {
-            document.addEventListener("mousedown", handleClickOutside);
-        }, 0);
-
-        return () => {
-            clearTimeout(timeoutId);
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [isOpen, setIsOpen]);
 
     return (
         <nav className={cn(
             "transition-all transition-discrete ease-in-out duration-200 grid gap-1 rounded-b-xl border-t border-[#f1f5f9] bg-[#ffffff] px-4 py-3 text-sm font-semibold lg:hidden fixed left-5 right-5 top-14 shadow-lg",
             isOpen ? "fixed opacity-100" : "hidden opacity-0"
-        )} ref={navRef}>
+        )}>
             {navigationLinks.map(item => (
                 <Link
                     key={item.id}

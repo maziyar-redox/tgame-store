@@ -14,12 +14,42 @@ import { useNavigationStore } from "@/provider/navigation-store-provider";
 // Importing Icons
 import { ListIcon, XIcon } from "@phosphor-icons/react";
 
+// React utilities
+import { Ref, useEffect, useRef } from "react";
+
+// Button Ref typing
+type btnRef = Ref<HTMLButtonElement> | undefined;
+
 export function Navigation() {
     const {isOpen, setIsOpen} = useNavigationStore((state) => state);
+    const navRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const handleClickOutside = (event: MouseEvent): void => {
+            // If click is outside the nav, close it
+            if (navRef.current && !navRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        };
+
+        // Add listener on next tick to avoid catching the opening click
+        const timeoutId = setTimeout(() => {
+            document.addEventListener("mousedown", handleClickOutside);
+        }, 0);
+
+        return () => {
+            clearTimeout(timeoutId);
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen, setIsOpen]);
+
     return (
         <header className="sticky top-0 z-40 border-b border-[#f1f5f9] bg-[#ffffff]/90 backdrop-blur-xl">
             <div className="mx-auto flex h-17 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:h-20 lg:px-8">
                 <Button
+                    ref={navRef as btnRef}
                     variant="icon"
                     size="icon-lg"
                     className="lg:hidden"
