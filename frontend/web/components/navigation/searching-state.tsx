@@ -2,6 +2,7 @@
 
 // Importing icon
 import { PlusIcon, SpinnerIcon } from "@phosphor-icons/react";
+// Importing nextjs utils
 import Link from "next/link";
 // Importing local ui components
 import { SearchItem } from "@/components/navigation/search-item";
@@ -39,7 +40,7 @@ export function SearchingState({ state }: SearchingStateProps) {
     if (state === "FOUNDED") {
         return (
             <div className="flex flex-col justify-center items-center w-full gap-4">
-                {Array.from({ length: 5 }, (_, i) => ({ id: i + 1 })).map(
+                {Array.from({ length: 3 }, (_, i) => ({ id: i + 1 })).map(
                     (item) => (
                         <SearchItem
                             key={item.id}

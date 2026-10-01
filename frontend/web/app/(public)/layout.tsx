@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function PublicLayout({ children }: LayoutProps<"/">) {
-    return <div>{children}</div>;
+    return <main>{children}</main>;
 }
