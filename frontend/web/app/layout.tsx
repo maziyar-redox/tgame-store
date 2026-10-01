@@ -15,6 +15,8 @@ import "@/app/globals.css";
 
 // Importing Provider
 import { NavigationStoreProvider } from "@/provider/navigation-store-provider";
+
+// Tailwind css merge
 import { cn } from "@/lib/utils";
 
 const vazirmatn = Vazirmatn({
@@ -35,11 +37,11 @@ export default function RootLayout({
         >
             <body className="min-h-screen flex flex-col bg-surface-soft">
                 <DirectionProvider direction="rtl">
+                    <Banner />
                     <NavigationStoreProvider>
-                        <Banner />
                         <Navigation />
-                        {children}
                     </NavigationStoreProvider>
+                    {children}
                 </DirectionProvider>
             </body>
         </html>

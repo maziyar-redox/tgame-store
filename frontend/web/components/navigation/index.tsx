@@ -46,7 +46,7 @@ export function Navigation() {
     }, [isOpen, setIsOpen]);
 
     return (
-        <header className="sticky top-0 z-40 border-b border-[#f1f5f9] bg-[#ffffff]/90 backdrop-blur-xl">
+        <header className="sticky top-0 z-40 border-b border-secondary bg-background/90 backdrop-blur-xl shadow-black/10 shadow-2xl">
             <div className="mx-auto flex h-17 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:h-20 lg:px-8">
                 <Button
                     ref={navRef as btnRef}
