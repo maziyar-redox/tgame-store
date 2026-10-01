@@ -130,7 +130,6 @@
 * ================================================================
   */
 
-
 @theme {
     /* --color-brand-blue: #0866ff;
     --color-brand-navy: #092253;
@@ -159,7 +158,6 @@
     --shadow-surface-lg: 0 18px 45px rgba(15, 46, 100, .1); */
 }
 
-
 @layer base {
     * {
         @apply border-border outline-ring/50;
@@ -167,7 +165,8 @@
     body {
         @apply bg-background text-foreground;
     }
-    button:not(:disabled), [role="button"]:not(:disabled) {
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
         cursor: pointer;
     }
 }

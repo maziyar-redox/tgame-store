@@ -1,5 +1,3 @@
 export default function RootUserPanel() {
-    return (
-        <div>ok</div>
-    );
-};
+    return <div>ok</div>;
+}

@@ -1,5 +1,3 @@
 export default function Root() {
-    return (
-        <div>سلام</div>
-    );
-};
+    return <div>سلام</div>;
+}

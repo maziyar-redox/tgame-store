@@ -1,23 +1,19 @@
 // IMPORT: Vazirmatn font which applies on entire web application
 import { Vazirmatn } from "next/font/google";
-
-// Importing Direction provider from global ui component
-import { DirectionProvider } from "@/components/ui/direction"
-
 // IMPORT: Importing banner from components
 import { Banner } from "@/components/banner";
-
 // IMPORT: Importing navigation from components
 import { Navigation } from "@/components/navigation";
+// Importing Direction provider from global ui component
+import { DirectionProvider } from "@/components/ui/direction";
 
 // IMPORT: Global style which applies on entire application
 import "@/app/globals.css";
 
-// Importing Provider
-import { NavigationStoreProvider } from "@/provider/navigation-store-provider";
-
 // Tailwind css merge
 import { cn } from "@/lib/utils";
+// Importing Provider
+import { NavigationStoreProvider } from "@/provider/navigation-store-provider";
 
 const vazirmatn = Vazirmatn({
     subsets: ["arabic"],
@@ -25,9 +21,9 @@ const vazirmatn = Vazirmatn({
 });
 
 export default function RootLayout({
-    children
+    children,
 }: {
-  children: React.ReactNode
+    children: React.ReactNode;
 }) {
     return (
         <html
@@ -46,4 +42,4 @@ export default function RootLayout({
             </body>
         </html>
     );
-};
+}

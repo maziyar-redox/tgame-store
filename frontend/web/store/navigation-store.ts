@@ -17,9 +17,11 @@ export const defaultInitState: NavigationState = {
     isOpen: false,
 };
 
-export const createNavigationStore = (initState: NavigationState = defaultInitState) => {
+export const createNavigationStore = (
+    initState: NavigationState = defaultInitState,
+) => {
     return createStore<NavigationStore>()((set) => ({
         ...initState,
-        setIsOpen: (isOpen) => set((state) => ({ isOpen: isOpen })),
+        setIsOpen: (isOpen) => set((_state) => ({ isOpen: isOpen })),
     }));
 };

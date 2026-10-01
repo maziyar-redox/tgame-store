@@ -1,6 +1,5 @@
 // IMPORT: Importing metadata from next for managing page metadata
-import { Metadata } from "next";
-
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -8,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function PanelLayout({ children }: LayoutProps<"/panel">) {
-    return (
-        <div>
-            {children}
-        </div>
-    );
-};
+    return <div>{children}</div>;
+}

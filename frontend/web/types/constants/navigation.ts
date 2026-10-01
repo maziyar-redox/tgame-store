@@ -4,6 +4,4 @@ type NavigationLinksProps = {
     link: string;
 };
 
-export type {
-    NavigationLinksProps
-};
+export type { NavigationLinksProps };

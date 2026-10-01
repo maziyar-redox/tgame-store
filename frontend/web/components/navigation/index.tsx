@@ -1,27 +1,26 @@
 "use client";
 
-// Importing Local Ui Components
-import { Logo } from "@/components/navigation/logo";
-import { NavigationButtonsLg, NavigationBUttonsSm } from "@/components/navigation/menu-buttons";
-import { UtilitySection } from "@/components/navigation/utility-section";
-
-// Importing From Global Ui Components
-import { Button } from "@/components/ui/button";
-
-// Importing Store
-import { useNavigationStore } from "@/provider/navigation-store-provider";
-
 // Importing Icons
 import { ListIcon, XIcon } from "@phosphor-icons/react";
-
 // React utilities
-import { Ref, useEffect, useRef } from "react";
+import { type Ref, useEffect, useRef } from "react";
+// Importing Local Ui Components
+import { Logo } from "@/components/navigation/logo";
+import {
+    NavigationBUttonsSm,
+    NavigationButtonsLg,
+} from "@/components/navigation/menu-buttons";
+import { UtilitySection } from "@/components/navigation/utility-section";
+// Importing From Global Ui Components
+import { Button } from "@/components/ui/button";
+// Importing Store
+import { useNavigationStore } from "@/provider/navigation-store-provider";
 
 // Button Ref typing
 type btnRef = Ref<HTMLButtonElement> | undefined;
 
 export function Navigation() {
-    const {isOpen, setIsOpen} = useNavigationStore((state) => state);
+    const { isOpen, setIsOpen } = useNavigationStore((state) => state);
     const navRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
@@ -29,7 +28,10 @@ export function Navigation() {
 
         const handleClickOutside = (event: MouseEvent): void => {
             // If click is outside the nav, close it
-            if (navRef.current && !navRef.current.contains(event.target as Node)) {
+            if (
+                navRef.current &&
+                !navRef.current.contains(event.target as Node)
+            ) {
                 setIsOpen(false);
             }
         };
@@ -56,13 +58,7 @@ export function Navigation() {
                     onClick={() => setIsOpen(!isOpen)}
                     aria-label="باز کردن منو"
                 >
-                    {
-                        isOpen
-                        ?
-                        <XIcon />
-                        :
-                        <ListIcon />
-                    }
+                    {isOpen ? <XIcon /> : <ListIcon />}
                 </Button>
                 <Logo />
                 <NavigationButtonsLg />
@@ -71,4 +67,4 @@ export function Navigation() {
             </div>
         </header>
     );
-};
+}
