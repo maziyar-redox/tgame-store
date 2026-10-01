@@ -9,14 +9,14 @@ pre-commit:
             glob: "frontend/web/**/*.{ts,tsx}"
             root: "frontend/web/"
             #run: npx biome check --write --no-errors-on-unmatched {staged_files}
-            run: npm run lint
+            run: npm run lint {staged_files}
             stage_fixed: true
 
         biome-check-admin-lint:
             glob: "frontend/admin/**/*.{ts,tsx}"
             root: "frontend/admin/"
             #run: npx biome check --write --no-errors-on-unmatched {staged_files}
-            run: npm run lint
+            run: npm run lint {staged_files}
             stage_fixed: true
 
         # --- Backend (FastAPI) — Ruff on staged Python files ---
