@@ -21,7 +21,7 @@ export function UtilitySection() {
                 href="/panel"
                 className={cn(
                     pathname === "/panel"
-                        ? "bg-[#eff6ff] [&_svg:not([class*='fill-'])]:fill-[#0866ff]"
+                        ? "bg-accent [&_svg:not([class*='fill-'])]:fill-primary"
                         : "[&_svg:not([class*='fill-'])]:fill-slate-700",
                     buttonVariants({ variant: "icon", size: "icon-2xl" }),
                 )}
@@ -34,14 +34,14 @@ export function UtilitySection() {
                 className={cn(
                     "relative",
                     pathname === "/card"
-                        ? "bg-[#eff6ff] [&_svg:not([class*='fill-'])]:fill-[#0866ff]"
+                        ? "bg-accent [&_svg:not([class*='fill-'])]:fill-primary"
                         : "[&_svg:not([class*='fill-'])]:fill-slate-700",
                     buttonVariants({ variant: "icon", size: "icon-2xl" }),
                 )}
                 aria-label="سبد خرید"
             >
                 <BasketIcon name="bag" />
-                <span className="absolute -inset-e-0.5 -top-1.5 grid size-5 place-items-center rounded-full bg-[#0866ff] text-xs font-bold text-[#ffffff] ring-2 ring-[#ffffff]">
+                <span className="absolute -inset-e-0.5 -top-1.5 grid size-5 place-items-center rounded-full bg-primary text-xs font-bold text-background ring-2 ring-background">
                     ۳
                 </span>
             </Link>
