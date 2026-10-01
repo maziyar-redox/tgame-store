@@ -3,6 +3,7 @@ import { Vazirmatn } from "next/font/google";
 // IMPORT: Importing banner from components
 import { Banner } from "@/components/banner";
 // IMPORT: Importing navigation from components
+import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 // Importing Direction provider from global ui component
 import { DirectionProvider } from "@/components/ui/direction";
@@ -39,6 +40,7 @@ export default function RootLayout({
                         <Navigation />
                     </NavigationStoreProvider>
                     {children}
+                    <Footer />
                 </DirectionProvider>
             </body>
         </html>
