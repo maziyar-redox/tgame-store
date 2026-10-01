@@ -1,5 +1,5 @@
 printf "$============ PRE-COMMIT IS RUNNING ============$"
 
-npx lefthook run pre-commit
+npx lefthook run pre-commit --no-auto-install
 
 printf "$============ END OF PRE-COMMIT SCRIPT ============$"
