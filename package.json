@@ -22,8 +22,7 @@
         "lint": "turbo run lint",
         "format": "turbo run format",
         "commit": "cz",
-        "prepare": "lefthook install",
-        "pre-commit": "lint-staged"
+        "prepare": "node .husky/install.mjs"
     },
     "packageManager": "npm@12.1.0",
     "engines": {
@@ -35,13 +34,14 @@
         "commitizen": "^4.3.2",
         "cz-conventional-changelog": "^3.3.0",
         "cz-git": "^1.14.0",
+        "husky": "^9.1.7",
         "lefthook": "^2.1.15",
         "turbo": "^2.11.5"
     },
     "lint-staged": {
         "frontend/web/*.{ts,tsx}": [
-            "npm run lint",
-            "npm run format"
+        "npm run lint",
+        "npm run format"
         ]
     },
     "config": {

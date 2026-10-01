@@ -1,0 +1,5 @@
+printf "$============ PRE-COMMIT IS RUNNING ============$"
+
+npx lefthook run pre-commit
+
+printf "$============ END OF PRE-COMMIT SCRIPT ============$"
