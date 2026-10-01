@@ -30,6 +30,7 @@ export default function RootLayout({
             lang="fa"
             dir="rtl"
             className={cn("h-full", "antialiased", vazirmatn.className)}
+            suppressHydrationWarning
         >
             <body className="min-h-screen flex flex-col bg-surface-soft">
                 <DirectionProvider direction="rtl">

@@ -1,3 +1,5 @@
+// biome-ignore-all lint: This file contains generated code
+
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";

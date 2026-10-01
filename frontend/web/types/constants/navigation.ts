@@ -1,3 +1,4 @@
+// Navigation prop type
 type NavigationLinksProps = {
     id: number;
     text: string;

@@ -1,3 +1,5 @@
+// biome-ignore-all lint: This file contains generated code
+
 "use client";
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
