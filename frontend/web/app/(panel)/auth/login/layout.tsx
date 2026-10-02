@@ -10,6 +10,8 @@ export const metadata: Metadata = {
 
 export default function AuthenticationLoginLayout({
     children,
-}: LayoutProps<"/panel">) {
+}: {
+    children: React.ReactNode;
+}) {
     return <main>{children}</main>;
 }

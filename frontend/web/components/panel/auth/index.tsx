@@ -6,6 +6,9 @@ import { LockIcon } from "@phosphor-icons/react";
 import { cn } from "cn";
 // Importing nextjs utils
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+// Importing hooks
+import { useIsMounted } from "usehooks-ts";
 // Importing components from global ui
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -17,6 +20,15 @@ export function AuthenticationLayoutComponent({
 }) {
     const pathname = usePathname();
     const router = useRouter();
+    const isMounted = useIsMounted();
+
+    const [data, setData] = useState<"login" | "register">(
+        pathname === "/auth/login" ? "login" : "register",
+    );
+    useEffect(() => {
+        if (isMounted())
+            setData(pathname === "/auth/login" ? "login" : "register");
+    }, [isMounted, pathname]);
     return (
         <main className="relative grid min-h-[calc(100vh-110px)] place-items-center overflow-hidden px-4 py-10">
             <div className="absolute -right-32 top-10 size-80 rounded-full bg-blue-200/30 blur-3xl" />
@@ -46,9 +58,7 @@ export function AuthenticationLayoutComponent({
                                     : "/auth/register",
                             );
                         }}
-                        defaultValue={
-                            pathname === "/auth/register" ? "register" : "login"
-                        }
+                        defaultValue={data}
                         className="w-full mt-6 p-1"
                     >
                         <TabsList className="w-full group-data-horizontal/tabs:h-12 p-1">
@@ -77,8 +87,8 @@ export function AuthenticationLayoutComponent({
                         <span className="h-px flex-1 bg-slate-100" />
                     </div>
                     <p className="mt-4 flex items-center justify-center gap-1.5 text-sm text-slate-400">
-                        <LockIcon name="lock" className="size-3" />
-                        اطلاعات شما نزد تکنو محفوظ است
+                        <LockIcon name="lock" className="size-3.5" />
+                        اطلاعات شما نزد تی گیم محفوظ است
                     </p>
                 </CardContent>
             </Card>
