@@ -1,3 +1,5 @@
+// biome-ignore-all lint: This file contains generated code
+
 import { cn } from "cn";
 import type * as React from "react";
 
