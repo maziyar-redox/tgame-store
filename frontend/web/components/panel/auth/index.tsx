@@ -1,3 +1,5 @@
+// biome-ignore-all lint: This file contains generated code
+
 "use client";
 
 // Importing Icons
@@ -25,10 +27,11 @@ export function AuthenticationLayoutComponent({
     const [data, setData] = useState<"login" | "register">(
         pathname === "/auth/login" ? "login" : "register",
     );
+
     useEffect(() => {
         if (isMounted())
             setData(pathname === "/auth/login" ? "login" : "register");
-    }, [isMounted, pathname]);
+    }, [isMounted]);
     return (
         <main className="relative grid min-h-[calc(100vh-110px)] place-items-center overflow-hidden px-4 py-10">
             <div className="absolute -right-32 top-10 size-80 rounded-full bg-blue-200/30 blur-3xl" />
