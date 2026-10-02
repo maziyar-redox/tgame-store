@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function PanelLayout({ children }: LayoutProps<"/panel">) {
-    return <div>{children}</div>;
+    return <main>{children}</main>;
 }
