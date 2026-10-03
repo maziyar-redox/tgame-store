@@ -1,8 +1,8 @@
 "use client";
 
 // Importing local ui components
-import { LeftSection } from "@/components/public/hero/left-section";
-import { RightSection } from "@/components/public/hero/right-section";
+import { LeftSection } from "@/components/public/main/hero/left-section";
+import { RightSection } from "@/components/public/main/hero/right-section";
 
 export function HeroSection() {
     return (

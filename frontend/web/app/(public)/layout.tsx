@@ -8,6 +8,10 @@ export const metadata: Metadata = {
         "خرید آنلاین جدیدترین محصولات تکنولوژی، کنسول و بازیهای ویدیویی، لوازم جانبی و گجتهای هوشمند با قیمت مناسب، ضمانت اصالت کالا و ارسال سریع به سراسر ایران.",
 };
 
-export default function PublicLayout({ children }: LayoutProps<"/">) {
-    return <main>{children}</main>;
+export default function PublicLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return <div>{children}</div>;
 }
