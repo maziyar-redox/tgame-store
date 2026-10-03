@@ -94,6 +94,7 @@ export function SearchBar() {
                                             aria-invalid={fieldState.invalid}
                                             placeholder="عبارت خود را جستجو کنید"
                                             autoComplete="off"
+                                            className="h-10"
                                         />
                                         {fieldState.invalid && (
                                             <FieldError

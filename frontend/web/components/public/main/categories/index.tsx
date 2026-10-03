@@ -4,22 +4,22 @@
 import { CaretLeftIcon } from "@phosphor-icons/react";
 // Importing nextjs utils
 import Link from "next/link";
-// Importing local ui components
-import { ProductItems } from "@/components/public/products/product-items";
+// Importing local ui
+import { CategoryItems } from "@/components/public/main/categories/category-items";
 
-export function Products() {
+export function Categories() {
     return (
         <section
-            id="latest"
-            className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12"
+            id="categories"
+            className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10"
         >
             <div className="mb-6 flex items-end justify-between">
                 <div>
                     <p className="mb-1 text-xs font-bold text-primary">
-                        تازه از راه رسیده
+                        انتخاب سریع
                     </p>
                     <h2 className="text-xl font-black sm:text-2xl">
-                        پرفروش ترین محصولات
+                        دسته‌بندی‌های محبوب
                     </h2>
                 </div>
                 <Link
@@ -30,10 +30,10 @@ export function Products() {
                     <CaretLeftIcon name="chevron" className="size-4" />
                 </Link>
             </div>
-            <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
                 {Array.from({ length: 5 }, (_, i) => ({ id: i + 1 })).map(
                     (category) => (
-                        <ProductItems key={category.id} />
+                        <CategoryItems key={category.id} />
                     ),
                 )}
             </div>

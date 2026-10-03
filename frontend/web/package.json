@@ -12,6 +12,7 @@
     "dependencies": {
         "@hookform/resolvers": "^5.9.1",
         "@phosphor-icons/react": "^2.1.10",
+        "@shadcn/react": "^0.3.1",
         "class-variance-authority": "^0.7.1",
         "cn": "^0.4.0",
         "input-otp": "^1.5.0",
