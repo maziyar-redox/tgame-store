@@ -1,6 +1,7 @@
 // Importing Zod
 import * as z from "zod";
 
+// User login schema
 export const loginFormSchema = z.object({
     phone_number: z
         .string()

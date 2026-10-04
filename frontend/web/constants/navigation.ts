@@ -1,7 +1,8 @@
+// Importing local typing
 import type { NavigationLinksProps } from "@/types/constants/navigation";
 
 // Navigation types, Containing info about nav
-export const navigationLinks: NavigationLinksProps[] = [
+const navigationLinks: NavigationLinksProps[] = [
     {
         id: 1,
         text: "خانه",
@@ -28,3 +29,5 @@ export const navigationLinks: NavigationLinksProps[] = [
         link: "/support",
     },
 ];
+
+export { navigationLinks };

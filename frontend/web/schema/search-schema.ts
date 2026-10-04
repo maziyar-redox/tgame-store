@@ -1,6 +1,7 @@
 // Importing Zod
 import * as z from "zod";
 
+// Search Schema on the navigation for searching among products
 export const searchFormSchema = z.object({
     searchTerm: z
         .string()

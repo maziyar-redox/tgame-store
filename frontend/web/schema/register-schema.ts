@@ -1,6 +1,7 @@
 // Importing Zod
 import * as z from "zod";
 
+// Register schema for user registration
 export const registerFormSchema = z.object({
     full_name: z
         .string()

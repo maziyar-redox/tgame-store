@@ -4,12 +4,18 @@
 import {
     ArrowLeftIcon,
     BasketIcon,
-    CaretLeftIcon,
-    DeviceMobileIcon,
     ShieldCheckIcon,
 } from "@phosphor-icons/react";
+// Importing merging utils
+import { cn } from "cn";
 // Importing utils
 import Link from "next/link";
+// Importing local ui items
+import { NotFoundPageItems } from "@/components/error/notfound/items";
+// Importing button variants
+import { buttonVariants } from "@/components/ui/button";
+// Importing Constant page data from local
+import { notFoundErrorItems } from "@/constants/errors";
 
 export function NotFoundComponent() {
     return (
@@ -23,7 +29,9 @@ export function NotFoundComponent() {
                     className="pointer-events-none absolute top-12 -z-10 h-64 w-full max-w-2xl rounded-full bg-blue-100/50 blur-3xl"
                 />
                 <span className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-3 py-1.5 text-xs font-medium text-primary">
-                    <span className="size-1.5 rounded-full bg-primary" />
+                    <span className="size-1.5 rounded-full bg-primary relative">
+                        <span className="size-1.5 absolute top-0 left-0 bottom-0 right-0 animate-ping bg-primary rounded-full" />
+                    </span>
                     یک توقف کوتاه در مسیر
                 </span>
                 <div
@@ -162,14 +170,20 @@ export function NotFoundComponent() {
                 <div className="mt-7 flex w-full max-w-md flex-col justify-center gap-3 sm:w-auto sm:flex-row">
                     <Link
                         href="/"
-                        className="inline-flex items-center justify-center gap-3 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-200 transition hover:-translate-y-0.5 hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                        className={cn(
+                            buttonVariants({ variant: "default", size: "xl" }),
+                            "gap-3 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-200 transition hover:-translate-y-0.5 hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary",
+                        )}
                     >
                         بازگشت به خانه
                         <ArrowLeftIcon name="arrow" className="size-4" />
                     </Link>
                     <Link
                         href="/"
-                        className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                        className={cn(
+                            buttonVariants({ variant: "default", size: "xl" }),
+                            "gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary",
+                        )}
                     >
                         <BasketIcon name="bag" className="size-4" /> مشاهدهٔ
                         محصولات
@@ -192,98 +206,15 @@ export function NotFoundComponent() {
                     </p>
                 </div>
                 <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
-                    <Link
-                        href="/"
-                        className="group flex items-center gap-3 rounded-2xl border border-slate-100 bg-white p-4 text-right transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-100/50 focus-visible:outline-2 focus-visible:outline-primary sm:p-5"
-                    >
-                        <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-blue-50 text-primary transition group-hover:bg-primary group-hover:text-white">
-                            <DeviceMobileIcon
-                                name="mobile"
-                                className="size-5"
-                            />
-                        </span>
-                        <span className="min-w-0 flex-1">
-                            <span className="block text-xs font-bold text-slate-700 sm:text-sm">
-                                موبایل و تبلت
-                            </span>
-                            <span className="mt-1.5 hidden text-xs text-slate-400 sm:block">
-                                همراه هرروز شما
-                            </span>
-                        </span>
-                        <CaretLeftIcon
-                            name="chevron"
-                            className="hidden size-3 shrink-0 text-slate-300 group-hover:text-primary xl:block"
+                    {notFoundErrorItems.map((items) => (
+                        <NotFoundPageItems
+                            key={items.id}
+                            title={items.title}
+                            desc={items.desc}
+                            link={items.link}
+                            Icon={items.Icon}
                         />
-                    </Link>
-                    <Link
-                        href="/"
-                        className="group flex items-center gap-3 rounded-2xl border border-slate-100 bg-white p-4 text-right transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-100/50 focus-visible:outline-2 focus-visible:outline-primary sm:p-5"
-                    >
-                        <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-blue-50 text-primary transition group-hover:bg-primary group-hover:text-white">
-                            <DeviceMobileIcon
-                                name="mobile"
-                                className="size-5"
-                            />
-                        </span>
-                        <span className="min-w-0 flex-1">
-                            <span className="block text-xs font-bold text-slate-700 sm:text-sm">
-                                موبایل و تبلت
-                            </span>
-                            <span className="mt-1.5 hidden text-xs text-slate-400 sm:block">
-                                همراه هرروز شما
-                            </span>
-                        </span>
-                        <CaretLeftIcon
-                            name="chevron"
-                            className="hidden size-3 shrink-0 text-slate-300 group-hover:text-primary xl:block"
-                        />
-                    </Link>
-                    <Link
-                        href="/"
-                        className="group flex items-center gap-3 rounded-2xl border border-slate-100 bg-white p-4 text-right transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-100/50 focus-visible:outline-2 focus-visible:outline-primary sm:p-5"
-                    >
-                        <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-blue-50 text-primary transition group-hover:bg-primary group-hover:text-white">
-                            <DeviceMobileIcon
-                                name="mobile"
-                                className="size-5"
-                            />
-                        </span>
-                        <span className="min-w-0 flex-1">
-                            <span className="block text-xs font-bold text-slate-700 sm:text-sm">
-                                موبایل و تبلت
-                            </span>
-                            <span className="mt-1.5 hidden text-xs text-slate-400 sm:block">
-                                همراه هرروز شما
-                            </span>
-                        </span>
-                        <CaretLeftIcon
-                            name="chevron"
-                            className="hidden size-3 shrink-0 text-slate-300 group-hover:text-primary xl:block"
-                        />
-                    </Link>
-                    <Link
-                        href="/"
-                        className="group flex items-center gap-3 rounded-2xl border border-slate-100 bg-white p-4 text-right transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-100/50 focus-visible:outline-2 focus-visible:outline-primary sm:p-5"
-                    >
-                        <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-blue-50 text-primary transition group-hover:bg-primary group-hover:text-white">
-                            <DeviceMobileIcon
-                                name="mobile"
-                                className="size-5"
-                            />
-                        </span>
-                        <span className="min-w-0 flex-1">
-                            <span className="block text-xs font-bold text-slate-700 sm:text-sm">
-                                موبایل و تبلت
-                            </span>
-                            <span className="mt-1.5 hidden text-xs text-slate-400 sm:block">
-                                همراه هرروز شما
-                            </span>
-                        </span>
-                        <CaretLeftIcon
-                            name="chevron"
-                            className="hidden size-3 shrink-0 text-slate-300 group-hover:text-primary xl:block"
-                        />
-                    </Link>
+                    ))}
                 </div>
             </section>
             <p className="mt-9 flex items-center justify-center gap-2 text-center text-xs leading-6 text-slate-400">

@@ -1,3 +1,4 @@
+// Importing tailwindMerge utils
 import { cn } from "cn";
 
 // Typing For banner
