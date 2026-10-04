@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { NotFoundComponent } from "@/components/error/notfound/not-found";
 
 export const metadata: Metadata = {
-    title: "تی گیم | پیدا نشد!",
+    title: "تی گیم | صفحه پیدا نشد!",
     description:
         "صفحه درخواست شده وجود ندارد لطفا دوباره تلاش کنید یا اینکه به آدرس دیگر بروید",
     robots: {

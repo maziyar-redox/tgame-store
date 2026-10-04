@@ -16,7 +16,7 @@ export function NotFoundPageItems({
     return (
         <Link
             href={link}
-            className="group flex items-center gap-3 rounded-2xl border border-slate-100 bg-white p-4 text-right transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-100/50 focus-visible:outline-2 focus-visible:outline-primary sm:p-5 sm:px-8"
+            className="group flex items-center gap-3.5 rounded-2xl border border-slate-100 bg-white p-4 text-right transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-100/50 focus-visible:outline-2 focus-visible:outline-primary sm:p-5"
         >
             <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-blue-50 text-primary transition group-hover:bg-primary group-hover:text-white">
                 <Icon name="mobile" className="size-5" />
