@@ -44,6 +44,5 @@ pre-push:
         #    glob: "frontend/admin/**/*.{ts,tsx}"
         #    run: npx tsc --noEmit -p frontend/admin/tsconfig.json
         build-web:
-            glob: "frontend/web/"
-            root: "frontend/web/**/*."
+            glob: "frontend/web/**/*.{ts,tsx}"
             run: rm -rf frontend/web/.next && npx turbo run @frontend/web#build
