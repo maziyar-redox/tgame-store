@@ -1,8 +1,12 @@
 "use client";
 
+// Importing tailwindMerge utils
+import { cn } from "cn";
 import Image from "next/image";
 // Importing next utils
 import Link from "next/link";
+// Importing global ui utils
+import { buttonVariants } from "@/components/ui/button";
 
 export function Offer() {
     return (
@@ -25,7 +29,10 @@ export function Offer() {
                     <Link
                         href="/"
                         type="button"
-                        className="rounded-xl bg-white px-5 py-3 text-sm font-bold text-brand-navy transition hover:bg-blue-50"
+                        className={cn(
+                            buttonVariants({ variant: "empty", size: "empty" }),
+                            "rounded-xl bg-white px-5 py-3 text-sm font-bold text-brand-navy transition hover:bg-blue-50",
+                        )}
                     >
                         خرید تجهیزات گیمینگ
                     </Link>
