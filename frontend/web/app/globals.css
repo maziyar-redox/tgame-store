@@ -297,3 +297,23 @@
         cursor: pointer;
     }
 } */
+
+html::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* The background of the scrollbar (track) */
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* The draggable handle (thumb) */
+html::-webkit-scrollbar-thumb {
+    background: #0866ff;
+    border-radius: 12px;
+}
+
+/* Handle on hover */
+/* html::-webkit-scrollbar-thumb:hover {
+    background: #0866ff/3;
+} */
