@@ -1,8 +1,6 @@
 import { CheckIcon } from "@phosphor-icons/react";
 import {
     Timeline,
-    TimelineContent,
-    TimelineDate,
     TimelineHeader,
     TimelineIndicator,
     TimelineItem,
@@ -10,51 +8,66 @@ import {
     TimelineTitle,
 } from "@/components/reui/timeline";
 
-const orderStatus = [
-    {
-        id: 1,
-        date: "Mar 15, 2024",
-        title: "Order Placed",
-        description: "Your order has been received and is being processed.",
-    },
-    {
-        id: 2,
-        date: "Mar 16, 2024",
-        title: "Payment Confirmed",
-        description: "Transaction successful. Preparing for shipment.",
-    },
-    {
-        id: 3,
-        date: "Mar 18, 2024",
-        title: "Shipped",
-        description: "Your package is on its way. Track your delivery.",
-    },
-    {
-        id: 4,
-        date: "Mar 20, 2024",
-        title: "Delivered",
-        description: "Package successfully delivered to the recipient.",
-    },
+const steps = [
+    { id: 1, icon: "check", label: "سبد خرید" },
+    { id: 2, icon: "location", label: "اطلاعات ارسال" },
+    { id: 3, icon: "credit", label: "پرداخت" },
 ];
 
-export function Pattern() {
+export function CheckoutTimeline() {
     return (
-        <Timeline defaultValue={3} className="w-full max-w-md">
-            {orderStatus.map((item) => (
+        <Timeline
+            defaultValue={2}
+            orientation="horizontal"
+            className="mt-5 w-full max-w-lg"
+        >
+            {steps.map((step) => (
                 <TimelineItem
-                    key={item.id}
-                    step={item.id}
-                    className="group-data-[orientation=vertical]/timeline:ms-10"
+                    key={step.id}
+                    step={step.id}
+                    className="relative flex-1"
                 >
-                    <TimelineHeader>
-                        <TimelineSeparator className="group-data-[orientation=vertical]/timeline:-inset-s-7 group-data-[orientation=vertical]/timeline:h-[calc(100%-1.5rem-0.25rem)] group-data-[orientation=vertical]/timeline:translate-y-6.5" />
-                        <TimelineDate>{item.date}</TimelineDate>
-                        <TimelineTitle>{item.title}</TimelineTitle>
-                        <TimelineIndicator className="group-data-completed/timeline-item:bg-primary group-data-completed/timeline-item:text-primary-foreground flex size-6 items-center justify-center group-data-completed/timeline-item:border-none group-data-[orientation=vertical]/timeline:-inset-s-7">
-                            <CheckIcon className="size-4 group-not-data-completed/timeline-item:hidden" />
+                    <TimelineHeader className="relative flex flex-col items-center gap-1.5">
+                        <TimelineIndicator
+                            className="
+                                relative z-10
+                                size-8 shrink-0
+                                rounded-full
+                                border-0
+                                bg-blue-50
+                                text-[#0866ff]
+                                data-[completed]:bg-[#0866ff]
+                                data-[completed]:text-white
+                            "
+                        >
+                            <CheckIcon className="size-4" />
                         </TimelineIndicator>
+
+                        <TimelineTitle
+                            className="
+                                text-[9px]
+                                font-bold
+                                leading-none
+                                text-slate-500
+                                sm:text-[10px]
+                            "
+                        >
+                            {step.label}
+                        </TimelineTitle>
+
+                        <TimelineSeparator
+                            className="
+                                absolute
+                                start-1/2
+                                top-4
+                                z-0
+                                h-px
+                                w-full
+                                -translate-y-1/2
+                                bg-blue-200
+                            "
+                        />
                     </TimelineHeader>
-                    <TimelineContent>{item.description}</TimelineContent>
                 </TimelineItem>
             ))}
         </Timeline>
