@@ -46,4 +46,4 @@ pre-push:
         build-web:
             glob: "frontend/web/"
             root: "frontend/web/**/*."
-            run: rm -rf ./.next && npm run build
+            run: rm -rf frontend/web/.next && npx turbo run @frontend/web#build
