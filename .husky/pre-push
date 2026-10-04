@@ -1,0 +1,5 @@
+printf "\n$============ PRE-PUSH IS RUNNING ============$"
+
+npx lefthook run pre-push --no-auto-install
+
+printf "$============ END OF PRE-PUSH SCRIPT ============$\n"
