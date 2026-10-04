@@ -1,5 +1,7 @@
 "use client";
 
+// Importing digits to fa function
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 // Importing icons
 import { CaretLeftIcon } from "@phosphor-icons/react";
 // Importing nextjs utils
@@ -23,10 +25,10 @@ export function NotFoundPageItems({
             </span>
             <span className="min-w-0 flex-1">
                 <span className="block text-xs font-bold text-slate-700 sm:text-sm">
-                    {title}
+                    {digitsEnToFa(title)}
                 </span>
                 <span className="mt-1.5 hidden text-xs text-slate-400 sm:block">
-                    {desc}
+                    {digitsEnToFa(desc)}
                 </span>
             </span>
             <CaretLeftIcon

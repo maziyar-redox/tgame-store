@@ -1,5 +1,7 @@
 "use client";
 
+// Importing digits to fa function
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 // Importing tailwindMerge utils
 import { cn } from "cn";
 // Importing nextjs utils
@@ -7,6 +9,8 @@ import { usePathname } from "next/navigation";
 
 export function Footer() {
     const pathname = usePathname();
+    const footerText =
+        "© ۱۴۰۶ فروشگاه تی گیم — تمامی حقوق مادی و معنوی این وب‌سایت محفوظ و متعلق به تی گیم شاپ می‌باشد.";
     return (
         <footer
             className={cn(
@@ -14,8 +18,7 @@ export function Footer() {
                 pathname === "/" ? "rounded-none" : "rounded-4xl",
             )}
         >
-            © ۱۴۰۶ فروشگاه تی گیم — تمامی حقوق مادی و معنوی این وب‌سایت محفوظ و
-            متعلق به تی گیم شاپ می‌باشد.
+            {digitsEnToFa(footerText)}
         </footer>
     );
 }

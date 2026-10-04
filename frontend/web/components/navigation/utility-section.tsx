@@ -1,5 +1,7 @@
 "use client";
 
+// Importing digits to fa function
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 // Importing Icons
 import { BasketIcon, UserIcon } from "@phosphor-icons/react";
 // Merging library
@@ -42,7 +44,7 @@ export function UtilitySection() {
             >
                 <BasketIcon name="bag" />
                 <span className="absolute -inset-e-0.5 -top-1.5 grid size-5 place-items-center rounded-full bg-primary text-xs font-bold text-background ring-2 ring-background">
-                    ۳
+                    {digitsEnToFa(3)}
                 </span>
             </Link>
         </div>
