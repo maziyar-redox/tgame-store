@@ -1,7 +1,6 @@
-// Importing Zod
-
 // Importing digits to fa function
 import { digitsFaToEn } from "@persian-tools/persian-tools";
+// Importing Zod
 import * as z from "zod";
 
 // Register schema for user registration

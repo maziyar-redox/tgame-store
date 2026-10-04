@@ -1,5 +1,7 @@
 "use client";
 
+// Importing digits to fa function
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 // Importing icons
 import { ChatCircleDotsIcon } from "@phosphor-icons/react";
 // Importing components from global ui
@@ -26,7 +28,7 @@ export function AuthenticationLayoutOtpComponent({
                         کد ۶ رقمی ارسال‌شده به شماره
                         <b className="text-slate-700" dir="ltr">
                             {" "}
-                            ۰۹۱۱۷۴۶۲۷۵۱{" "}
+                            {digitsEnToFa("09117462751")}{" "}
                         </b>
                         را وارد کنید.
                     </p>
