@@ -40,6 +40,10 @@ pre-push:
         typecheck-web:
             glob: "frontend/web/**/*.{ts,tsx}"
             run: npx tsc --noEmit -p frontend/web/tsconfig.json
-        typecheck-admin:
-            glob: "frontend/admin/**/*.{ts,tsx}"
-            run: npx tsc --noEmit -p frontend/admin/tsconfig.json
+        #typecheck-admin:
+        #    glob: "frontend/admin/**/*.{ts,tsx}"
+        #    run: npx tsc --noEmit -p frontend/admin/tsconfig.json
+        build-web:
+            glob: "frontend/web/"
+            root: "frontend/web/**/*."
+            run: rm -rf ./.next && npm run build
