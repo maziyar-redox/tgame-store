@@ -9,6 +9,8 @@ import {
 } from "@phosphor-icons/react";
 // Importing nextjs utils
 import Image from "next/image";
+// Importing from global ui components
+import { Button } from "@/components/ui/button";
 
 export function Items() {
     return (
@@ -32,13 +34,15 @@ export function Items() {
                             هدفون بلوتوثی سونی
                         </h2>
                     </div>
-                    <button
+                    <Button
                         type="button"
+                        variant="empty"
+                        size="empty"
                         className="grid size-8 shrink-0 place-items-center rounded-lg text-slate-400 hover:bg-rose-50 hover:text-rose-500"
                         aria-label="حذف محصول"
                     >
                         <TrashIcon name="trash" className="size-4" />
-                    </button>
+                    </Button>
                 </div>
                 <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[10px] text-slate-500 sm:mt-3 sm:text-xs">
                     <span className="flex items-center gap-1.5">
@@ -52,21 +56,25 @@ export function Items() {
                 </div>
                 <div className="mt-4 flex items-end justify-between gap-2">
                     <div className="flex items-center rounded-xl border border-slate-200">
-                        <button
+                        <Button
+                            variant="empty"
+                            size="empty"
                             type="button"
                             className="grid size-8 place-items-center text-primary sm:size-9"
                         >
                             <PlusIcon name="plus" className="size-3.5" />
-                        </button>
+                        </Button>
                         <span className="w-6 text-center text-xs font-bold">
                             ۴
                         </span>
-                        <button
+                        <Button
+                            variant="empty"
+                            size="empty"
                             type="button"
                             className="grid size-8 place-items-center text-slate-500 sm:size-9"
                         >
                             <MinusIcon name="minus" className="size-3.5" />
-                        </button>
+                        </Button>
                     </div>
                     <div className="text-left">
                         <del className="block text-[9px] text-slate-400">

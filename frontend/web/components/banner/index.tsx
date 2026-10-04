@@ -1,3 +1,6 @@
+// Importing digits to fa function
+import { digitsEnToFa } from "@persian-tools/persian-tools";
+// Importing tailwindMerge utils
 import { cn } from "cn";
 
 // Typing For banner
@@ -16,7 +19,7 @@ export function Banner({
                 text === undefined ? "hidden" : "block",
             )}
         >
-            {text}
+            {digitsEnToFa(text)}
         </section>
     );
 }

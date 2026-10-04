@@ -2,6 +2,10 @@
 
 // Importing icons
 import { BasketIcon } from "@phosphor-icons/react";
+import { cn } from "cn";
+// Importing next utils
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 export function EmptyCard() {
     return (
@@ -16,12 +20,16 @@ export function EmptyCard() {
                 <p className="mt-2 text-sm text-slate-400">
                     محصولات مورد علاقه‌تان را به سبد اضافه کنید.
                 </p>
-                <button
+                <Link
+                    href="/categories"
                     type="button"
-                    className="mt-5 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white"
+                    className={cn(
+                        buttonVariants({ variant: "default", size: "xl" }),
+                        "mt-5 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white",
+                    )}
                 >
                     مشاهده محصولات
-                </button>
+                </Link>
             </div>
         </div>
     );

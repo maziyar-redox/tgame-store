@@ -5,4 +5,5 @@ type NavigationLinksProps = {
     link: string;
 };
 
+// Exporting
 export type { NavigationLinksProps };

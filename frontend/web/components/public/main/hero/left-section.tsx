@@ -2,8 +2,12 @@
 
 // Importing Icons
 import { ArrowRightIcon } from "@phosphor-icons/react";
+// Importing tailwindMerge utils
+import { cn } from "cn";
 // Importing nextjs utils
 import Link from "next/link";
+// Importing button variants from global ui
+import { buttonVariants } from "@/components/ui/button";
 
 export function LeftSection() {
     return (
@@ -26,7 +30,10 @@ export function LeftSection() {
             <div className="mt-7 flex flex-wrap items-center gap-3">
                 <Link
                     href="#latest"
-                    className="inline-flex items-center gap-3 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-300 transition hover:-translate-y-0.5 hover:bg-blue-700"
+                    className={cn(
+                        buttonVariants({ variant: "empty", size: "empty" }),
+                        "inline-flex items-center gap-3 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-300 transition hover:-translate-y-0.5 hover:bg-blue-700",
+                    )}
                 >
                     مشاهده محصولات
                     <ArrowRightIcon
@@ -36,7 +43,10 @@ export function LeftSection() {
                 </Link>
                 <Link
                     href="#categories"
-                    className="rounded-xl bg-white/70 px-5 py-3 text-sm font-bold text-slate-700 ring-1 ring-slate-200 transition hover:bg-white"
+                    className={cn(
+                        buttonVariants({ variant: "empty", size: "empty" }),
+                        "rounded-xl bg-white/70 px-5 py-3 text-sm font-bold text-slate-700 ring-1 ring-slate-200 transition hover:bg-white",
+                    )}
                 >
                     دسته‌بندی‌ها
                 </Link>

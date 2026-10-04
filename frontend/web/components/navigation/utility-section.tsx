@@ -1,5 +1,7 @@
 "use client";
 
+// Importing digits to fa function
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 // Importing Icons
 import { BasketIcon, UserIcon } from "@phosphor-icons/react";
 // Merging library
@@ -20,10 +22,10 @@ export function UtilitySection() {
             <Link
                 href="/panel"
                 className={cn(
+                    buttonVariants({ variant: "icon", size: "icon-2xl" }),
                     pathname === "/panel"
                         ? "bg-accent [&_svg:not([class*='fill-'])]:fill-primary"
                         : "[&_svg:not([class*='fill-'])]:fill-slate-700",
-                    buttonVariants({ variant: "icon", size: "icon-2xl" }),
                 )}
                 aria-label="حساب کاربری"
             >
@@ -32,17 +34,17 @@ export function UtilitySection() {
             <Link
                 href="/card"
                 className={cn(
+                    buttonVariants({ variant: "icon", size: "icon-2xl" }),
                     "relative",
                     pathname === "/card"
                         ? "bg-accent [&_svg:not([class*='fill-'])]:fill-primary"
                         : "[&_svg:not([class*='fill-'])]:fill-slate-700",
-                    buttonVariants({ variant: "icon", size: "icon-2xl" }),
                 )}
                 aria-label="سبد خرید"
             >
                 <BasketIcon name="bag" />
                 <span className="absolute -inset-e-0.5 -top-1.5 grid size-5 place-items-center rounded-full bg-primary text-xs font-bold text-background ring-2 ring-background">
-                    ۳
+                    {digitsEnToFa(3)}
                 </span>
             </Link>
         </div>

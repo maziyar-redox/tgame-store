@@ -6,8 +6,9 @@ import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 import { cn } from "cn";
 // Importing hooks
 import { useMediaQuery } from "usehooks-ts";
-// Importing From Global Ui Components
-import { buttonVariants } from "@/components/ui/button"; */
+*/
+// Importing from gloabal ui components
+import { Button } from "@/components/ui/button";
 
 // TODO: fix this component
 export function SearchBarButton() {
@@ -30,7 +31,7 @@ export function SearchBarButton() {
     }; */
 
     return (
-        <button
+        <Button
             type="button"
             className="sm:flex items-center gap-2 rounded-xl transition-all border border-slate-200 hover:border-slate-400 bg-white px-3 py-2.5 text-sm hidden lg:w-72"
         >
@@ -42,6 +43,6 @@ export function SearchBarButton() {
                 className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-slate-400"
                 placeholder="جستجوی محصول..."
             />
-        </button>
+        </Button>
     );
 }
