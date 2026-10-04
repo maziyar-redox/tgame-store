@@ -1,6 +1,8 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+// Importing digits to fa function
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 // Importing from local Ui
 // import { SearchBarButton } from "@/components/navigation/search-bar-button";
 // Importing Icons
@@ -90,6 +92,7 @@ export function SearchBar() {
                                     <Field data-invalid={fieldState.invalid}>
                                         <Input
                                             {...field}
+                                            value={digitsEnToFa(field.value)}
                                             id="form-st-title"
                                             aria-invalid={fieldState.invalid}
                                             placeholder="عبارت خود را جستجو کنید"

@@ -1,7 +1,6 @@
-// Importing tailwindMerge utils
-
 // Importing digits to fa function
 import { digitsEnToFa } from "@persian-tools/persian-tools";
+// Importing tailwindMerge utils
 import { cn } from "cn";
 
 // Typing For banner

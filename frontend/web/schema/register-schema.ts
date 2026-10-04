@@ -1,4 +1,7 @@
 // Importing Zod
+
+// Importing digits to fa function
+import { digitsFaToEn } from "@persian-tools/persian-tools";
 import * as z from "zod";
 
 // Register schema for user registration
@@ -10,7 +13,10 @@ export const registerFormSchema = z.object({
     phone_number: z
         .string()
         .refine(
-            (value) => /^(?:\+98|0)?9\d{9}$/.test(value.replace(/\D/g, "")),
+            (value) =>
+                /^(?:\+98|0)?9\d{9}$/.test(
+                    digitsFaToEn(value).replace(/\D/g, ""),
+                ),
             { message: "شماره وارد شده صحیح نمیباشد" },
         ),
     terms: z.boolean().refine((val) => val === true, {

@@ -2,6 +2,8 @@
 
 // Importing shcema validation utils
 import { zodResolver } from "@hookform/resolvers/zod";
+// Importing digits to fa function
+import { digitsEnToFa, digitsFaToEn } from "@persian-tools/persian-tools";
 // Importing icons
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { cn } from "cn";
@@ -32,7 +34,7 @@ export function RegisterSection() {
     });
 
     function onRegister(data: z.infer<typeof registerFormSchema>) {
-        console.log(data);
+        console.log(digitsFaToEn(data.phone_number));
     }
     return (
         <TabsContent value="register">
@@ -81,9 +83,10 @@ export function RegisterSection() {
                                 </FieldLabel>
                                 <Input
                                     {...field}
+                                    value={digitsEnToFa(field.value)}
                                     id="login_form_phone"
                                     aria-invalid={fieldState.invalid}
-                                    placeholder="۰۹۱۲۱۲۳۴۵۶۷"
+                                    placeholder={digitsEnToFa("09121234567")}
                                     autoComplete="off"
                                     dir="ltr"
                                     className="border border-slate-200 px-4 py-5 text-left text-sm font-normal outline-none focus:border-primary"

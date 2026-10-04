@@ -47,10 +47,10 @@ export function Pattern() {
                     className="group-data-[orientation=vertical]/timeline:ms-10"
                 >
                     <TimelineHeader>
-                        <TimelineSeparator className="group-data-[orientation=vertical]/timeline:-start-7 group-data-[orientation=vertical]/timeline:h-[calc(100%-1.5rem-0.25rem)] group-data-[orientation=vertical]/timeline:translate-y-6.5" />
+                        <TimelineSeparator className="group-data-[orientation=vertical]/timeline:-inset-s-7 group-data-[orientation=vertical]/timeline:h-[calc(100%-1.5rem-0.25rem)] group-data-[orientation=vertical]/timeline:translate-y-6.5" />
                         <TimelineDate>{item.date}</TimelineDate>
                         <TimelineTitle>{item.title}</TimelineTitle>
-                        <TimelineIndicator className="group-data-completed/timeline-item:bg-primary group-data-completed/timeline-item:text-primary-foreground flex size-6 items-center justify-center group-data-completed/timeline-item:border-none group-data-[orientation=vertical]/timeline:-start-7">
+                        <TimelineIndicator className="group-data-completed/timeline-item:bg-primary group-data-completed/timeline-item:text-primary-foreground flex size-6 items-center justify-center group-data-completed/timeline-item:border-none group-data-[orientation=vertical]/timeline:-inset-s-7">
                             <CheckIcon className="size-4 group-not-data-completed/timeline-item:hidden" />
                         </TimelineIndicator>
                     </TimelineHeader>
