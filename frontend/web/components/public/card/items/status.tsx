@@ -2,6 +2,10 @@
 
 // Importing icons
 import { ArrowLeftIcon, LockIcon } from "@phosphor-icons/react";
+// Importing next utils
+import Link from "next/link";
+// Importing global ui components
+import { Button } from "@/components/ui/button";
 
 export function Status() {
     return (
@@ -44,20 +48,22 @@ export function Status() {
                     className="min-w-0 flex-1 rounded-xl border border-slate-200 px-3 text-xs outline-none focus:border-primary"
                     placeholder="کد تخفیف"
                 />
-                <button
+                <Button
+                    variant="empty"
+                    size="empty"
                     type="button"
                     className="rounded-xl bg-slate-100 px-4 py-3 text-xs font-bold hover:bg-slate-200"
                 >
                     اعمال شد
-                </button>
+                </Button>
             </div>
-            <button
-                type="button"
+            <Link
+                href="/card/checkout"
                 className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-200 hover:bg-blue-700"
             >
                 تکمیل و ثبت سفارش
                 <ArrowLeftIcon name="arrow" className="size-4" />
-            </button>
+            </Link>
             <p className="mt-3 flex items-center justify-center gap-1.5 text-[10px] text-slate-400">
                 <LockIcon name="lock" className="size-3" />
                 پرداخت امن و رمزنگاری‌شده

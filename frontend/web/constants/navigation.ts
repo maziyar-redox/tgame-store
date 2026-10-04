@@ -16,12 +16,12 @@ const navigationLinks: NavigationLinksProps[] = [
     {
         id: 3,
         text: "درباره ما",
-        link: "/aboutus",
+        link: "/about",
     },
     {
         id: 4,
         text: "تماس با ما",
-        link: "/contactus",
+        link: "/contact",
     },
     {
         id: 5,

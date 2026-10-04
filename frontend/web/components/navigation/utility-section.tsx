@@ -20,10 +20,10 @@ export function UtilitySection() {
             <Link
                 href="/panel"
                 className={cn(
+                    buttonVariants({ variant: "icon", size: "icon-2xl" }),
                     pathname === "/panel"
                         ? "bg-accent [&_svg:not([class*='fill-'])]:fill-primary"
                         : "[&_svg:not([class*='fill-'])]:fill-slate-700",
-                    buttonVariants({ variant: "icon", size: "icon-2xl" }),
                 )}
                 aria-label="حساب کاربری"
             >
@@ -32,11 +32,11 @@ export function UtilitySection() {
             <Link
                 href="/card"
                 className={cn(
+                    buttonVariants({ variant: "icon", size: "icon-2xl" }),
                     "relative",
                     pathname === "/card"
                         ? "bg-accent [&_svg:not([class*='fill-'])]:fill-primary"
                         : "[&_svg:not([class*='fill-'])]:fill-slate-700",
-                    buttonVariants({ variant: "icon", size: "icon-2xl" }),
                 )}
                 aria-label="سبد خرید"
             >

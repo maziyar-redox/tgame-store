@@ -3,6 +3,8 @@
 /* import { EmptyCard } from "@/components/public/card/items/empty-card"; */
 // Importing arrow icon
 import { ArrowRightIcon } from "@phosphor-icons/react";
+// Importing next utils
+import Link from "next/link";
 // Importing local ui components
 import { CardCount } from "@/components/public/card/items/card-count";
 import { Items } from "@/components/public/card/items/items";
@@ -18,13 +20,13 @@ export function CardPageComponent() {
                     <Items />
                     <Items />
                     <Items />
-                    <button
-                        type="button"
+                    <Link
+                        href="/categories"
                         className="mt-2 inline-flex items-center gap-2 rounded-xl px-2 py-3 text-sm font-bold text-primary"
                     >
                         <ArrowRightIcon name="arrow" className="size-4" />
                         ادامه خرید
-                    </button>
+                    </Link>
                 </section>
                 <Status />
             </div>

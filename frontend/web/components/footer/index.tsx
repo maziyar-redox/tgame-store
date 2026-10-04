@@ -1,6 +1,8 @@
 "use client";
 
+// Importing tailwindMerge utils
 import { cn } from "cn";
+// Importing nextjs utils
 import { usePathname } from "next/navigation";
 
 export function Footer() {

@@ -19,8 +19,8 @@ const buttonVariants = cva(
                 destructive:
                     "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
                 link: "text-primary underline-offset-4 hover:underline",
-
                 icon: "rounded-xl p-2 text-slate-700 hover:bg-slate-100",
+                empty: "",
             },
             size: {
                 default:
@@ -36,6 +36,7 @@ const buttonVariants = cva(
                 "icon-lg": "size-9",
                 "icon-2xl": "size-10 [&_svg:not([class*='size-'])]:size-5.5",
                 xl: "py-3.5",
+                empty: "",
             },
         },
         defaultVariants: {
