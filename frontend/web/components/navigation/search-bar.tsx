@@ -94,9 +94,12 @@ export function SearchBar() {
                                             {...field}
                                             value={digitsEnToFa(field.value)}
                                             id="form-st-title"
+                                            name="navigation_search"
                                             aria-invalid={fieldState.invalid}
                                             placeholder="عبارت خود را جستجو کنید"
-                                            autoComplete="off"
+                                            autoComplete="on"
+                                            type="text"
+                                            required
                                             className="h-10"
                                         />
                                         {fieldState.invalid && (
