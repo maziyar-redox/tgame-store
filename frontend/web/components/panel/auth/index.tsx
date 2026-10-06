@@ -68,7 +68,7 @@ export function AuthenticationLayoutComponent({
                             <TabsTrigger
                                 value="login"
                                 className={cn(
-                                    "rounded-lg py-2.5 text-xs font-bold transition text-muted-foreground data-active:bg-card data-active:text-primary data-active:shadow-sm",
+                                    "rounded-lg py-2.5 text-xs font-bold transition text-muted-foreground data-active:bg-card data-active:text-primary data-active:shadow-sm data-active:hover:text-primary",
                                 )}
                             >
                                 ورود
@@ -76,7 +76,7 @@ export function AuthenticationLayoutComponent({
                             <TabsTrigger
                                 value="register"
                                 className={cn(
-                                    "rounded-lg py-2.5 text-xs font-bold transition text-muted-foreground data-active:bg-card data-active:text-primary data-active:shadow-sm",
+                                    "rounded-lg py-2.5 text-xs font-bold transition text-muted-foreground data-active:bg-card data-active:text-primary data-active:shadow-sm data-active:hover:text-primary",
                                 )}
                             >
                                 ثبت نام

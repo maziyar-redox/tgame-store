@@ -35,8 +35,9 @@
         "cz-conventional-changelog": "^3.3.0",
         "cz-git": "^1.14.0",
         "husky": "^9.1.7",
-        "lefthook": "^2.1.15",
-        "turbo": "^2.11.5"
+        "lefthook": "^2.1.16",
+        "syncpack": "^15.3.3",
+        "turbo": "^2.11.7"
     },
     "lint-staged": {
         "frontend/web/*.{ts,tsx}": [
