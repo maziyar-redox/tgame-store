@@ -32,6 +32,7 @@ export function LoginSection() {
     function onLogin(data: z.infer<typeof loginFormSchema>) {
         console.log(digitsFaToEn(data.phone_number));
     }
+
     return (
         <TabsContent value="login">
             <form

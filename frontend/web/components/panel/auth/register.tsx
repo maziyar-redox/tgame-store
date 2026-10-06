@@ -36,6 +36,7 @@ export function RegisterSection() {
     function onRegister(data: z.infer<typeof registerFormSchema>) {
         console.log(digitsFaToEn(data.phone_number));
     }
+
     return (
         <TabsContent value="register">
             <form
