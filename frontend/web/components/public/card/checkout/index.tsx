@@ -8,7 +8,9 @@ import { ArrowRightIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 // Importing form provider for registering methods under hood
 import { FormProvider, useForm } from "react-hook-form";
+// Importing z utils
 import type * as z from "zod";
+// Importing local ui components
 import { Payment } from "@/components/public/card/checkout/payment";
 import { PersonalInformation } from "@/components/public/card/checkout/personal-info";
 import { Posting } from "@/components/public/card/checkout/posting";
