@@ -39,7 +39,7 @@ export function NavigationBUttonsSm() {
     return (
         <nav
             className={cn(
-                "transition-all transition-discrete ease-in-out duration-200 grid gap-1 rounded-b-xl border-t border-secondary bg-background px-4 py-3 text-sm font-semibold lg:hidden fixed left-5 right-5 top-14 shadow-lg",
+                "transition-all transition-discrete ease-in-out duration-200 grid gap-1 rounded-xl border-t border-secondary bg-background px-4 py-3 text-sm font-semibold lg:hidden fixed left-5 right-5 top-14 shadow-lg",
                 isOpen ? "fixed opacity-100" : "hidden opacity-0",
             )}
         >
