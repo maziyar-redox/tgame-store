@@ -4,6 +4,7 @@
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 // Importing from gloabal ui components
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export function SearchBarButton() {
     return (
@@ -15,9 +16,12 @@ export function SearchBarButton() {
                 name="search"
                 className="size-4 text-slate-400"
             />
-            <input
+            <Input
                 className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-slate-400"
                 placeholder="جستجوی محصول..."
+                name="mock_placeholder"
+                type="text"
+                autoComplete="off"
             />
         </Button>
     );

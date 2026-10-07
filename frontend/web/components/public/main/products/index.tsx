@@ -5,7 +5,7 @@ import { CaretLeftIcon } from "@phosphor-icons/react";
 // Importing nextjs utils
 import Link from "next/link";
 // Importing local ui components
-import { ProductItems } from "@/components/public/main/products/product-items";
+import { ProductCarousel } from "@/components/public/main/products/product-carousel";
 
 export function Products() {
     return (
@@ -30,13 +30,7 @@ export function Products() {
                     <CaretLeftIcon name="chevron" className="size-4" />
                 </Link>
             </div>
-            <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
-                {Array.from({ length: 5 }, (_, i) => ({ id: i + 1 })).map(
-                    (category) => (
-                        <ProductItems key={category.id} />
-                    ),
-                )}
-            </div>
+            <ProductCarousel />
         </section>
     );
 }
