@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 // Importing Direction provider from global ui component
 import { DirectionProvider } from "@/components/ui/direction";
+import { Toaster } from "@/components/ui/toast";
 
 // IMPORT: Global style which applies on entire application
 import "@/app/globals.css";
@@ -42,6 +43,7 @@ export default function RootLayout({
                     {children}
                     <Footer />
                 </DirectionProvider>
+                <Toaster />
             </body>
         </html>
     );

@@ -1,5 +1,5 @@
 // Importing authentication wrapper which is client component
-import { AuthenticationLayoutComponent } from "@/components/panel/auth";
+import { AuthenticationLayoutComponent } from "@/components/panel/authentication/auth";
 
 export default function AuthenticationLayout({
     children,

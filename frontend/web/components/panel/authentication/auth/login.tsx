@@ -58,8 +58,11 @@ export function LoginSection() {
                                     id="login_form_phone"
                                     aria-invalid={fieldState.invalid}
                                     placeholder={digitsEnToFa("09121234567")}
-                                    autoComplete="off"
+                                    autoComplete="tel"
+                                    name="phone_number"
+                                    type="tel"
                                     dir="ltr"
+                                    required
                                     className="border border-slate-200 px-4 py-5 text-left text-sm font-normal outline-none focus:border-primary"
                                 />
                                 {fieldState.invalid && (

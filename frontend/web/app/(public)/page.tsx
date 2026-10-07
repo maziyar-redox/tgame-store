@@ -1,3 +1,4 @@
+// Importing Main page items
 import { Categories } from "@/components/public/main/categories";
 import { HeroSection } from "@/components/public/main/hero";
 import { Offer } from "@/components/public/main/offer";

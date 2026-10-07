@@ -1,3 +1,5 @@
+// biome-ignore-all lint: This file contains generated code
+
 "use client";
 
 import { Radio as RadioPrimitive } from "@base-ui/react/radio";

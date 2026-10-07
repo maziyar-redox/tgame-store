@@ -3,8 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 // Importing digits to fa function
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-// Importing from local Ui
-// import { SearchBarButton } from "@/components/navigation/search-bar-button";
 // Importing Icons
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 // Importing tw merge
@@ -36,15 +34,18 @@ export function SearchBar() {
     const matches = useMediaQuery("(max-width: 768px)", {
         initializeWithValue: false,
     });
+
     const form = useForm<z.infer<typeof searchFormSchema>>({
         resolver: zodResolver(searchFormSchema),
         defaultValues: {
             searchTerm: "",
         },
     });
+
     function onSearch(data: z.infer<typeof searchFormSchema>) {
         console.log(data);
     }
+
     return (
         <Dialog>
             <DialogTrigger
@@ -94,9 +95,12 @@ export function SearchBar() {
                                             {...field}
                                             value={digitsEnToFa(field.value)}
                                             id="form-st-title"
+                                            name="navigation_search"
                                             aria-invalid={fieldState.invalid}
                                             placeholder="عبارت خود را جستجو کنید"
-                                            autoComplete="off"
+                                            autoComplete="on"
+                                            type="text"
+                                            required
                                             className="h-10"
                                         />
                                         {fieldState.invalid && (

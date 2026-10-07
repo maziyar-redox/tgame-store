@@ -49,8 +49,11 @@ export function PersonalInformation() {
                                 id="full_name_form"
                                 aria-invalid={fieldState.invalid}
                                 placeholder="نام و نام خانوادگی"
-                                autoComplete="off"
+                                autoComplete="name"
                                 dir="rtl"
+                                name="full_name"
+                                required
+                                type="text"
                                 className="border border-slate-200 px-4 py-5 text-right text-sm font-normal outline-none focus:border-primary"
                             />
                             {fieldState.invalid && (
@@ -76,7 +79,10 @@ export function PersonalInformation() {
                                 aria-invalid={fieldState.invalid}
                                 value={digitsEnToFa(field.value)}
                                 placeholder={digitsEnToFa("09121234567")}
-                                autoComplete="off"
+                                autoComplete="tel"
+                                required
+                                type="tel"
+                                name="phone_number"
                                 dir="ltr"
                                 className="border border-slate-200 px-4 py-5 text-left text-sm font-normal outline-none focus:border-primary"
                             />
@@ -103,6 +109,9 @@ export function PersonalInformation() {
                                 aria-invalid={fieldState.invalid}
                                 placeholder="تهران"
                                 autoComplete="off"
+                                required
+                                type="text"
+                                name="province"
                                 dir="rtl"
                                 className="border border-slate-200 px-4 py-5 text-right text-sm font-normal outline-none focus:border-primary"
                             />
@@ -129,6 +138,9 @@ export function PersonalInformation() {
                                 aria-invalid={fieldState.invalid}
                                 placeholder="تهران"
                                 autoComplete="off"
+                                required
+                                type="text"
+                                name="city"
                                 dir="rtl"
                                 className="border border-slate-200 px-4 py-5 text-right text-sm font-normal outline-none focus:border-primary"
                             />
@@ -155,7 +167,9 @@ export function PersonalInformation() {
                                     id="address_form"
                                     aria-invalid={fieldState.invalid}
                                     placeholder="تهران"
-                                    autoComplete="off"
+                                    autoComplete="address"
+                                    required
+                                    name="province"
                                     rows={2}
                                     dir="rtl"
                                     className="border min-h-20 resize-none border-slate-200 px-4 text-right text-sm font-normal outline-none focus:border-primary"
@@ -184,7 +198,10 @@ export function PersonalInformation() {
                                 aria-invalid={fieldState.invalid}
                                 value={digitsEnToFa(field.value)}
                                 placeholder={digitsEnToFa("1234567890")}
-                                autoComplete="off"
+                                autoComplete="postal-code"
+                                type="number"
+                                name="postal_code"
+                                required
                                 dir="ltr"
                                 className="border border-slate-200 px-4 py-5 text-left text-sm font-normal outline-none focus:border-primary"
                             />
