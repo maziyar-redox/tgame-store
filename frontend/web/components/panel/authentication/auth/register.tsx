@@ -64,6 +64,7 @@ export function RegisterSection() {
                                     autoComplete="name"
                                     name="full_name"
                                     type="text"
+                                    required
                                     dir="rtl"
                                     className="border border-slate-200 px-4 py-5 text-right text-sm font-normal outline-none focus:border-primary"
                                 />
@@ -93,6 +94,7 @@ export function RegisterSection() {
                                     autoComplete="tel"
                                     name="phone_number"
                                     type="tel"
+                                    required
                                     dir="ltr"
                                     className="border border-slate-200 px-4 py-5 text-left text-sm font-normal outline-none focus:border-primary"
                                 />

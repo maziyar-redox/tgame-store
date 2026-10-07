@@ -2,34 +2,10 @@
 
 // Importing Icons
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
-/* // Importing tw merge
-import { cn } from "cn";
-// Importing hooks
-import { useMediaQuery } from "usehooks-ts";
-*/
 // Importing from gloabal ui components
 import { Button } from "@/components/ui/button";
 
-// TODO: fix this component
 export function SearchBarButton() {
-    /* const matches = useMediaQuery("(max-width: 768px)");
-    
-    if (matches) {
-        return (
-            <button
-                type="button"
-                className={cn(
-                    "[&_svg:not([class*='fill-'])]:fill-slate-700",
-                    buttonVariants({ variant: "icon", size: "icon-2xl" }),
-                )}
-            >
-                <MagnifyingGlassIcon
-                    name="search"
-                />
-            </button>
-        );
-    }; */
-
     return (
         <Button
             type="button"

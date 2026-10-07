@@ -62,6 +62,7 @@ export function LoginSection() {
                                     name="phone_number"
                                     type="tel"
                                     dir="ltr"
+                                    required
                                     className="border border-slate-200 px-4 py-5 text-left text-sm font-normal outline-none focus:border-primary"
                                 />
                                 {fieldState.invalid && (

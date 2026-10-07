@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 // Added not found component
 import { NotFoundComponent } from "@/components/error/notfound/not-found";
 
+// Managing metadata
 export const metadata: Metadata = {
     title: "تی گیم | صفحه پیدا نشد!",
     description:
