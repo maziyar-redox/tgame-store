@@ -32,7 +32,7 @@ export function LeftSection() {
                     href="#latest"
                     className={cn(
                         buttonVariants({ variant: "empty", size: "empty" }),
-                        "inline-flex items-center gap-3 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-300 transition hover:-translate-y-0.5 hover:bg-blue-700",
+                        "inline-flex items-center gap-3 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-300 transition hover:-translate-y-0.5 hover:bg-blue-700 w-48 sm:w-fit",
                     )}
                 >
                     مشاهده محصولات
@@ -45,7 +45,7 @@ export function LeftSection() {
                     href="#categories"
                     className={cn(
                         buttonVariants({ variant: "empty", size: "empty" }),
-                        "rounded-xl bg-white/70 px-5 py-3 text-sm font-bold text-slate-700 ring-1 ring-slate-200 transition hover:bg-white",
+                        "rounded-xl bg-white/70 px-5 py-3 text-sm font-bold text-slate-700 ring-1 ring-slate-200 transition hover:bg-white w-48 sm:w-fit",
                     )}
                 >
                     دسته‌بندی‌ها

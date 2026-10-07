@@ -43,7 +43,7 @@ export default function RootLayout({
                     {children}
                     <Footer />
                 </DirectionProvider>
-                <Toaster />
+                <Toaster className={cn("antialiased", vazirmatn.className)} />
             </body>
         </html>
     );

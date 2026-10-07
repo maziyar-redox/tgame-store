@@ -15,7 +15,7 @@ export function Footer() {
         <footer
             className={cn(
                 "bg-white px-4 py-7 text-center text-xs text-slate-400",
-                pathname === "/" ? "rounded-none" : "rounded-4xl",
+                pathname === "/" ? "rounded-none" : "rounded-t-4xl",
             )}
         >
             {digitsEnToFa(footerText)}

@@ -26,8 +26,8 @@ export default function Root() {
             </AnimationWrapper>
             <AnimationWrapper>
                 <Offer />
-                <Terms />
             </AnimationWrapper>
+            <Terms />
         </>
     );
 }
