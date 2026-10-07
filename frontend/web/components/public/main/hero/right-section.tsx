@@ -2,6 +2,8 @@
 
 // Importing Icons
 import { ShieldCheckIcon } from "@phosphor-icons/react";
+// Importing motion animation lib
+import { motion } from "motion/react";
 // Importing nextjs utils
 import Image from "next/image";
 
@@ -18,7 +20,18 @@ export function RightSection() {
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-brand-blue-dark/35 via-transparent to-white/5" />
             </div>
-            <div className="absolute bottom-5 left-4 z-10 hidden items-center gap-3 rounded-2xl bg-white/95 p-3 shadow-xl backdrop-blur sm:flex lg:bottom-8 lg:left-10">
+            <motion.div
+                animate={{
+                    y: [0, -20, 0],
+                    x: [0, -5, 0],
+                }}
+                transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+                className="absolute bottom-5 left-4 z-10 hidden items-center gap-3 rounded-2xl bg-white/95 p-3 shadow-xl backdrop-blur sm:flex lg:bottom-8 lg:left-10"
+            >
                 <span className="grid size-10 place-items-center rounded-xl bg-emerald-50 text-emerald-600">
                     <ShieldCheckIcon name="shield" className="size-6" />
                 </span>
@@ -28,7 +41,7 @@ export function RightSection() {
                         خرید مطمئن و امن
                     </small>
                 </span>
-            </div>
+            </motion.div>
         </>
     );
 }
