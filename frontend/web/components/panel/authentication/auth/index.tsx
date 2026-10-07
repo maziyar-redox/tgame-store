@@ -43,14 +43,15 @@ export function AuthenticationLayoutComponent({
                             <span className="size-5 rounded-md border-[3px] border-white" />
                         </span>
                         <h1 className="mt-4 text-2xl font-black text-brand-navy">
-                            {pathname === "login"
-                                ? "ورود به تکنو"
-                                : "ساخت حساب کاربری"}
+                            {pathname === "/auth/login" && "ورود به تکنو"}
+                            {pathname === "/auth/register" &&
+                                "ساخت حساب کاربری"}
                         </h1>
                         <p className="mt-2 text-sm leading-6 text-slate-400">
-                            {pathname === "login"
-                                ? "برای مشاهده سفارش‌ها و مدیریت حساب وارد شوید"
-                                : "با ثبت‌نام، تجربه خرید سریع‌تر و ساده‌تری داشته باشید"}
+                            {pathname === "/auth/login" &&
+                                "برای مشاهده سفارش‌ها و مدیریت حساب وارد شوید"}
+                            {pathname === "/auth/register" &&
+                                "با ثبت‌نام، تجربه خرید سریع‌تر و ساده‌تری داشته باشید"}
                         </p>
                     </div>
                     <Tabs
