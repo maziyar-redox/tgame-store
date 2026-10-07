@@ -61,7 +61,9 @@ export function RegisterSection() {
                                     id="login_form_fullname"
                                     aria-invalid={fieldState.invalid}
                                     placeholder="لظفا نام کامل خود را وارد کنید"
-                                    autoComplete="off"
+                                    autoComplete="name"
+                                    name="full_name"
+                                    type="text"
                                     dir="rtl"
                                     className="border border-slate-200 px-4 py-5 text-right text-sm font-normal outline-none focus:border-primary"
                                 />
@@ -88,7 +90,9 @@ export function RegisterSection() {
                                     id="login_form_phone"
                                     aria-invalid={fieldState.invalid}
                                     placeholder={digitsEnToFa("09121234567")}
-                                    autoComplete="off"
+                                    autoComplete="tel"
+                                    name="phone_number"
+                                    type="tel"
                                     dir="ltr"
                                     className="border border-slate-200 px-4 py-5 text-left text-sm font-normal outline-none focus:border-primary"
                                 />
