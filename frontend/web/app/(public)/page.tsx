@@ -1,4 +1,5 @@
 // Importing Main page items
+import { AnimationWrapper } from "@/components/public/main/animation";
 import { Categories } from "@/components/public/main/categories";
 import { Favorite } from "@/components/public/main/favorite";
 import { Gamer } from "@/components/public/main/gamer";
@@ -10,13 +11,23 @@ import { Terms } from "@/components/public/main/terms";
 export default function Root() {
     return (
         <>
-            <HeroSection />
-            <Categories />
-            <Products />
-            <Favorite />
-            <Gamer />
-            <Offer />
-            <Terms />
+            <AnimationWrapper>
+                <HeroSection />
+                <Categories />
+            </AnimationWrapper>
+            <AnimationWrapper>
+                <Products />
+            </AnimationWrapper>
+            <AnimationWrapper>
+                <Favorite />
+            </AnimationWrapper>
+            <AnimationWrapper>
+                <Gamer />
+            </AnimationWrapper>
+            <AnimationWrapper>
+                <Offer />
+                <Terms />
+            </AnimationWrapper>
         </>
     );
 }
