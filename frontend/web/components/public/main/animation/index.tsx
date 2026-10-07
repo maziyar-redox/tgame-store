@@ -1,5 +1,6 @@
 "use client";
 
+// Importing motion library
 import { motion } from "motion/react";
 
 export function AnimationWrapper({ children }: { children: React.ReactNode }) {
