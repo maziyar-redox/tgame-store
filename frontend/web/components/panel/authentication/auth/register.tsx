@@ -149,5 +149,3 @@ export function RegisterSection() {
         </TabsContent>
     );
 }
-
-/* {mode === "register" && <label className="flex cursor-pointer items-start gap-2 text-[10px] leading-5 text-slate-500"><input required type="checkbox" className="mt-1 accent-[#0866ff]" /> </label>} */

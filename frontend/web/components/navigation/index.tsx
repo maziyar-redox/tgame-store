@@ -1,9 +1,13 @@
+// biome-ignore-all lint: This file contains generated code
+
 "use client";
 
 // Importing Icons
 import { ListIcon, XIcon } from "@phosphor-icons/react";
+// Importing nextjs utils
+import { usePathname } from "next/navigation";
 // React utilities
-import { type Ref, useEffect, useRef } from "react";
+import { type RefObject, useEffect, useRef, useState } from "react";
 // Importing Local Ui Components
 import { Logo } from "@/components/navigation/logo";
 import {
@@ -17,13 +21,21 @@ import { Button } from "@/components/ui/button";
 import { useNavigationStore } from "@/provider/navigation-store-provider";
 
 // Button Ref typing
-type btnRef = Ref<HTMLButtonElement> | undefined;
+type btnRef = RefObject<HTMLDivElement | null>;
 
 export function Navigation() {
     const { isOpen, setIsOpen } = useNavigationStore((state) => state);
     const navRef = useRef<HTMLElement>(null);
+    const pathname = usePathname();
+    const [path, setPath] = useState<string>(pathname ?? "");
 
     useEffect(() => {
+        if (pathname !== path && isOpen) {
+            setIsOpen(false);
+            setPath(pathname);
+            return;
+        }
+
         if (!isOpen) return;
 
         const handleClickOutside = (event: MouseEvent): void => {
@@ -45,13 +57,15 @@ export function Navigation() {
             clearTimeout(timeoutId);
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [isOpen, setIsOpen]);
+    }, [isOpen, setIsOpen, pathname]);
 
     return (
         <header className="sticky top-0 z-40 border-b border-secondary bg-background/90 backdrop-blur-xl shadow-black/10 shadow-2xl rounded-b-4xl">
-            <div className="mx-auto flex h-17 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:h-20 lg:px-8">
+            <div
+                className="mx-auto flex h-17 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:h-20 lg:px-8"
+                ref={navRef as btnRef}
+            >
                 <Button
-                    ref={navRef as btnRef}
                     variant="icon"
                     size="icon-lg"
                     className="lg:hidden"

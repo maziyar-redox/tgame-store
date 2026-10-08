@@ -11,7 +11,7 @@ const navigationLinks: NavigationLinksProps[] = [
     {
         id: 2,
         text: "محصولات",
-        link: "/categories",
+        link: "/category",
     },
     {
         id: 3,

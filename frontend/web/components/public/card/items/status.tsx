@@ -37,7 +37,9 @@ export function Status() {
 
     useEffect(() => {
         if (errors.code) {
-            toast.error("کد تخفیف وارد شده صحیح نمیباشد");
+            toast.error("کد تخفیف وارد شده صحیح نمیباشد", {
+                position: "top-center",
+            });
         }
     }, [errors]);
 
