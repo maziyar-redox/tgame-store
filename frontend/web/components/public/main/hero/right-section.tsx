@@ -6,6 +6,8 @@ import { ShieldCheckIcon } from "@phosphor-icons/react";
 import { motion } from "motion/react";
 // Importing nextjs utils
 import Image from "next/image";
+// Importing Env
+import { env } from "@/schema/env-schema";
 
 export function RightSection() {
     return (
@@ -15,7 +17,7 @@ export function RightSection() {
                     width={500}
                     height={500}
                     className="h-full w-full object-cover"
-                    src="/4.jpg"
+                    src={`${env.NEXT_PUBLIC_S3_BUCKET_URL}/${env.NEXT_PUBLIC_MAIN_PAGE_BANNER}.jpg`}
                     alt="مجموعه‌ای از محصولات دیجیتال مدرن"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-brand-blue-dark/35 via-transparent to-white/5" />

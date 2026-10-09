@@ -1,8 +1,9 @@
-// Importing next utils
-
 // Importing faker js for faking mock data
 import { fakerEN, fakerFA } from "@faker-js/faker";
+// Importing next utils
 import { type NextRequest, NextResponse } from "next/server";
+// Importing env
+import { env } from "@/schema/env-schema";
 
 export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
@@ -11,7 +12,7 @@ export async function GET(request: NextRequest) {
         id: fakerFA.string.uuid(),
         title: fakerFA.commerce.productName(),
         model: fakerEN.vehicle.vin(),
-        image: "/2.jpg",
+        image: `${env.S3_BUCKET_URL}/3.jpg`,
         price: fakerFA.commerce.price({
             min: 100_000,
             max: 1_000_000_000,
@@ -31,11 +32,14 @@ export async function GET(request: NextRequest) {
         isAvailable: fakerFA.datatype.boolean({
             probability: 0.5,
         }),
+        isFavorite: fakerFA.datatype.boolean({
+            probability: 0.5,
+        }),
     }));
     await new Promise((resolve) => setTimeout(resolve, 1500));
     return new NextResponse(
         JSON.stringify({
-            totoalCount: 200,
+            totalCount: 200,
             products,
         }),
         {

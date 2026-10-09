@@ -7,6 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 // Importing global ui utils
 import { buttonVariants } from "@/components/ui/button";
+// Importing Env
+import { env } from "@/schema/env-schema";
 
 export function Offer() {
     return (
@@ -39,9 +41,9 @@ export function Offer() {
                 </div>
                 <div className="relative min-h-56 overflow-hidden sm:min-h-full">
                     <Image
-                        width={900}
-                        height={900}
-                        src="/2.jpg"
+                        width={500}
+                        height={500}
+                        src={`${env.NEXT_PUBLIC_S3_BUCKET_URL}/${env.NEXT_PUBLIC_MAIN_PAGE_TERMS}.jpg`}
                         alt="دسته بازی در نور آبی"
                         className="absolute inset-0 h-full w-full object-cover"
                     />

@@ -4,10 +4,8 @@
 import { CaretLeftIcon } from "@phosphor-icons/react";
 // Importing nextjs utils
 import Link from "next/link";
-// Importing local ui components
-import { ProductCarousel } from "@/components/public/main/gamer/product-carousel";
 
-export function Gamer() {
+export function Gamer({ children }: { children: React.ReactNode }) {
     return (
         <section
             id="gamer"
@@ -16,7 +14,7 @@ export function Gamer() {
             <div className="mb-6 flex items-end justify-between">
                 <div>
                     <p className="mb-1 text-xs font-bold text-primary">
-                        مخصوص گیمر ها
+                        مخصوص گیمرها
                     </p>
                     <h2 className="text-xl font-black sm:text-2xl">
                         تجهیزات گیمینگ
@@ -30,7 +28,7 @@ export function Gamer() {
                     <CaretLeftIcon name="chevron" className="size-4" />
                 </Link>
             </div>
-            <ProductCarousel />
+            {children}
         </section>
     );
 }

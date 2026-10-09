@@ -4,10 +4,8 @@
 import { CaretLeftIcon } from "@phosphor-icons/react";
 // Importing nextjs utils
 import Link from "next/link";
-// Importing local ui components
-import { ProductCarousel } from "@/components/public/main/favorite/product-carousel";
 
-export function Favorite() {
+export function Favorite({ children }: { children: React.ReactNode }) {
     return (
         <section
             id="favorite"
@@ -30,7 +28,7 @@ export function Favorite() {
                     <CaretLeftIcon name="chevron" className="size-4" />
                 </Link>
             </div>
-            <ProductCarousel />
+            {children}
         </section>
     );
 }
