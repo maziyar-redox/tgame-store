@@ -47,6 +47,7 @@ export function ProductItems({
                             "h-full w-full object-cover transition duration-500 group-hover:scale-105",
                             isAvailable ? "" : "grayscale-100",
                         )}
+                        loading="eager"
                     />
                 </Link>
                 <span

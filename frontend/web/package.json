@@ -11,7 +11,6 @@
     },
     "dependencies": {
         "@code-plate/iran-cities": "^1.1.0",
-        "@faker-js/faker": "^10.6.0",
         "@hookform/resolvers": "^5.9.1",
         "@persian-tools/persian-tools": "^4.0.4",
         "@phosphor-icons/react": "^2.1.10",

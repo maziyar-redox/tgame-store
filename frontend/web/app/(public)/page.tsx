@@ -16,17 +16,10 @@ import { Products } from "@/components/public/main/products";
 // Importing local ui components
 import { ProductCarousel as MostSalesSection } from "@/components/public/main/products/product-carousel";
 import { Terms } from "@/components/public/main/terms";
-
-// Importing env file
-import { env } from "@/schema/env-schema";
-import type { MainProductProps } from "@/types/main/product";
-// Importing typing for mock data
-import type { ProductMockProps } from "@/types/mock/product";
+// Importing main product mock
+import { mainProducts } from "@/constants/mock";
 
 export default async function Root() {
-    const products: ProductMockProps = await fetch(
-        `${env.BASE_API_URL}/api/product`,
-    ).then((res) => res.json());
     return (
         <>
             <AnimationWrapper>
@@ -35,29 +28,17 @@ export default async function Root() {
             </AnimationWrapper>
             <AnimationWrapper>
                 <Products>
-                    <MostSalesSection
-                        products={
-                            products.products as unknown as MainProductProps[]
-                        }
-                    />
+                    <MostSalesSection products={mainProducts} />
                 </Products>
             </AnimationWrapper>
             <AnimationWrapper>
                 <Favorite>
-                    <FavoriteSection
-                        products={
-                            products.products as unknown as MainProductProps[]
-                        }
-                    />
+                    <FavoriteSection products={mainProducts} />
                 </Favorite>
             </AnimationWrapper>
             <AnimationWrapper>
                 <Gamer>
-                    <GamerSection
-                        products={
-                            products.products as unknown as MainProductProps[]
-                        }
-                    />
+                    <GamerSection products={mainProducts} />
                 </Gamer>
             </AnimationWrapper>
             <AnimationWrapper>
