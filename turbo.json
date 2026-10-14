@@ -4,7 +4,11 @@
     "tasks": {
         "build": {
             "dependsOn": ["^build"],
-            "inputs": ["$TURBO_DEFAULT$", ".env*"],
+            "inputs": [
+                "$TURBO_DEFAULT$",
+                ".env",
+                ".env.production"
+            ],
             "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"]
         },
         "lint": {
@@ -15,7 +19,21 @@
         },
         "dev": {
             "cache": false,
-            "persistent": true
+            "persistent": true,
+            "inputs": [
+                "$TURBO_DEFAULT$",
+                ".env",
+                ".env.development"
+            ]
+        },
+        "start": {
+            "cache": false,
+            "persistent": true,
+            "inputs": [
+                "$TURBO_DEFAULT$",
+                ".env",
+                ".env.production"
+            ]
         }
     }
 }
