@@ -6,6 +6,8 @@ import { CaretLeftIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 // Importing local ui
 import { CategoryItems } from "@/components/public/main/categories/category-items";
+// Importing category items
+import { categories } from "@/constants/categories";
 
 export function Categories() {
     return (
@@ -31,11 +33,16 @@ export function Categories() {
                 </Link>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
-                {Array.from({ length: 5 }, (_, i) => ({ id: i + 1 })).map(
-                    (category) => (
-                        <CategoryItems key={category.id} />
-                    ),
-                )}
+                {categories.map((category) => (
+                    <CategoryItems
+                        key={category.id}
+                        id={category.id}
+                        color={category.color}
+                        title={category.title}
+                        link={category.link}
+                        Icon={category.Icon}
+                    />
+                ))}
             </div>
         </section>
     );

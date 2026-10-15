@@ -1,8 +1,7 @@
 "use client";
 
 // Importing local ui components
-import { ProductItems } from "@/components/public/main/favorite/product-items";
-// Importing carousel from global ui
+import { ProductItems } from "@/components/public/main/product-card/product-items";
 import {
     Carousel,
     CarouselContent,

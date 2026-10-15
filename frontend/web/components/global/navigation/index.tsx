@@ -9,12 +9,12 @@ import { usePathname } from "next/navigation";
 // React utilities
 import { type RefObject, useEffect, useRef, useState } from "react";
 // Importing Local Ui Components
-import { Logo } from "@/components/navigation/logo";
+import { Logo } from "@/components/global/navigation/logo";
 import {
     NavigationBUttonsSm,
     NavigationButtonsLg,
-} from "@/components/navigation/menu-buttons";
-import { UtilitySection } from "@/components/navigation/utility-section";
+} from "@/components/global/navigation/menu-buttons";
+import { UtilitySection } from "@/components/global/navigation/utility-section";
 // Importing From Global Ui Components
 import { Button } from "@/components/ui/button";
 // Importing Store

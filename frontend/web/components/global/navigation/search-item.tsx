@@ -64,7 +64,9 @@ export function SearchItem({
                 width={100}
                 height={100}
                 className="rounded-md aspect-square object-center object-cover"
-                alt=""
+                alt={title}
+                loading="eager"
+                quality={50}
             />
         </Link>
     );

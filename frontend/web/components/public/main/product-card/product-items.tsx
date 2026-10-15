@@ -48,6 +48,7 @@ export function ProductItems({
                             isAvailable ? "" : "grayscale-100",
                         )}
                         loading="eager"
+                        quality={75}
                     />
                 </Link>
                 <span

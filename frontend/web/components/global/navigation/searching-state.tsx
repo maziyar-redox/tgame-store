@@ -5,7 +5,7 @@ import { PlusIcon, SpinnerIcon } from "@phosphor-icons/react";
 // Importing nextjs utils
 import Link from "next/link";
 // Importing local ui components
-import { SearchItem } from "@/components/navigation/search-item";
+import { SearchItem } from "@/components/global/navigation/search-item";
 
 type SearchingStateProps = {
     state: "PENDING" | "NOT_FOUND" | "NOT_STARTED" | "FOUNDED";

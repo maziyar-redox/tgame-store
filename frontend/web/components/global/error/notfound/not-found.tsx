@@ -11,7 +11,7 @@ import { cn } from "cn";
 // Importing utils
 import Link from "next/link";
 // Importing local ui items
-import { NotFoundPageItems } from "@/components/error/notfound/items";
+import { NotFoundPageItems } from "@/components/global/error/notfound/items";
 // Importing button variants
 import { buttonVariants } from "@/components/ui/button";
 // Importing Constant page data from local

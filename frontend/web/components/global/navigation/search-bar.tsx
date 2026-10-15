@@ -7,13 +7,14 @@ import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 // Importing tw merge
 import { cn } from "cn";
+// Importing hooks from react hook form
 import { Controller, useForm } from "react-hook-form";
 // Importing hooks
 import { useMediaQuery } from "usehooks-ts";
 // Importing form utilities
 import type * as z from "zod";
 // Importing component from local ui components
-import { SearchingState } from "@/components/navigation/searching-state";
+import { SearchingState } from "@/components/global/navigation/searching-state";
 // Importing From Global Ui Components
 import { buttonVariants } from "@/components/ui/button";
 // Importing From Global Ui Components
