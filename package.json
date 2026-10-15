@@ -3,6 +3,7 @@
     "private": true,
     "author": "Maziyar Isanezhad",
     "type": "module",
+    "version": "0.0.1",
     "keywords": [
         "nextjs",
         "full-stack",
