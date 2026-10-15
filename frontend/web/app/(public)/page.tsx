@@ -7,14 +7,11 @@ export const revalidate = 3600;
 import { AnimationWrapper } from "@/components/public/main/animation";
 import { Categories } from "@/components/public/main/categories";
 import { Favorite } from "@/components/public/main/favorite";
-import { ProductCarousel as FavoriteSection } from "@/components/public/main/favorite/product-carousel";
 import { Gamer } from "@/components/public/main/gamer";
-import { ProductCarousel as GamerSection } from "@/components/public/main/gamer/product-carousel";
 import { HeroSection } from "@/components/public/main/hero";
 import { Offer } from "@/components/public/main/offer";
+import { ProductCarousel } from "@/components/public/main/product-card";
 import { Products } from "@/components/public/main/products";
-// Importing local ui components
-import { ProductCarousel as MostSalesSection } from "@/components/public/main/products/product-carousel";
 import { Terms } from "@/components/public/main/terms";
 // Importing main product mock
 import { mainProducts } from "@/constants/mock";
@@ -28,17 +25,17 @@ export default async function Root() {
             </AnimationWrapper>
             <AnimationWrapper>
                 <Products>
-                    <MostSalesSection products={mainProducts} />
+                    <ProductCarousel products={mainProducts} />
                 </Products>
             </AnimationWrapper>
             <AnimationWrapper>
                 <Favorite>
-                    <FavoriteSection products={mainProducts} />
+                    <ProductCarousel products={mainProducts} />
                 </Favorite>
             </AnimationWrapper>
             <AnimationWrapper>
                 <Gamer>
-                    <GamerSection products={mainProducts} />
+                    <ProductCarousel products={mainProducts} />
                 </Gamer>
             </AnimationWrapper>
             <AnimationWrapper>

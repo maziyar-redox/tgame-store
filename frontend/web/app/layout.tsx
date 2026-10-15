@@ -1,10 +1,10 @@
 // IMPORT: Vazirmatn font which applies on entire web application
 import { Vazirmatn } from "next/font/google";
 // IMPORT: Importing banner from components
-import { Banner } from "@/components/banner";
+import { Banner } from "@/components/global/banner";
 // IMPORT: Importing navigation from components
-import { Footer } from "@/components/footer";
-import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/global/footer";
+import { Navigation } from "@/components/global/navigation";
 // Importing Direction provider from global ui component
 import { DirectionProvider } from "@/components/ui/direction";
 import { Toaster } from "@/components/ui/toast";

@@ -19,9 +19,9 @@ export const env = createEnv({
     },
     // Next.js requires you to manually pass the runtime env values
     runtimeEnv: {
-        BASE_API_URL: process.env.BASE_API_URL,
         MAIN_PAGE_BANNER: process.env.MAIN_PAGE_BANNER,
         MAIN_PAGE_TERMS: process.env.MAIN_PAGE_TERMS,
+        BASE_API_URL: process.env.BASE_API_URL,
         S3_BUCKET_URL: process.env.S3_BUCKET_URL,
         NEXT_PUBLIC_MAIN_PAGE_BANNER: process.env.NEXT_PUBLIC_MAIN_PAGE_BANNER,
         NEXT_PUBLIC_MAIN_PAGE_TERMS: process.env.NEXT_PUBLIC_MAIN_PAGE_TERMS,

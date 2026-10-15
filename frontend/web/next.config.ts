@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
     reactCompiler: true,
     images: {
         remotePatterns: [new URL(`${env.S3_BUCKET_URL}/*`)],
+        minimumCacheTTL: 86400,
+        qualities: [25, 50, 75],
+    },
+    experimental: {
+        imgOptTimeoutInSeconds: 30,
     },
 };
 

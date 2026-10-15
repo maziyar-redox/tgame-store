@@ -10,7 +10,7 @@ import { cn } from "cn";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 // Importing Ui from local Ui Components
-import { SearchBar } from "@/components/navigation/search-bar";
+import { SearchBar } from "@/components/global/navigation/search-bar";
 // Importing From Global Ui Components
 import { buttonVariants } from "@/components/ui/button";
 
@@ -23,7 +23,7 @@ export function UtilitySection() {
                 href="/panel"
                 className={cn(
                     buttonVariants({ variant: "icon", size: "icon-2xl" }),
-                    pathname === "/panel"
+                    pathname.includes("/panel")
                         ? "bg-accent [&_svg:not([class*='fill-'])]:fill-primary"
                         : "[&_svg:not([class*='fill-'])]:fill-slate-700",
                 )}
@@ -36,7 +36,7 @@ export function UtilitySection() {
                 className={cn(
                     buttonVariants({ variant: "icon", size: "icon-2xl" }),
                     "relative",
-                    pathname === "/card"
+                    pathname.includes("/card")
                         ? "bg-accent [&_svg:not([class*='fill-'])]:fill-primary"
                         : "[&_svg:not([class*='fill-'])]:fill-slate-700",
                 )}
