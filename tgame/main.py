@@ -3,7 +3,7 @@ import uvicorn
 from fastapi import FastAPI
 from sqlmodel import create_engine, Session, SQLModel, select
 
-from tgame.models.user import User
+from tgame.db.models.user import User
 
 sqlite_file_name = "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
