@@ -1,43 +1,21 @@
 import uvicorn
 
-from fastapi import FastAPI
-from sqlmodel import create_engine, Session, SQLModel, select
-
-from tgame.db.models.user import User
-
-sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
-
-engine = create_engine(sqlite_url, echo=True)
-
-def get_session():
-    with Session(engine) as session:
-        yield session
-
-app = FastAPI()
-
-@app.on_event("startup")
-def on_startup():
-    SQLModel.metadata.create_all(engine)
-
-@app.get("/")
-async def aa():
-    with Session(engine) as session:
-        users = session.exec(select(User)).all()
-        return users
-
-@app.get("/ab")
-async def ab():
-    with Session(engine) as session:
-        users = User(first_name="maziyar", last_name="isanezhad", phone_number="9117462751")
-        session.add(users)
-        session.commit()
-        session.refresh(users)
-        return "ok"
+from tgame.app import settings
+from tgame.core.logger.config import log_config
 
 def main():
     uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=8000
+        "tgame.app:app",
+        host=settings.API_HOST,
+        port=settings.API_PORT,
+        log_level=settings.LOG_LEVEL.lower(),
+        log_config=log_config(),
+        workers=settings.WORKERS,
+        forwarded_allow_ips=settings.HOST_IP,
+        ssl_keyfile=settings.TLS_PRIVATE_KEY_PATH,
+        ssl_certfile=settings.TLS_CERTIFICATE_PATH,
+        ws="websockets-sansio",
     )
+
+if __name__ == "__main__":
+    main()
