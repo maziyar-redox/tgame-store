@@ -1,7 +1,6 @@
 from sqlmodel import SQLModel, Field
 from uuid import uuid7, UUID
 from zoneinfo import ZoneInfo
-from sqlalchemy import DateTime
 from datetime import datetime
 
 TEHRAN_TZ = ZoneInfo("Asia/Tehran")
