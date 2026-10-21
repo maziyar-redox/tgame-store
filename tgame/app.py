@@ -12,11 +12,20 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.requests import Request
+from contextlib import asynccontextmanager
 
 from tgame.routes import router
 
+from tgame.db import db
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    db.create_db_and_tables()
+    yield
+
 app = FastAPI(
     title="Tgame",
+    lifespan=lifespan
 )
 
 @app.exception_handler(StarletteHTTPException)
