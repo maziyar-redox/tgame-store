@@ -1,17 +1,40 @@
 from pyrate_limiter import Limiter
 from typing import Union
 from fastapi import HTTPException
-from starlette.status import HTTP_429_TOO_MANY_REQUESTS
+from fastapi import status
 from starlette.requests import Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
 
+from tgame.schema.register import RequestUserRegister
+
+from tgame.repos.phone import phone_number_normalizer
+
 def default_callback(*args, **kwargs):
     raise HTTPException(
-        HTTP_429_TOO_MANY_REQUESTS,
+        status.HTTP_429_TOO_MANY_REQUESTS,
         "Too Many Requests",
     )
 
+
+async def register_identifier(request: Request):
+    try:
+        jsonRequest = await request.json()
+        isValid = RequestUserRegister.model_validate(jsonRequest)
+        normalizePhone = phone_number_normalizer(phone=isValid.phone_number)
+        forwarded = request.headers.get("X-Forwarded-For")
+        if forwarded:
+            ip = forwarded.split(",")[0]
+        elif request.client:
+            ip = request.client.host
+        else:
+            ip = "127.0.0.1"
+        return ip + ":" + request.scope["path"] + ":" + normalizePhone
+    except Exception as e:
+        raise HTTPException(
+            status.HTTP_500_INTERNAL_SERVER_ERROR,
+            "Internal error from rate limiter",
+        )
 
 async def default_identifier(request: Union[Request, WebSocket]):
     forwarded = request.headers.get("X-Forwarded-For")

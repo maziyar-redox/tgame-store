@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Body, HTTPException
+from pyrate_limiter import Limiter, Rate, Duration
+from fastapi import APIRouter, Body, HTTPException, Depends
 from fastapi.responses import JSONResponse
 from sqlmodel import select
 from typing import Annotated
@@ -13,6 +14,7 @@ from tgame.services.cache import OTPCacheContainer
 from tgame.services.sms import SMSClass
 
 from tgame.repos.phone import phone_number_normalizer
+from tgame.repos.rate_limit import RateLimiter, register_identifier
 
 user_register = APIRouter(
     tags=["User Authentication"]
@@ -67,12 +69,24 @@ user_register = APIRouter(
                     },
                 },
             },
+        },
+        429: {
+            "description": "Too many request",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "status": "false",
+                        "detail": "fail",
+                    },
+                },
+            },
         }
     },
     response_class=JSONResponse,
     response_model=ResponseUserRegister,
     deprecated=False,
     include_in_schema=True,
+    dependencies=[Depends(RateLimiter(limiter=Limiter(Rate(5, Duration.SECOND * 120)), identifier=register_identifier))],
 )
 async def UserRegisterHandler(
     userData: Annotated[
@@ -107,7 +121,7 @@ async def UserRegisterHandler(
         Else, send the code again
         """
         sendSms = SMSClass(template_id=123456)
-        otp_code: int = 100_000 + randbelow(999_999)
+        otp_code: int = 100_000 + randbelow(900_000)
         if isUserExists and isUserExists.verified == False:
             isOtpCached = OTPCacheContainer.get(phone_number=normalizePhone)
             
@@ -119,6 +133,8 @@ async def UserRegisterHandler(
     
             if isSend == True and otpCache:
                 return ResponseUserRegister(status=True, detail="Otp code has been sent")
+            else:
+                raise HTTPException(status_code=500, detail="Operation not permitted")
 
         """ 
         If user do not exist, then create new one
@@ -135,8 +151,8 @@ async def UserRegisterHandler(
         session.commit()
         session.refresh(newUser)
 
-        isSend = sendSms.send(phone_number=userData.phone_number, otp_code=otp_code)
-        otpCache = OTPCacheContainer.set(phone_number=userData.phone_number, otp=otp_code, ttl=120)
+        isSend = sendSms.send(phone_number=normalizePhone, otp_code=otp_code)
+        otpCache = OTPCacheContainer.set(phone_number=normalizePhone, otp=otp_code, ttl=120)
 
         if isSend == True and otpCache:
             return ResponseUserRegister(status=True, detail="Otp code has been sent")
@@ -145,4 +161,4 @@ async def UserRegisterHandler(
     except HTTPException as e:
         raise HTTPException(status_code=e.status_code, detail=e.detail)
     except Exception as e:
-        raise HTTPException(status_code=401, detail="Operation not permitted")
+        raise HTTPException(status_code=500, detail="Operation not permitted")
