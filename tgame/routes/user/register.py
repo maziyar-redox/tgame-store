@@ -12,6 +12,8 @@ from tgame.schema.register import RequestUserRegister, ResponseUserRegister
 from tgame.services.cache import OTPCacheContainer
 from tgame.services.sms import SMSClass
 
+from tgame.repos.phone import phone_number_normalizer
+
 user_register = APIRouter(
     tags=["User Authentication"]
 )
@@ -86,44 +88,52 @@ async def UserRegisterHandler(
     session: db.SessionDep
 ) -> ResponseUserRegister:
     try:
-        """ validateUserModel = User.model_validate(userData)
-
-        if not validateUserModel:
-            raise HTTPException(status_code=401, detail="User data cannot be validated") """
-
-        isUserExists = session.exec(select(User).where(User.phone_number == userData.phone_number)).one_or_none()
-
+        """ 
+        Normalizing users phone number to return 9XXXX for better usability
+        """
+        normalizePhone = phone_number_normalizer(phone=userData.phone_number)
+        """ 
+        See if user exist or not
+        """
+        isUserExists = session.exec(select(User).where(User.phone_number == normalizePhone)).one_or_none()
+        """ 
+        If exist, and verified too, then do not do anything
+        """
         if isUserExists and isUserExists.verified == True:
             raise HTTPException(status_code=401, detail="This phone number is already exists")
+        """ 
+        Else, if exist and not verified yet, check the server cache if otp code has been sent to him already,
+        If otp found in TTL cache, then do not send the code again,
+        Else, send the code again
+        """
+        sendSms = SMSClass(template_id=123456)
+        otp_code: int = 100_000 + randbelow(999_999)
         if isUserExists and isUserExists.verified == False:
-            isOtpCached = OTPCacheContainer.get(phone_number=userData.phone_number)
+            isOtpCached = OTPCacheContainer.get(phone_number=normalizePhone)
             
             if isOtpCached != None:
                 return ResponseUserRegister(status=True, detail="Otp code has been sent")
-    
-            sendSms = SMSClass(template_id=123456)
-    
-            otp_code: int = 100_000 + randbelow(999_999)
-    
-            isSend = sendSms.send(phone_number=userData.phone_number, otp_code=otp_code)
-            otpCache = OTPCacheContainer.set(phone_number=userData.phone_number, otp=otp_code, ttl=120)
+            
+            isSend = sendSms.send(phone_number=normalizePhone, otp_code=otp_code)
+            otpCache = OTPCacheContainer.set(phone_number=normalizePhone, otp=otp_code, ttl=120)
     
             if isSend == True and otpCache:
                 return ResponseUserRegister(status=True, detail="Otp code has been sent")
 
+        """ 
+        If user do not exist, then create new one
+        """
+        newUser = User(
+            first_name=userData.first_name,
+            last_name=userData.last_name,
+            phone_number=normalizePhone,
+            verified=False,
+            last_login=None
+        )
 
-        session.add(userData)
+        session.add(newUser)
         session.commit()
-        session.refresh(userData)
-        
-        isOtpCached = OTPCacheContainer.get(phone_number=userData.phone_number)
-
-        if isOtpCached != None:
-            return ResponseUserRegister(status=True, detail="Otp code has been sent")
-
-        sendSms = SMSClass(template_id=123456)
-
-        otp_code: int = 100_000 + randbelow(999_999)
+        session.refresh(newUser)
 
         isSend = sendSms.send(phone_number=userData.phone_number, otp_code=otp_code)
         otpCache = OTPCacheContainer.set(phone_number=userData.phone_number, otp=otp_code, ttl=120)
@@ -135,5 +145,4 @@ async def UserRegisterHandler(
     except HTTPException as e:
         raise HTTPException(status_code=e.status_code, detail=e.detail)
     except Exception as e:
-        print(e)
         raise HTTPException(status_code=401, detail="Operation not permitted")

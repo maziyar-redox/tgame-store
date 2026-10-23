@@ -1,8 +1,8 @@
-"""Updated user table(verification field)
+"""Updated user table(last_login field)
 
-Revision ID: 920107679537
+Revision ID: d4688e28ecc6
 Revises: 
-Create Date: 2026-10-22 01:39:15.506455
+Create Date: 2026-10-22 18:22:06.143884
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '920107679537'
+revision: str = 'd4688e28ecc6'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -27,7 +27,7 @@ def upgrade() -> None:
     sa.Column('last_name', sqlmodel.sql.sqltypes.AutoString(length=32), nullable=False),
     sa.Column('phone_number', sqlmodel.sql.sqltypes.AutoString(length=10), nullable=False),
     sa.Column('verified', sa.Boolean(), nullable=False),
-    sa.Column('last_login', sqlmodel.sql.sqltypes.UTCDateTime(), nullable=False),
+    sa.Column('last_login', sqlmodel.sql.sqltypes.UTCDateTime(), nullable=True),
     sa.Column('created_at', sqlmodel.sql.sqltypes.UTCDateTime(), nullable=False),
     sa.Column('updated_at', sqlmodel.sql.sqltypes.UTCDateTime(), nullable=False),
     sa.PrimaryKeyConstraint('id'),

@@ -14,6 +14,6 @@ class User(SQLModel, table=True):
     last_name: str = Field(default=None, min_length=2, max_length=32, nullable=False)
     phone_number: str = Field(default=None, min_length=10, max_length=10, unique=True, index=True, nullable=False)
     verified: bool = Field(nullable=False, default=False)
-    last_login: datetime = Field()
+    last_login: datetime | None = Field(default_factory=now_tehran, nullable=True)
     created_at: datetime = Field(default_factory=now_tehran)
     updated_at: datetime = Field(default_factory=now_tehran)

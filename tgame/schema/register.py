@@ -20,7 +20,7 @@ class RequestUserRegister(BaseModel):
     )
     phone_number: str = Field(
         min_length=10,
-        max_length=10,
+        max_length=14,
         description="User phone number for registering in tgame shop",
         title="Phone Number",
         examples=["9101234567"]
