@@ -1,9 +1,8 @@
 import json
-import logging
 
 from typing import Any
 from pathlib import Path
-from logging import config as logging_config
+from logging import config as logging_config, Logger, getLogger
 
 __dir: Path = Path(__file__).parent
 __conf: dict[str, str] | None = None
@@ -41,7 +40,7 @@ def configured_logger(
     mode: str,
     config_override: Path | None = None,
     substitutions: dict[str, str] | None = None,
-) -> logging.Logger:
+) -> Logger:
     """
     Configure the logger based on the mode and return the root logger
 
@@ -65,4 +64,4 @@ def configured_logger(
             raise ValueError(f"Invalid mode: {mode}")
 
     logging_config.dictConfig(config=__conf)
-    return logging.getLogger()
+    return getLogger()
