@@ -1,13 +1,9 @@
 # Importing httpx lib for sending http request
 import httpx
 
-# Importing python modules
-from dataclasses import dataclass
-
 # Importing config from base config file
 from tgame.core.config import settings
 
-@dataclass(slots=True)
 class SMSClass():
     """
     A Class for initiating sms sender and sending sms to user.

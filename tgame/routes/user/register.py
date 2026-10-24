@@ -146,7 +146,7 @@ async def UserRegisterHandler(
         isUserExists = session.exec(select(User).where(User.phone_number == requestBody.phone_number)).one_or_none()
 
         # If exist, and verified too, then do not do anything
-        if isUserExists and isUserExists.verified == True:
+        if isUserExists is not None and isUserExists.verified == True:
             raise HTTPException(status_code=401, detail="This phone number is already exists")
 
         # Initiating sms and otp classes
