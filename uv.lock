@@ -1374,8 +1374,10 @@ dependencies = [
     { name = "fastapi", extra = ["standard"] },
     { name = "httpx" },
     { name = "pwdlib", extra = ["argon2"] },
+    { name = "pydantic-settings" },
     { name = "pyjwt" },
     { name = "pyrate-limiter", extra = ["all"] },
+    { name = "python-dotenv" },
     { name = "sqlmodel" },
 ]
 
@@ -1386,8 +1388,10 @@ requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.148.0" },
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "pwdlib", extras = ["argon2"], specifier = ">=0.3.1" },
+    { name = "pydantic-settings", specifier = ">=2.16.0" },
     { name = "pyjwt", specifier = ">=2.15.1" },
     { name = "pyrate-limiter", extras = ["all"], specifier = ">=4.5.1" },
+    { name = "python-dotenv", specifier = ">=1.2.4" },
     { name = "sqlmodel", specifier = ">=0.0.48" },
 ]
 

@@ -9,8 +9,10 @@ dependencies = [
     "fastapi[standard]>=0.148.0",
     "httpx>=0.28.1",
     "pwdlib[argon2]>=0.3.1",
+    "pydantic-settings>=2.16.0",
     "pyjwt>=2.15.1",
     "pyrate-limiter[all]>=4.5.1",
+    "python-dotenv>=1.2.4",
     "sqlmodel>=0.0.48",
 ]
 
