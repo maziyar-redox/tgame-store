@@ -12,9 +12,9 @@ from tgame.db.model.user import User
 from tgame.schema.register import RequestUserRegister, ResponseUserRegister
 
 from tgame.repos.cache import OTPCacheContainer
-from tgame.services.sms import SMSClass
-
 from tgame.repos.rate_limit import RateLimiter
+
+from tgame.services.sms import SMSClass
 
 async def registerIdentifier(request: Request) -> str:
     """
@@ -118,7 +118,10 @@ user_register = APIRouter(
         Depends(
             RateLimiter(
                 limiter=Limiter(
-                    Rate(5, Duration.SECOND * 120)
+                    Rate(
+                        limit=5,
+                        interval=Duration.DAY * 1
+                    )
                 ),
                 identifier=registerIdentifier
             )
@@ -146,45 +149,67 @@ async def UserRegisterHandler(
         if isUserExists and isUserExists.verified == True:
             raise HTTPException(status_code=401, detail="This phone number is already exists")
 
+        # Initiating sms and otp classes
+        sendSms = SMSClass(templateId=123456)
+        otpCode: int = 100_000 + randbelow(900_000)
+
         # Else, if exist and not verified yet, check the server cache if otp code has been sent to him already,
         # If otp found in TTL cache, then do not send the code again,
         # Else, send the code again
-        sendSms = SMSClass(templateId=123456)
-        otp_code: int = 100_000 + randbelow(900_000)
         if isUserExists and isUserExists.verified == False:
+
+            # Is otp already cached or not
             isOtpCached = OTPCacheContainer.Get(phoneNumber=requestBody.phone_number)
-            
+
+            # If cached, then do nothing
             if isOtpCached != None:
                 return ResponseUserRegister(status=True, detail="Otp code has been sent")
-            
-            isSend = sendSms.Send(phoneNumber=requestBody.phone_number, otpCode=otp_code)
-            otpCache = OTPCacheContainer.Set(phoneNumber=requestBody.phone_number, otpCode=otp_code, ttl=120)
-    
-            if isSend == True and otpCache:
-                return ResponseUserRegister(status=True, detail="Otp code has been sent")
-            else:
+
+            # if not, then send otp
+            sendOtpSms = sendSms.Send(phoneNumber=requestBody.phone_number, otpCode=otpCode)
+
+            # If sms was not send throw exception
+            if sendOtpSms != True:
                 raise HTTPException(status_code=500, detail="Operation not permitted")
+
+            # If sms has been sent, then cache it
+            otpCache = OTPCacheContainer.Set(phoneNumber=requestBody.phone_number, otpCode=otpCode, ttl=120)
+
+            # If not cached, then throw exception
+            if not otpCache:
+                raise HTTPException(status_code=500, detail="Operation not permitted")
+
+            # If cached and sent sms, return Success
+            return ResponseUserRegister(status=True, detail="Otp code has been sent")
 
         # If user do not exist, then create new one
         newUser = User(
             first_name=requestBody.first_name,
             last_name=requestBody.last_name,
             phone_number=requestBody.phone_number,
-            verified=False,
-            last_login=None
+            verified=False
         )
 
+        # Then commit it to database
         session.add(newUser)
         session.commit()
         session.refresh(newUser)
 
-        isSend = sendSms.Send(phoneNumber=requestBody.phone_number, otpCode=otp_code)
-        otpCache = OTPCacheContainer.Set(phoneNumber=requestBody.phone_number, otpCode=otp_code, ttl=120)
+        # Send the sms after user creation
+        sendOtpSms = sendSms.Send(phoneNumber=requestBody.phone_number, otpCode=otpCode)
 
-        if isSend == True and otpCache:
-            return ResponseUserRegister(status=True, detail="Otp code has been sent")
+        # If sms was not send throw exception
+        if sendOtpSms != True:
+            raise HTTPException(status_code=500, detail="Operation not permitted")
+        
+        # If sms has been sent, then cache it
+        otpCache = OTPCacheContainer.Set(phoneNumber=requestBody.phone_number, otpCode=otpCode, ttl=120)
 
-        raise HTTPException(status_code=401, detail="Otp code has not been sent")
+        # If not cached, then throw exception
+        if not otpCache:
+            raise HTTPException(status_code=500, detail="Operation not permitted")
+
+        return ResponseUserRegister(status=True, detail="Otp code has been sent")
     except HTTPException as e:
         raise HTTPException(status_code=e.status_code, detail=e.detail)
     except Exception as e:
