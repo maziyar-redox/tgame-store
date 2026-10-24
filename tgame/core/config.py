@@ -2,6 +2,14 @@ import os
 import dotenv
 
 from pathlib import Path
+from functools import lru_cache
+
+from tgame.core.settings import (
+    AppDirectories,
+    AppLoggingSettings,
+    AppSettings,
+    appSettingConstructor
+)
 
 # Determining .env path in application
 CWD = Path(__file__).parent
@@ -16,6 +24,12 @@ TESTING = os.getenv("TESTING", "False").lower() in ["true", "1"]
 DATA_DIR = os.getenv("DATA_DIR")
 
 def determineDataDir() -> Path:
+    """
+    Determines data directory for creating it for server space
+
+    Returns:
+        Path: A path is returned in answer
+    """
     global PRODUCTION, TESTING, BASE_DIR, DATA_DIR
 
     if TESTING:
@@ -26,11 +40,16 @@ def determineDataDir() -> Path:
 
     return BASE_DIR.joinpath("tests", ".temp", "dev")
 
-print(determineDataDir())
+@lru_cache
+def getAppDirs() -> AppDirectories:
+    return AppDirectories(determineDataDir())
 
-JWT_SECRET = os.getenv("JWT_SECRET", "")
-ALGORITHM = os.getenv("ALGORITHM", "")
-ACCESS_TOKEN_EXPIRE_MINUTES= os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 120)
+@lru_cache
+def getAppSettings() -> AppSettings:
+    return appSettingConstructor(env_file=ENV, production=PRODUCTION, data_dir=determineDataDir())
 
-OTP_API_KEY = os.getenv("OTP_API_KEY", "")
-OTP_API_URL = os.getenv("OTP_API_URL", "")
+@lru_cache
+def getLoggingSettings() -> AppLoggingSettings:
+    return AppLoggingSettings(PRODUCTION=PRODUCTION)
+
+settings = getAppSettings()

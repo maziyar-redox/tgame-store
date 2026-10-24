@@ -5,7 +5,7 @@ import httpx
 from dataclasses import dataclass
 
 # Importing config from base config file
-from tgame.core.config import OTP_API_KEY, OTP_API_URL
+from tgame.core.config import settings
 
 @dataclass(slots=True)
 class SMSClass():
@@ -39,7 +39,7 @@ class SMSClass():
             smsHeaders = {
                 "Content-Type": "application/json",
                 "Accept": "text/plain",
-                "x-api-key": f"{OTP_API_KEY}"
+                "x-api-key": f"{settings.OTP_API_KEY}"
             }
 
             smsData = {
@@ -53,7 +53,7 @@ class SMSClass():
                 ]
             }
             
-            requestResult = httpx.post(OTP_API_URL, json=smsData, headers=smsHeaders).json()
+            requestResult = httpx.post(settings.OTP_API_URL, json=smsData, headers=smsHeaders).json()
             
             if requestResult["status"] == 1:
                 return True
