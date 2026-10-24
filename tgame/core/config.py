@@ -3,7 +3,6 @@ import dotenv
 
 from pathlib import Path
 
-
 dotenv.load_dotenv()
 
 CWD = Path(__file__).parent

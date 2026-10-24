@@ -1,8 +1,15 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
+
+from tgame.repos.phone_number import phoneNumberNormalizer
 
 class RequestUserRegister(BaseModel):
     """ 
-        Route request for registering user in shop
+        Route request for registering user in shop.
+
+        Attributes:
+            first_name (str): User first name which shows in factores.
+            last_name (str): User last name which shows in factores.
+            phone_number (str): User phone number for registering in tgame shop.
     """
     first_name: str = Field(
         min_length=2,
@@ -26,6 +33,11 @@ class RequestUserRegister(BaseModel):
         examples=["9101234567"]
     )
 
+    @field_validator("phone_number")
+    @classmethod
+    def _normalize_phone(cls, v: str) -> str:
+        return phoneNumberNormalizer(v)
+
     model_config = {
         "json_schema_extra": {
             "title": "User Register Schema(Request)",
@@ -41,7 +53,11 @@ class RequestUserRegister(BaseModel):
 
 class ResponseUserRegister(BaseModel):
     """ 
-        Route response for registering user in shop
+        Route response for registering user in shop.
+
+        Attributes:
+            status (bool): Status key in json schema.
+            detail (str): Detail key in json schema.
     """
     status: bool = Field(
         default=False,

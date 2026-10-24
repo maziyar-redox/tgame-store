@@ -5,7 +5,7 @@ from secrets import randbelow
 
 from tgame.schema.register import RequestUserRegister, ResponseUserRegister
 
-from tgame.services.cache import OTPCacheContainer
+from tgame.repos.cache import OTPCacheContainer
 from tgame.services.sms import SMSClass
 
 user_register = APIRouter(

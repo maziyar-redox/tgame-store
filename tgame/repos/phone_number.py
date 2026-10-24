@@ -1,6 +1,6 @@
 import re
 
-def phone_number_normalizer(phone: str) -> str:
+def phoneNumberNormalizer(phoneNumber: str) -> str:
     """
     Normalize an Iranian mobile number to the '9XXXXXXXXX' format (10 digits).
 
@@ -13,9 +13,15 @@ def phone_number_normalizer(phone: str) -> str:
         With spaces/dashes/parens in between.
     Raises:
         ValueError if the input is not a valid Iranian mobile number.
+
+    Parameters:
+        phoneNumber (str): User phone number to send sms to it.
+    
+    Returns:
+        str: returns formatted string
     """
 
-    digits = re.sub(r"\D", "", phone)
+    digits = re.sub(r"\D", "", phoneNumber)
 
     if digits.startswith("0098"):
         digits = digits[4:]
@@ -25,7 +31,7 @@ def phone_number_normalizer(phone: str) -> str:
     if digits.startswith("0"):
         digits = digits[1:]
 
-    if len(digits) != 10 or not digits.startswith("9"):
-        raise ValueError(f"Invalid Iranian mobile number: {phone!r}")
+    if not re.fullmatch(r"9\d{9}", digits):
+        raise ValueError("Invalid Iranian mobile number")
 
     return digits
