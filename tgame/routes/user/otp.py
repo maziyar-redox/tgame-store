@@ -1,47 +1,59 @@
-from fastapi import APIRouter, Body, HTTPException
+from pyrate_limiter import Limiter, Rate, Duration
+from fastapi import APIRouter, Body, HTTPException, Depends, status
 from fastapi.responses import JSONResponse
+from sqlmodel import select
 from typing import Annotated
 from secrets import randbelow
+from starlette.requests import Request
 
-from tgame.schema.register import RequestUserRegister, ResponseUserRegister
+from tgame.db.database import SessionDep
+from tgame.db.model.user import User
+
+from tgame.schema.otp import RequestUserOtp, ResponseUserOtp
 
 from tgame.repos.cache import OTPCacheContainer
+from tgame.repos.auth.rate_limiter import phonNumberDep
+
 from tgame.services.sms import SMSClass
 
-user_register = APIRouter(
+user_otp = APIRouter(
     tags=["User Authentication"]
 )
 
-@user_register.post(
+@user_otp.post(
     "/verify",
     name="User Otp Verify Request",
     tags=["User Authentication"],
     description="User otp verify route for verifying users in the shop",
     status_code=200,
     responses={
-        200: {
-            "description": "OTP Verification was successful and otp code has been verified",
+        status.HTTP_200_OK: {
+            "description": "otp code was correct and access is granted",
             "content": {
                 "application/json": {
                     "example": {
                         "status": "true",
                         "detail": "success",
+                        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+                        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
                     },
                 },
             },
         },
-        401: {
-            "description": "Registration was not successful and otp code has not been sent",
+        status.HTTP_401_UNAUTHORIZED: {
+            "description": "Otp code was not correct and access is not granted",
             "content": {
                 "application/json": {
                     "example": {
                         "status": "false",
                         "detail": "fail",
+                        "refresh_token": "null",
+                        "access_token": "null"
                     },
                 },
             },
         },
-        422: {
+        status.HTTP_422_UNPROCESSABLE_CONTENT: {
             "description": "Validation error for register schema",
             "content": {
                 "application/json": {
@@ -61,16 +73,39 @@ user_register = APIRouter(
                     },
                 },
             },
+        },
+        status.HTTP_429_TOO_MANY_REQUESTS: {
+            "description": "Too many request",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "status": "false",
+                        "detail": "fail",
+                    },
+                },
+            },
+        },
+        status.HTTP_500_INTERNAL_SERVER_ERROR: {
+            "description": "Internal server error",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "status": "false",
+                        "detail": "fail",
+                    },
+                },
+            },
         }
     },
     response_class=JSONResponse,
-    response_model=ResponseUserRegister,
+    response_model=ResponseUserOtp,
     deprecated=False,
     include_in_schema=True,
+    dependencies=[phonNumberDep]
 )
-async def UserRegisterHandler(
-    user: Annotated[
-        RequestUserRegister,
+async def UserVerifyOtpHandler(
+    requestBody: Annotated[
+        RequestUserOtp,
         Body(
             embed=False,
             media_type="application/json",
@@ -78,27 +113,22 @@ async def UserRegisterHandler(
             strict=True,
             include_in_schema=False
         )
-    ]
-) -> ResponseUserRegister:
+    ],
+    session: SessionDep
+) -> ResponseUserOtp:
     try:
-        isOtpCached = OTPCacheContainer.get(phone_number=user.phone_number)
+        """ # See if user exist or not
+        isUserExists = session.exec(select(User).where(User.phone_number == requestBody.phone_number)).one_or_none()
 
-        if isOtpCached != None:
-            return ResponseUserRegister(status=True, detail="Otp code has been sent")
+        # If user doesn't exist at all
+        if isUserExists is None:
+            raise HTTPException(status_code=401, detail="This phone number does not exist")
 
-        sendSms = SMSClass(template_id=123456)
-
-        otp_code: int = 100_000 + randbelow(999_999)
-
-        isSend = sendSms.send(phone_number=user.phone_number, otp_code=otp_code)
-
-        if isSend == True:
-            otpCache = OTPCacheContainer.set(phone_number=user.phone_number, otp=otp_code, ttl=120)
-
-            if otpCache:
-                return ResponseUserRegister(status=True, detail="Otp code has been sent")
-
-        raise HTTPException(status_code=401, detail="Otp code has not been sent")
+        # If exist, and verified too, then just authenticate it
+        if isUserExists.verified == True:
+            raise HTTPException(status_code=401, detail="This phone number is already exists")
+        raise HTTPException(status_code=401, detail="Operation not permitted") """
+        return ResponseUserOtp(status=True, detail="ok", access_token="ok", refresh_token="f")
     except HTTPException as e:
         raise HTTPException(status_code=e.status_code, detail=e.detail)
     except Exception as e:

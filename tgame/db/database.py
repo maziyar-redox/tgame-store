@@ -26,10 +26,13 @@ def getSession() -> Generator[Session, Any, None]:
     Returns:
         Generator[Session, Any, None]: this function returns Generator.
     """
+    session = Session(engine)
     try:
-        with Session(engine) as session:
-            yield session
-    except Exception as e:
-        raise Exception("As error occured during getting session")
+        yield session
+    except Exception:
+        session.rollback()
+        raise
+    finally:
+        session.close()
 
 SessionDep = Annotated[Session, Depends(getSession)]

@@ -1,23 +1,30 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
+
+from tgame.repos.phone_number import phoneNumberNormalizer
 
 class RequestUserOtp(BaseModel):
     """ 
         Route request for verifying otp for users in shop
     """
     otp_code: int = Field(
-        min_length=6,
-        max_length=6,
+        le=999_999,
+        gt=100_000,
         description="User otp code which was sent to him/her with sms",
         title="Otp Code",
         examples=["123456"]
     )
     phone_number: str = Field(
         min_length=10,
-        max_length=10,
-        description="User phone number for verifying users otp in tgame shop",
+        max_length=14,
+        description="User phone number for registering in tgame shop",
         title="Phone Number",
         examples=["9101234567"]
     )
+
+    @field_validator("phone_number")
+    @classmethod
+    def _normalize_phone(cls, v: str) -> str:
+        return phoneNumberNormalizer(v)
 
     model_config = {
         "json_schema_extra": {
@@ -48,12 +55,12 @@ class ResponseUserOtp(BaseModel):
         title="Detail",
         examples=["success"]
     )
-    access_token: str = Field(
+    access_token: str | None = Field(
         description="Access token key in json schema",
         title="Access Token",
         examples=["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"]
     )
-    refresh_token: str = Field(
+    refresh_token: str | None = Field(
         description="Refresh token key in json schema",
         title="Refresh Token",
         examples=["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"]
@@ -61,11 +68,13 @@ class ResponseUserOtp(BaseModel):
 
     model_config = {
         "json_schema_extra": {
-            "title": "User Register Schema(Response)",
+            "title": "User Otp Verification Schema(Response)",
             "examples": [
                 {
                     "stauts": "true",
-                    "detail": "success"
+                    "detail": "success",
+                    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+                    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
                 }
             ]
         }

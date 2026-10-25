@@ -1,10 +1,8 @@
-from pyrate_limiter import Limiter, Rate, Duration
-from fastapi import APIRouter, Body, HTTPException, Depends, status
+from fastapi import APIRouter, Body, HTTPException, status
 from fastapi.responses import JSONResponse
 from sqlmodel import select
 from typing import Annotated
 from secrets import randbelow
-from starlette.requests import Request
 
 from tgame.db.database import SessionDep
 from tgame.db.model.user import User
@@ -12,26 +10,9 @@ from tgame.db.model.user import User
 from tgame.schema.register import RequestUserRegister, ResponseUserRegister
 
 from tgame.repos.cache import OTPCacheContainer
-from tgame.repos.rate_limit import RateLimiter
+from tgame.repos.auth.rate_limiter import phonNumberDep
 
 from tgame.services.sms import SMSClass
-
-async def registerIdentifier(request: Request) -> str:
-    """
-    Register identifier which maps a request in memory for rate limiting
-    
-    Parameters:
-            request (Request): Request context from starlette for accessing request object.
-        
-    Returns:
-        str: returns formatted string
-    """
-    try:
-        jsonRequest = await request.json()
-        isValid = RequestUserRegister.model_validate(jsonRequest)
-        return isValid.phone_number
-    except Exception as e:
-        raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR, "Internal error from rate limiter")
 
 user_register = APIRouter(
     tags=["User Authentication"]
@@ -114,19 +95,7 @@ user_register = APIRouter(
     response_model=ResponseUserRegister,
     deprecated=False,
     include_in_schema=True,
-    dependencies=[
-        Depends(
-            RateLimiter(
-                limiter=Limiter(
-                    Rate(
-                        limit=5,
-                        interval=Duration.DAY * 1
-                    )
-                ),
-                identifier=registerIdentifier
-            )
-        )
-    ],
+    dependencies=[phonNumberDep],
 )
 async def UserRegisterHandler(
     requestBody: Annotated[
