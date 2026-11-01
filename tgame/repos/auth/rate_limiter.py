@@ -14,10 +14,11 @@ from pydantic import TypeAdapter
 
 from tgame.repos.rate_limit import RateLimiter
 
+from tgame.schema.login import RequestUserLogin
 from tgame.schema.register import RequestUserRegister
 from tgame.schema.otp import RequestUserOtp
 
-RegisterPayload = RequestUserRegister | RequestUserOtp
+RegisterPayload = RequestUserRegister | RequestUserOtp | RequestUserLogin
 adapter = TypeAdapter(RegisterPayload)
 
 def which_model(payload: dict):
@@ -41,7 +42,6 @@ async def phoneNumberIdentifier(request: Request) -> str:
         jsonRequest = await request.json()
         determine_type = which_model(jsonRequest)
         if determine_type.phone_number:
-            print(determine_type.phone_number)
             return determine_type.phone_number
         raise
     except Exception as e:
@@ -70,7 +70,7 @@ _phone_limiter = Limiter(
     PerPhoneBucketFactory(MonotonicClock()),
 )
 
-phonNumberDep = Depends(
+phoneNumberDep = Depends(
     RateLimiter(
         limiter=_phone_limiter,
         identifier=phoneNumberIdentifier

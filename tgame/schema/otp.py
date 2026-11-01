@@ -41,6 +41,12 @@ class RequestUserOtp(BaseModel):
 class ResponseUserOtp(BaseModel):
     """ 
         Route response for otp verification user in shop
+
+        Attributes:
+            status (bool): Status key in json schema.
+            detail (str): Detail key in json schema.
+            access_token (str): Access token for user verification.
+            refresh_token (str): Refresh token for refreshing users token.
     """
     status: bool = Field(
         default=False,

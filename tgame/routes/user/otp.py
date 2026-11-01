@@ -14,7 +14,7 @@ from tgame.db.model.user import User
 from tgame.schema.otp import RequestUserOtp, ResponseUserOtp
 
 from tgame.repos.otp_cache import OTPCacheContainer
-from tgame.repos.auth.rate_limiter import phonNumberDep
+from tgame.repos.auth.rate_limiter import phoneNumberDep
 
 user_otp = APIRouter(
     tags=["User Authentication"]
@@ -52,7 +52,7 @@ user_otp = APIRouter(
             },
         },
         status.HTTP_422_UNPROCESSABLE_CONTENT: {
-            "description": "Validation error for register schema",
+            "description": "Validation error for otp schema",
             "content": {
                 "application/json": {
                     "example": {
@@ -99,7 +99,7 @@ user_otp = APIRouter(
     response_model=ResponseUserOtp,
     deprecated=False,
     include_in_schema=True,
-    dependencies=[phonNumberDep]
+    dependencies=[phoneNumberDep]
 )
 async def UserVerifyOtpHandler(
     requestBody: Annotated[
@@ -128,8 +128,6 @@ async def UserVerifyOtpHandler(
         # If not cached, then do nothing
         if isOtpCached == None:
             raise HTTPException(status_code=401, detail="Unauthorized operation detected")
-
-        print(isOtpCached)
 
         # If code was wrong, then do nothing
         if isOtpCached.otpCode != requestBody.otp_code:
