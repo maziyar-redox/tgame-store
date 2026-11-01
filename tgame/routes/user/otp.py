@@ -1,10 +1,12 @@
-from pyrate_limiter import Limiter, Rate, Duration
-from fastapi import APIRouter, Body, HTTPException, Depends, status
+import jwt
+
+from fastapi import APIRouter, Body, HTTPException, status
 from fastapi.responses import JSONResponse
 from sqlmodel import select
 from typing import Annotated
-from secrets import randbelow
-from starlette.requests import Request
+from datetime import datetime, timedelta, timezone
+
+from tgame.core.config import settings
 
 from tgame.db.database import SessionDep
 from tgame.db.model.user import User
@@ -13,8 +15,6 @@ from tgame.schema.otp import RequestUserOtp, ResponseUserOtp
 
 from tgame.repos.cache import OTPCacheContainer
 from tgame.repos.auth.rate_limiter import phonNumberDep
-
-from tgame.services.sms import SMSClass
 
 user_otp = APIRouter(
     tags=["User Authentication"]
@@ -46,9 +46,7 @@ user_otp = APIRouter(
                 "application/json": {
                     "example": {
                         "status": "false",
-                        "detail": "fail",
-                        "refresh_token": "null",
-                        "access_token": "null"
+                        "detail": "fail"
                     },
                 },
             },
@@ -117,18 +115,54 @@ async def UserVerifyOtpHandler(
     session: SessionDep
 ) -> ResponseUserOtp:
     try:
-        """ # See if user exist or not
+        # See if user exist or not
         isUserExists = session.exec(select(User).where(User.phone_number == requestBody.phone_number)).one_or_none()
 
         # If user doesn't exist at all
         if isUserExists is None:
             raise HTTPException(status_code=401, detail="This phone number does not exist")
 
-        # If exist, and verified too, then just authenticate it
-        if isUserExists.verified == True:
-            raise HTTPException(status_code=401, detail="This phone number is already exists")
-        raise HTTPException(status_code=401, detail="Operation not permitted") """
-        return ResponseUserOtp(status=True, detail="ok", access_token="ok", refresh_token="f")
+        # Is otp already cached or not
+        isOtpCached = OTPCacheContainer.Get(phoneNumber=requestBody.phone_number)
+
+        # If not cached, then do nothing
+        if isOtpCached == None:
+            raise HTTPException(status_code=401, detail="Unauthorized operation detected")
+
+        print(isOtpCached)
+
+        # If code was wrong, then do nothing
+        if isOtpCached.otpCode != requestBody.otp_code:
+            raise HTTPException(status_code=401, detail="Otp code is wrong")
+
+        # If user is not verified, update it
+        if isUserExists.verified == False:
+            isUserExists.verified = True
+            session.add(isUserExists)
+            session.commit()
+            session.refresh(isUserExists)
+
+        now = datetime.now(timezone.utc)
+        
+        accessTokenExpire = now + timedelta(minutes=settings.TOKEN_ACCESS_TOKEN_EXPIRE_MINUTES)
+        #refreshTokenExpire = now + timedelta(minutes=settings.TOKEN_ACCESS_TOKEN_EXPIRE_MINUTES)
+
+        accessTokenPayload = {
+            "sub": str(isUserExists.id),
+            "phone": isUserExists.phone_number,
+            "first_name": isUserExists.first_name,
+            "last_name": isUserExists.last_name,
+            "iat": int(now.timestamp()),
+            "exp": int((accessTokenExpire).timestamp()),
+            "iss": "tgame-store",
+            "aud": "tgame-users",
+            "type": "access"
+        }
+
+        accessToken = jwt.encode(payload=accessTokenPayload, key=settings.TOKEN_JWT_SECRET, algorithm=settings.TOKEN_ALGORITHM)
+        # refreshToken = jwt.encode(payload=accessTokenPayload, key=settings.TOKEN_JWT_SECRET, algorithm=settings.TOKEN_ALGORITHM)
+
+        return ResponseUserOtp(status=True, detail="authenticated successfully", access_token=accessToken)
     except HTTPException as e:
         raise HTTPException(status_code=e.status_code, detail=e.detail)
     except Exception as e:

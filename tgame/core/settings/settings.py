@@ -53,14 +53,24 @@ class AppSettings(AppLoggingSettings):
 
     TOKEN_JWT_SECRET: str
     TOKEN_ALGORITHM: str
-    TOKEN_ACCESS_TOKEN_EXPIRE_MINUTES: int = 48
-    """time in hours"""
+    TOKEN_ACCESS_TOKEN_EXPIRE_MINUTES: int
+    """time in minutes"""
+    TOKEN_REFRESH_TOKEN_EXPIRE_HOURS: int
+    """time in minutes"""
 
     @field_validator("TOKEN_ACCESS_TOKEN_EXPIRE_MINUTES")
     @classmethod
-    def validate_token_time(cls, v: int) -> int:
-        if v < 1:
-            raise ValueError("TOKEN_ACCESS_TOKEN_EXPIRE_MINUTES must be at least 1 hour")
+    def validate_access_token_time(cls, v: int) -> int:
+        if v < 60:
+            raise ValueError("TOKEN_ACCESS_TOKEN_EXPIRE_MINUTES must be at least 1 hour or 60 minute")
+        # Certain browsers (webkit) have issues with very long-lived cookies, so we limit to 400 days
+        return min(v, 400 * 24)
+
+    @field_validator("TOKEN_REFRESH_TOKEN_EXPIRE_HOURS")
+    @classmethod
+    def validate_refresh_token_time(cls, v: int) -> int:
+        if v < 12:
+            raise ValueError("TOKEN_REFRESH_TOKEN_EXPIRE_HOURS must be at least 12 hour")
         # Certain browsers (webkit) have issues with very long-lived cookies, so we limit to 400 days
         return min(v, 400 * 24)
 

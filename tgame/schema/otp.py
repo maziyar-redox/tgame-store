@@ -55,16 +55,16 @@ class ResponseUserOtp(BaseModel):
         title="Detail",
         examples=["success"]
     )
-    access_token: str | None = Field(
+    access_token: str = Field(
         description="Access token key in json schema",
         title="Access Token",
         examples=["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"]
     )
-    refresh_token: str | None = Field(
+    """ refresh_token: str = Field(
         description="Refresh token key in json schema",
         title="Refresh Token",
         examples=["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"]
-    )
+    ) """
 
     model_config = {
         "json_schema_extra": {
