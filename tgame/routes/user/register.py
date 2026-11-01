@@ -9,7 +9,7 @@ from tgame.db.model.user import User
 
 from tgame.schema.register import RequestUserRegister, ResponseUserRegister
 
-from tgame.repos.cache import OTPCacheContainer
+from tgame.repos.otp_cache import OTPCacheContainer
 from tgame.repos.auth.rate_limiter import phonNumberDep
 
 from tgame.services.sms import SMSClass

@@ -13,7 +13,7 @@ from tgame.db.model.user import User
 
 from tgame.schema.otp import RequestUserOtp, ResponseUserOtp
 
-from tgame.repos.cache import OTPCacheContainer
+from tgame.repos.otp_cache import OTPCacheContainer
 from tgame.repos.auth.rate_limiter import phonNumberDep
 
 user_otp = APIRouter(
