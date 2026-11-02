@@ -27,7 +27,8 @@ export function RegisterSection() {
     const registerForm = useForm<z.infer<typeof registerFormSchema>>({
         resolver: zodResolver(registerFormSchema),
         defaultValues: {
-            full_name: "",
+            first_name: "",
+            last_name: "",
             phone_number: "",
             terms: false,
         },
@@ -46,23 +47,52 @@ export function RegisterSection() {
             >
                 <FieldGroup>
                     <Controller
-                        name="full_name"
+                        name="first_name"
                         control={registerForm.control}
                         render={({ field, fieldState }) => (
                             <Field data-invalid={fieldState.invalid}>
                                 <FieldLabel
                                     className="text-slate-600 block text-xs font-bold"
-                                    htmlFor="login_form_fullname"
+                                    htmlFor="login_form_first_name"
                                 >
-                                    نام و نام خانوادگی
+                                    نام
                                 </FieldLabel>
                                 <Input
                                     {...field}
-                                    id="login_form_fullname"
+                                    id="login_form_first_name"
                                     aria-invalid={fieldState.invalid}
-                                    placeholder="لظفا نام کامل خود را وارد کنید"
+                                    placeholder="لظفا نام خود را وارد کنید"
                                     autoComplete="name"
-                                    name="full_name"
+                                    name="first_name"
+                                    type="text"
+                                    required
+                                    dir="rtl"
+                                    className="border border-slate-200 px-4 py-5 text-right text-sm font-normal outline-none focus:border-primary"
+                                />
+                                {fieldState.invalid && (
+                                    <FieldError errors={[fieldState.error]} />
+                                )}
+                            </Field>
+                        )}
+                    />
+                    <Controller
+                        name="last_name"
+                        control={registerForm.control}
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
+                                <FieldLabel
+                                    className="text-slate-600 block text-xs font-bold"
+                                    htmlFor="login_form_last_name"
+                                >
+                                    نام خانوادگی
+                                </FieldLabel>
+                                <Input
+                                    {...field}
+                                    id="login_form_last_name"
+                                    aria-invalid={fieldState.invalid}
+                                    placeholder="لظفا نام خانوادگی خود را وارد کنید"
+                                    autoComplete="name"
+                                    name="last_name"
                                     type="text"
                                     required
                                     dir="rtl"
