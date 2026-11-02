@@ -1,16 +1,19 @@
 import uvicorn
 
-from fastapi import FastAPI
-
-app = FastAPI()
-
-@app.get("/")
-async def aa():
-    return "ok"
+from tgame.app import settings
+from tgame.core.logger.config import log_config
 
 def main():
     uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=8000
+        "tgame.app:app",
+        host=settings.API_HOST,
+        port=settings.API_PORT,
+        log_level=settings.LOG_LEVEL.lower(),
+        log_config=log_config(),
+        workers=1,
+        forwarded_allow_ips=settings.HOST_IP,
+        ws="websockets-sansio",
     )
+
+if __name__ == "__main__":
+    main()
