@@ -16,9 +16,9 @@ export const registerFormSchema = z.object({
     phone_number: z
         .string()
         .refine((value) => isPhoneNumberValid(digitsFaToEn(value)), {
-            message: "شماره وارد شده صحیح نمیباشد",
+            error: "شماره وارد شده صحیح نمیباشد",
         }),
     terms: z.boolean().refine((val) => val === true, {
-        message: "شما باید با شرایط و قوانین موافقت کنید",
+        error: "شما باید با شرایط و قوانین موافقت کنید",
     }),
 });
