@@ -112,7 +112,8 @@ async def UserLoginHandler(
 ) -> ResponseUserLogin:
     try:
         # See if user exist or not
-        isUserExists = session.exec(select(User).where(User.phone_number == requestBody.phone_number)).one_or_none()
+        getUser = await session.exec(select(User).where(User.phone_number == requestBody.phone_number))
+        isUserExists = getUser.one_or_none()
 
         # If user doesn't exist at all
         if isUserExists is None:
@@ -121,6 +122,8 @@ async def UserLoginHandler(
         # Initiating sms and otp classes
         sendSms = SMSClass(templateId=123456)
         otpCode: int = 100_000 + randbelow(900_000)
+
+        print(otpCode)
 
         # Is otp already cached or not
         isOtpCached = OTPCacheContainer.Get(phoneNumber=requestBody.phone_number)

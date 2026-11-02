@@ -116,7 +116,8 @@ async def UserVerifyOtpHandler(
 ) -> ResponseUserOtp:
     try:
         # See if user exist or not
-        isUserExists = session.exec(select(User).where(User.phone_number == requestBody.phone_number)).one_or_none()
+        getUser = await session.exec(select(User).where(User.phone_number == requestBody.phone_number))
+        isUserExists = getUser.one_or_none()
 
         # If user doesn't exist at all
         if isUserExists is None:
@@ -137,8 +138,8 @@ async def UserVerifyOtpHandler(
         if isUserExists.verified == False:
             isUserExists.verified = True
             session.add(isUserExists)
-            session.commit()
-            session.refresh(isUserExists)
+            await session.commit()
+            await session.refresh(isUserExists)
 
         now = datetime.now(timezone.utc)
         

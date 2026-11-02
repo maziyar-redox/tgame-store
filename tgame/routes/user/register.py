@@ -112,7 +112,8 @@ async def UserRegisterHandler(
 ) -> ResponseUserRegister:
     try:
         # See if user exist or not
-        isUserExists = session.exec(select(User).where(User.phone_number == requestBody.phone_number)).one_or_none()
+        getUser = await session.exec(select(User).where(User.phone_number == requestBody.phone_number))
+        isUserExists = getUser.one_or_none()
 
         # If exist, and verified too, then do not do anything
         if isUserExists is not None and isUserExists.verified == True:
@@ -121,6 +122,8 @@ async def UserRegisterHandler(
         # Initiating sms and otp classes
         sendSms = SMSClass(templateId=123456)
         otpCode: int = 100_000 + randbelow(900_000)
+
+        print(otpCode)
 
         # Else, if exist and not verified yet, check the server cache if otp code has been sent to him already,
         # If otp found in TTL cache, then do not send the code again,
@@ -161,8 +164,8 @@ async def UserRegisterHandler(
 
         # Then commit it to database
         session.add(newUser)
-        session.commit()
-        session.refresh(newUser)
+        await session.commit()
+        await session.refresh(newUser)
 
         # Send the sms after user creation
         sendOtpSms = sendSms.Send(phoneNumber=requestBody.phone_number, otpCode=otpCode)

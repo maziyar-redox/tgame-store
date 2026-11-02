@@ -42,7 +42,7 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, Any]:
     """
     logger.info("start: database initialization")
     
-    createDbAndTables()
+    await createDbAndTables()
     
     logger.info("end: database initialization")
 

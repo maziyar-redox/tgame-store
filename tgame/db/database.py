@@ -1,38 +1,54 @@
 from fastapi import Depends
-from sqlmodel import SQLModel, create_engine, Session
-from typing import Generator, Any, Annotated
+from sqlmodel import SQLModel
+from sqlmodel.ext.asyncio.session import AsyncSession
+from sqlalchemy.ext.asyncio import AsyncEngine, async_sessionmaker, create_async_engine
+from typing import AsyncGenerator, Annotated
 
-sqlite_url: str = "sqlite:///database.db"
+from tgame.core.config import settings
 
-connect_args = {"check_same_thread": False}
-engine = create_engine(sqlite_url, connect_args=connect_args)
+engine: AsyncEngine = create_async_engine(
+    str(settings.DB_URL),
+    echo=False,
+    pool_pre_ping=True,
+)
 
-def createDbAndTables():
+# Async session factory
+async_session_factory = async_sessionmaker(
+    bind=engine,
+    class_=AsyncSession,
+    expire_on_commit=False,
+)
+
+
+async def createDbAndTables() -> None:
     """
-    Initiating database engine
+    Initiating database engine and tables (async).
 
     Returns:
-        None: this function returns nothing.
+        None
     """
     try:
-        SQLModel.metadata.create_all(engine)
+        async with engine.begin() as conn:
+            await conn.run_sync(SQLModel.metadata.create_all)
     except Exception as e:
-        raise Exception("An error occured during initiating database and tables")
+        raise Exception("An error occured during initiating database and tables") from e
 
-def getSession() -> Generator[Session, Any, None]:
+
+async def getSession() -> AsyncGenerator[AsyncSession, None]:
     """
-    Getting session
+    Getting async session.
 
-    Returns:
-        Generator[Session, Any, None]: this function returns Generator.
+    Yields:
+        AsyncSession
     """
-    session = Session(engine)
-    try:
-        yield session
-    except Exception:
-        session.rollback()
-        raise
-    finally:
-        session.close()
+    async with async_session_factory() as session:
+        try:
+            yield session
+        except Exception:
+            await session.rollback()
+            raise
+        finally:
+            await session.close()
 
-SessionDep = Annotated[Session, Depends(getSession)]
+
+SessionDep = Annotated[AsyncSession, Depends(getSession)]
