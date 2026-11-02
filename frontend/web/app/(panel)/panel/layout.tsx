@@ -1,6 +1,7 @@
 // IMPORT: Importing metadata from next for managing page metadata
-
 import type { Metadata } from "next";
+
+// Importing sidebar component which will shared accross user panel
 import { Sidebar } from "@/components/panel/user/sidebar";
 
 // Managing page metadata
@@ -15,7 +16,7 @@ export default function PanelLayout({
     children: React.ReactNode;
 }) {
     return (
-        <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-9 lg:px-8">
+        <main className="mx-auto w-[90%] px-4 py-6 sm:px-6 sm:py-9 lg:px-8">
             <div className="grid items-start gap-6 lg:grid-cols-[220px_1fr]">
                 <Sidebar />
                 <section className="min-w-0">{children}</section>

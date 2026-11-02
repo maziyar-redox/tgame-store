@@ -22,9 +22,7 @@ export function Sidebar() {
                 </span>
                 <div className="min-w-0">
                     <b className="block truncate text-sm">مازیار عیسی نژاد</b>
-                    <span className="text-[9px] text-slate-400">
-                        کاربر تکنو
-                    </span>
+                    <span className="text-xs text-slate-400">کاربر تی گیم</span>
                 </div>
             </div>
             <nav className="flex gap-1 overflow-x-auto p-2 lg:block">
