@@ -1,8 +1,7 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
 from urllib import parse as urlparse
-from typing import Literal
-from pydantic import BaseModel, PostgresDsn
+from pydantic import PostgresDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -17,31 +16,6 @@ class AbstractDBProvider(ABC):
     @property
     @abstractmethod
     def db_url_public(self) -> str: ...
-
-
-class SQLiteProvider(AbstractDBProvider, BaseModel):
-    """
-    Class for database provider(sqlite) which initiate the sqlite database
-
-    Arguments:
-        data_dir (Path): A path for putting db init in local
-        prefix (str): A prefix for database
-    """
-    data_dir: Path
-    prefix: str = ""
-
-    @property
-    def db_path(self):
-        return self.data_dir / f"{self.prefix}tgame.db"
-
-    @property
-    def db_url(self) -> str:
-        return f"sqlite:///{self.db_path.absolute()!s}"
-
-    @property
-    def db_url_public(self) -> str:
-        return self.db_url
-
 
 class PostgresProvider(AbstractDBProvider, BaseSettings):
     """
@@ -67,8 +41,8 @@ class PostgresProvider(AbstractDBProvider, BaseSettings):
         if not url.startswith("postgresql://"):
             raise ValueError("POSTGRES_URL_OVERRIDE scheme must be postgresql")
 
-        # SQLAlchemy resolves a bare postgresql:// to psycopg 3, so the installed driver is named explicitly
-        url = "postgresql+psycopg2://" + url.removeprefix("postgresql://")
+        # SQLAlchemy resolves a bare postgresql:// to asyncpg, so the installed driver is named explicitly
+        url = "postgresql+asyncpg://" + url.removeprefix("postgresql://")
         scheme, remainder = url.split("://", 1)
         if "@" in remainder and ":" in remainder.split("@")[0]:
             credentials, host_part = remainder.rsplit("@", 1)
@@ -84,7 +58,7 @@ class PostgresProvider(AbstractDBProvider, BaseSettings):
 
         return str(
             PostgresDsn.build(
-                scheme="postgresql+psycopg2",
+                scheme="postgresql+asyncpg",
                 username=self.POSTGRES_USER,
                 password=urlparse.quote(self.POSTGRES_PASSWORD),
                 host=f"{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}",
@@ -100,7 +74,7 @@ class PostgresProvider(AbstractDBProvider, BaseSettings):
         return f"postgresql://******:******@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB or ''}"
 
 
-def dbProviderFactory(provider_name: Literal["postgresql", "sqlite"], data_dir: Path, env_file: Path, env_encoding="utf-8") -> AbstractDBProvider:
+def dbProviderFactory(env_file: Path, env_encoding="utf-8") -> AbstractDBProvider:
     """
     Documented engines are only sqlite and postgres. Anything else used to
     fall through to SQLite, so a typo such as "postgress" started a Postgres
@@ -109,8 +83,4 @@ def dbProviderFactory(provider_name: Literal["postgresql", "sqlite"], data_dir: 
     Returns:
         AbstractDBProvider: an abstract returned, contains db settings
     """
-    if provider_name == "postgresql":
-        return PostgresProvider(_env_file=env_file, _env_file_encoding=env_encoding)
-    if provider_name == "sqlite":
-        return SQLiteProvider(data_dir=data_dir)
-    raise ValueError(f"DB_ENGINE must be 'sqlite' or 'postgresql', got {provider_name!r}")
+    return PostgresProvider(_env_file=env_file, _env_file_encoding=env_encoding)

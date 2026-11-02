@@ -103,7 +103,6 @@ class AppSettings(AppLoggingSettings):
     # ===============================================
     # Database Configuration
 
-    DB_ENGINE: Literal["postgresql", "sqlite"] = "sqlite"  # Options: 'sqlite', 'postgres'
     DB_PROVIDER: AbstractDBProvider | None = None
 
     @property
@@ -128,11 +127,6 @@ def appSettingConstructor(data_dir: Path, production: bool, env_file: Path, env_
         _env_file_encoding=env_encoding
     )
 
-    app_settings.DB_PROVIDER = dbProviderFactory(
-        app_settings.DB_ENGINE or "sqlite",
-        data_dir,
-        env_file=env_file,
-        env_encoding=env_encoding,
-    )
+    app_settings.DB_PROVIDER = dbProviderFactory(env_file=env_file, env_encoding=env_encoding)
 
     return app_settings
