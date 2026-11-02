@@ -51,7 +51,7 @@ export function NavigationBUttonsSm() {
                         "rounded-xl px-3 py-3 text-right transition-all",
                         pathname === item.link
                             ? "bg-accent text-primary"
-                            : "hover:bg-accent hover:text-primary",
+                            : "hover:bg-accent text-slate-500 hover:text-primary",
                     )}
                 >
                     {item.text}
