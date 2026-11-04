@@ -1,4 +1,7 @@
 // Importing next config
+
+// Importing mdx utils
+import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
 // Importing env
@@ -16,4 +19,6 @@ const nextConfig: NextConfig = {
     },
 };
 
-export default nextConfig;
+const withMDX = createMDX({});
+
+export default withMDX(nextConfig);

@@ -318,3 +318,18 @@ html::-webkit-scrollbar-thumb {
 /* html::-webkit-scrollbar-thumb:hover {
     background: #0866ff/3;
 } */
+
+.typeset-docs {
+    --typeset-font-body: var(--font-geist);
+    --typeset-font-heading: var(--font-geist);
+    --typeset-font-mono: var(--font-geist-mono);
+    --typeset-size: 15px;
+    --typeset-leading: 1.6;
+    --typeset-flow: 1em;
+}
+
+@media (max-width: 640px) {
+    .typeset-docs {
+        --typeset-size: 12px;
+    }
+}

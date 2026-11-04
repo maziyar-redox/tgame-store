@@ -9,16 +9,11 @@ import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { cn } from "cn";
 import { Controller, useForm } from "react-hook-form";
 import type * as z from "zod";
+// Importing from local ui
+import { MdxDialog } from "@/components/panel/authentication/auth/register/mdx-dialog";
 // Importing global ui components
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog";
 import {
     Field,
     FieldError,
@@ -27,6 +22,9 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { TabsContent } from "@/components/ui/tabs";
+import Security from "@/constants/md/security.mdx";
+// Importing mdx file
+import Terms from "@/constants/md/terms.mdx";
 // Importing register schema util
 import { registerFormSchema } from "@/schema/register-schema";
 
@@ -161,31 +159,20 @@ export function RegisterSection() {
                                 <FieldLabel
                                     htmlFor="terms_checkbox"
                                     className={cn(
-                                        "font-normal text-xs",
+                                        "font-normal text-xs min-w-0 flex flex-wrap items-center",
                                         fieldState.invalid
                                             ? ""
                                             : "text-slate-500",
                                     )}
                                 >
-                                    <Dialog>
-                                        <DialogTrigger
-                                            render={
-                                                <Button
-                                                    variant="empty"
-                                                    size="empty"
-                                                >
-                                                    شرایط استفاده
-                                                </Button>
-                                            }
-                                        />
-                                        <DialogContent showCloseButton={false}>
-                                            <DialogHeader>
-                                                <DialogTitle>
-                                                    No Close Button
-                                                </DialogTitle>
-                                            </DialogHeader>
-                                        </DialogContent>
-                                    </Dialog>
+                                    <MdxDialog text="شرایط استفاده">
+                                        <Terms />
+                                    </MdxDialog>
+                                    <span>و</span>
+                                    <MdxDialog text="حریم خصوصی">
+                                        <Security />
+                                    </MdxDialog>
+                                    <span>فروشگاه تی گیم را می پذیرم.</span>
                                 </FieldLabel>
                             </Field>
                         )}
