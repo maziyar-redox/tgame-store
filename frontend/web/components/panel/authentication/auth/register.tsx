@@ -13,6 +13,13 @@ import type * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import {
     Field,
     FieldError,
     FieldGroup,
@@ -160,8 +167,25 @@ export function RegisterSection() {
                                             : "text-slate-500",
                                     )}
                                 >
-                                    شرایط استفاده و حریم خصوصی فروشگاه تی گیم را
-                                    می‌پذیرم.
+                                    <Dialog>
+                                        <DialogTrigger
+                                            render={
+                                                <Button
+                                                    variant="empty"
+                                                    size="empty"
+                                                >
+                                                    شرایط استفاده
+                                                </Button>
+                                            }
+                                        />
+                                        <DialogContent showCloseButton={false}>
+                                            <DialogHeader>
+                                                <DialogTitle>
+                                                    No Close Button
+                                                </DialogTitle>
+                                            </DialogHeader>
+                                        </DialogContent>
+                                    </Dialog>
                                 </FieldLabel>
                             </Field>
                         )}

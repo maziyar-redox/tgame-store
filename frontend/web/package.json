@@ -12,9 +12,13 @@
     "dependencies": {
         "@code-plate/iran-cities": "^1.2.0",
         "@hookform/resolvers": "^7.0.1",
+        "@mdx-js/loader": "^3.1.1",
+        "@mdx-js/react": "^3.1.1",
+        "@next/mdx": "^16.4.5",
         "@persian-tools/persian-tools": "^4.0.4",
         "@phosphor-icons/react": "^2.1.10",
         "@shadcn/react": "^0.3.1",
+        "@types/mdx": "^2.0.14",
         "class-variance-authority": "^0.7.1",
         "cn": "^0.5.1",
         "embla-carousel-react": "^8.6.0",
