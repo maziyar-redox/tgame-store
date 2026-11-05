@@ -1,23 +1,17 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-// Importing digits to fa function
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-// Importing Icons
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
-// Importing tw merge
 import { cn } from "cn";
-// Importing hooks from react hook form
 import { Controller, useForm } from "react-hook-form";
-// Importing hooks
 import { useMediaQuery } from "usehooks-ts";
-// Importing form utilities
+
 import type * as z from "zod";
-// Importing component from local ui components
+
 import { SearchingState } from "@/features/store/navigation/searching-state";
-// Importing From Global Ui Components
+
 import { buttonVariants } from "@/shared/components/ui/button";
-// Importing From Global Ui Components
 import {
     Dialog,
     DialogContent,
@@ -28,7 +22,6 @@ import {
 } from "@/shared/components/ui/dialog";
 import { Field, FieldError, FieldGroup } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
-// Importing custom schema
 import { searchFormSchema } from "@/shared/schema/search-schema";
 
 export function SearchBar() {

@@ -1,11 +1,10 @@
 "use client";
 
-// Tailwind merge utils
 import { cn } from "cn";
-// Importing nextjs utils
+
 import Image from "next/image";
 import Link from "next/link";
-// Importing Formatter
+
 import { currencyFormmater, discountCalculator } from "@/shared/lib/currency";
 
 type SearchItemProps = {

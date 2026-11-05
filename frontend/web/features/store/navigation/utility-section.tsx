@@ -1,15 +1,13 @@
 "use client";
 
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-
 import { BasketIcon, UserIcon } from "@phosphor-icons/react";
-
 import { cn } from "cn";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { SearchBar } from "@/features/store/navigation/search-bar";
+
 import { buttonVariants } from "@/shared/components/ui/button";
 
 export function UtilitySection() {

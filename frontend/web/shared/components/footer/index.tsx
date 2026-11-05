@@ -1,10 +1,7 @@
 "use client";
 
-// Importing digits to fa function
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-// Importing tailwindMerge utils
 import { cn } from "cn";
-// Importing nextjs utils
 import { usePathname } from "next/navigation";
 
 export function Footer() {

@@ -1,14 +1,12 @@
-// Importing icons
 import {
     ArrowLeftIcon,
     BasketIcon,
     ShieldCheckIcon,
 } from "@phosphor-icons/react/ssr";
-// Importing merging utils
 import { cn } from "cn";
-// Importing utils
+
 import Link from "next/link";
-// Importing button variants
+
 import { buttonVariants } from "@/shared/components/ui/button";
 
 export function NotFoundWrapper({

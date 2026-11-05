@@ -1,10 +1,9 @@
-"use state";
+"use client";
 
-// Importing icon
 import { PlusIcon, SpinnerIcon } from "@phosphor-icons/react";
-// Importing nextjs utils
+
 import Link from "next/link";
-// Importing local ui components
+
 import { SearchItem } from "@/features/store/navigation/search-item";
 
 type SearchingStateProps = {

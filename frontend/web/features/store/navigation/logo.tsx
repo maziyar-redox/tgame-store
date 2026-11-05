@@ -1,6 +1,5 @@
 "use client";
 
-// Importing NextJs Utilities
 import Link from "next/link";
 
 export function Logo() {

@@ -1,48 +1,19 @@
-// biome-ignore-all lint: This file contains generated code
-
 "use client";
 
-// Merging library
 import { cn } from "cn";
-// Importing nextjs utilities
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-// React utilities
-import { RefObject, useEffect, useRef, useState } from "react";
-// Importing from global ui lib
+import { type RefObject, useEffect, useRef, useState } from "react";
+
+import { Logo } from "@/features/store/navigation/logo";
 import { Sheet, SheetContent } from "@/shared/components/ui/sheet";
-// Importing Constant Data
 import { navigationLinks } from "@/shared/constants/navigation";
-// Importing Store
 import { useNavigationStore } from "@/shared/provider/navigation-provider";
-import { Logo } from "./logo";
 
 // Button Ref typing
 type btnRef = RefObject<HTMLDivElement | null>;
 
-export function NavigationButtonsLg() {
-    const pathname = usePathname();
-    return (
-        <nav className="mr-5 hidden items-center gap-7 text-sm font-semibold text-[#45556c] lg:flex">
-            {navigationLinks.map((item) => (
-                <Link
-                    key={item.id}
-                    href={item.link}
-                    className={cn(
-                        "transition-all",
-                        pathname === item.link
-                            ? "text-primary"
-                            : "hover:text-primary",
-                    )}
-                >
-                    {item.text}
-                </Link>
-            ))}
-        </nav>
-    );
-}
-
-export function NavigationButtonsSm() {
+export function Sidebar() {
     const { isOpen, setIsOpen } = useNavigationStore((state) => state);
     const navRef = useRef<HTMLElement>(null);
     const pathname = usePathname();
@@ -76,7 +47,7 @@ export function NavigationButtonsSm() {
             clearTimeout(timeoutId);
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [isOpen, setIsOpen, pathname]);
+    }, [isOpen, setIsOpen, pathname, path]);
 
     return (
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
