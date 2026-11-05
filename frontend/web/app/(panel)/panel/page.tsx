@@ -1,5 +1,5 @@
 import { Dashboard } from "@/features/panel/dashboard";
 
-export default function UserPanelDahboard() {
+export default async function PanelDahboardPage() {
     return <Dashboard />;
 }

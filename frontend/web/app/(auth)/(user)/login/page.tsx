@@ -1,6 +1,5 @@
-// Importing page specific component from local ui component
 import { LoginSection } from "@/features/auth/login";
 
-export default function AuthenticationLoginPage() {
+export default async function AuthenticationLoginPage() {
     return <LoginSection />;
 }

@@ -1,6 +1,5 @@
-// Importing otp component from local ui
 import { OtpField } from "@/features/auth/otp/otp-field";
 
-export default function AuthenticationOtpPage() {
+export default async function AuthenticationOtpPage() {
     return <OtpField />;
 }

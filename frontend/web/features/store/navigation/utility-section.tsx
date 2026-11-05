@@ -1,17 +1,15 @@
 "use client";
 
-// Importing digits to fa function
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-// Importing Icons
+
 import { BasketIcon, UserIcon } from "@phosphor-icons/react";
-// Merging library
+
 import { cn } from "cn";
-// Importing nextjs utilities
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-// Importing Ui from local Ui Components
+
 import { SearchBar } from "@/features/store/navigation/search-bar";
-// Importing From Global Ui Components
 import { buttonVariants } from "@/shared/components/ui/button";
 
 export function UtilitySection() {

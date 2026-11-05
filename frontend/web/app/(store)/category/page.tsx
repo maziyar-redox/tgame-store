@@ -1,6 +1,5 @@
-// Importing category page component
 import { CategoryPageComponent } from "@/features/store/category";
 
-export default function CategoryPage() {
+export default async function CategoryPage() {
     return <CategoryPageComponent />;
 }

@@ -1,6 +1,5 @@
-// Importing checkout page from local ui component
 import { CheckoutPageComponent } from "@/features/store/card/checkout";
 
-export default function CheckoutPage() {
+export default async function CheckoutPage() {
     return <CheckoutPageComponent />;
 }

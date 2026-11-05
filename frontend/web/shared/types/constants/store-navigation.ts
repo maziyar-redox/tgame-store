@@ -1,9 +1,9 @@
 // Navigation prop type
-type NavigationLinksProps = {
+type StoreNavigationLinksProps = {
     id: number;
     text: string;
     link: string;
 };
 
 // Exporting
-export type { NavigationLinksProps };
+export type { StoreNavigationLinksProps };

@@ -3,7 +3,6 @@
 // Also this route use ISR rendering strategy and have webhooks for revalidating caching pattern
 export const revalidate = 3600;
 
-// Importing Main page items
 import { AnimationWrapper } from "@/features/store/landing/animation";
 import { Categories } from "@/features/store/landing/categories";
 import { Favorite } from "@/features/store/landing/favorite";
@@ -13,10 +12,10 @@ import { Offer } from "@/features/store/landing/offer";
 import { ProductCarousel } from "@/features/store/landing/product-card";
 import { Products } from "@/features/store/landing/products";
 import { Terms } from "@/features/store/landing/terms";
-// Importing main product mock
+
 import { mainProducts } from "@/shared/constants/mock";
 
-export default async function Root() {
+export default async function LandingPage() {
     return (
         <>
             <AnimationWrapper>

@@ -1,4 +1,4 @@
-export default function UserPanelRootLayout({
+export default async function PanelLayout({
     children,
 }: {
     children: React.ReactNode;

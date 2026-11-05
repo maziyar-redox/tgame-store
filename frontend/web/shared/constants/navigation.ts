@@ -1,7 +1,7 @@
-import type { NavigationLinksProps } from "@/shared/types/constants/navigation";
+import type { StoreNavigationLinksProps } from "@/shared/types/constants/store-navigation";
 
 // Navigation types, Containing info about nav
-const navigationLinks: NavigationLinksProps[] = [
+const navigationLinks: StoreNavigationLinksProps[] = [
     {
         id: 1,
         text: "خانه",

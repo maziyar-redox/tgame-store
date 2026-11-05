@@ -1,7 +1,6 @@
-// Importing authentication wrapper which is client component
 import { AuthenticationLayoutOtpComponent } from "@/features/auth/otp";
 
-export default function AuthenticationOtpLayout({
+export default async function AuthenticationOtpLayout({
     children,
 }: {
     children: React.ReactNode;

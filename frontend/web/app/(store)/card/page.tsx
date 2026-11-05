@@ -1,6 +1,5 @@
-// Importing card component for managing items in the card or checkout
 import { CardPageComponent } from "@/features/store/card/items";
 
-export default function CardPage() {
+export default async function CardPage() {
     return <CardPageComponent />;
 }
