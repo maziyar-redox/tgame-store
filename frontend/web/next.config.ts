@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
     },
     experimental: {
         imgOptTimeoutInSeconds: 30,
+        optimizePackageImports: ["@phosphor-icons/react"],
     },
     allowedDevOrigins: ["192.168.100.*"],
 };

@@ -1,23 +1,21 @@
-"use client";
-
 // Importing icons
 import {
     ArrowLeftIcon,
     BasketIcon,
     ShieldCheckIcon,
-} from "@phosphor-icons/react";
+} from "@phosphor-icons/react/ssr";
 // Importing merging utils
 import { cn } from "cn";
 // Importing utils
 import Link from "next/link";
-// Importing local ui items
-import { NotFoundPageItems } from "@/components/global/error/notfound/items";
 // Importing button variants
 import { buttonVariants } from "@/components/ui/button";
-// Importing Constant page data from local
-import { notFoundErrorItems } from "@/constants/errors";
 
-export function NotFoundComponent() {
+export function NotFoundComponent({
+    children,
+}: {
+    readonly children: React.ReactNode;
+}) {
     return (
         <main className="mx-auto max-w-7xl px-4 pb-12 pt-6 sm:px-6 lg:px-8">
             <section
@@ -177,7 +175,12 @@ export function NotFoundComponent() {
                         replace
                     >
                         بازگشت به خانه
-                        <ArrowLeftIcon name="arrow" className="size-4" />
+                        <ArrowLeftIcon
+                            name="arrow"
+                            className="size-4"
+                            weight="regular"
+                            color="currentColor"
+                        />
                     </Link>
                     <Link
                         href="/"
@@ -186,8 +189,13 @@ export function NotFoundComponent() {
                             "gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary",
                         )}
                     >
-                        <BasketIcon name="bag" className="size-4" /> مشاهدهٔ
-                        محصولات
+                        <BasketIcon
+                            name="bag"
+                            className="size-4"
+                            weight="regular"
+                            color="currentColor"
+                        />{" "}
+                        مشاهدهٔ محصولات
                     </Link>
                 </div>
             </section>
@@ -206,20 +214,15 @@ export function NotFoundComponent() {
                         از دسته‌بندی‌های محبوب، دوباره شروع کنید
                     </p>
                 </div>
-                <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
-                    {notFoundErrorItems.map((items) => (
-                        <NotFoundPageItems
-                            key={items.id}
-                            title={items.title}
-                            desc={items.desc}
-                            link={items.link}
-                            Icon={items.Icon}
-                        />
-                    ))}
-                </div>
+                {children}
             </section>
             <p className="mt-9 flex items-center justify-center gap-2 text-center text-xs leading-6 text-slate-400">
-                <ShieldCheckIcon name="shield" className="size-4" />
+                <ShieldCheckIcon
+                    name="shield"
+                    className="size-4"
+                    weight="regular"
+                    color="currentColor"
+                />
                 مسیر عوض شده، خیال راحتِ خرید نه.
             </p>
         </main>
