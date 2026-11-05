@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
     experimental: {
         imgOptTimeoutInSeconds: 30,
     },
+    allowedDevOrigins: ["192.168.100.*"],
 };
 
 const withMDX = createMDX({});

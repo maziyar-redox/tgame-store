@@ -174,6 +174,7 @@ export function NotFoundComponent() {
                             buttonVariants({ variant: "default", size: "xl" }),
                             "gap-3 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-200 transition hover:-translate-y-0.5 hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary",
                         )}
+                        replace
                     >
                         بازگشت به خانه
                         <ArrowLeftIcon name="arrow" className="size-4" />
