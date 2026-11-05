@@ -10,7 +10,7 @@ import { cn } from "cn";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 // Importing Ui from local Ui Components
-import { SearchBar } from "@/components/global/navigation/search-bar";
+import { SearchBar } from "@/components/public/navigation/search-bar";
 // Importing From Global Ui Components
 import { buttonVariants } from "@/components/ui/button";
 

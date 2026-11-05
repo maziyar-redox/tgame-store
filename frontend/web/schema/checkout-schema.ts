@@ -10,7 +10,7 @@ import * as z from "zod";
 export const checkoutFormSchema = z
     .object({
         terms: z.boolean().refine((val) => val === true, {
-            message: "شما باید با شرایط و قوانین موافقت کنید",
+            error: "شما باید با شرایط و قوانین موافقت کنید",
         }),
         full_name: z
             .string()
@@ -23,7 +23,7 @@ export const checkoutFormSchema = z
                     /^(?:\+98|0)?9\d{9}$/.test(
                         digitsFaToEn(value).replace(/\D/g, ""),
                     ),
-                { message: "شماره وارد شده صحیح نمیباشد" },
+                { error: "شماره وارد شده صحیح نمیباشد" },
             ),
         city: z
             .string()
@@ -43,7 +43,7 @@ export const checkoutFormSchema = z
 
                     return true;
                 },
-                { message: "شهر وارد شده صحیح نمیباشد" },
+                { error: "شهر وارد شده صحیح نمیباشد" },
             ),
         province: z
             .string()
@@ -66,7 +66,7 @@ export const checkoutFormSchema = z
 
                     return true;
                 },
-                { message: "استان وارد شده صحیح نمیباشد" },
+                { error: "استان وارد شده صحیح نمیباشد" },
             ),
         address: z
             .string()
@@ -79,7 +79,7 @@ export const checkoutFormSchema = z
                     /^[1-9][0-9]{9}$/.test(
                         digitsFaToEn(value).replace(/\D/g, ""),
                     ),
-                { message: "کد پستی وارد شده صحیح نمیباشد" },
+                { error: "کد پستی وارد شده صحیح نمیباشد" },
             ),
         sending_method: z.enum(["EXPRESS", "POST"]),
         payment_method: z.enum(["ONLINE", "SNAPPAY", "DIGIPAY", "WALLET"]),
@@ -97,7 +97,7 @@ export const checkoutFormSchema = z
             ctx.addIssue({
                 code: "custom",
                 path: ["city"],
-                message: "این شهر در استان مورد نظر وجود ندارد",
+                error: "این شهر در استان مورد نظر وجود ندارد",
             });
         }
     });

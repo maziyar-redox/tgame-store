@@ -1,3 +1,5 @@
-export default function RootUserPanel() {
-    return <div>ok</div>;
+import { Dashboard } from "@/components/panel/user/dashboard";
+
+export default function UserPanelDahboard() {
+    return <Dashboard />;
 }

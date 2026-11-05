@@ -9,6 +9,8 @@ import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { cn } from "cn";
 import { Controller, useForm } from "react-hook-form";
 import type * as z from "zod";
+// Importing from local ui
+import { MdxDialog } from "@/components/panel/authentication/auth/register/mdx-dialog";
 // Importing global ui components
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -20,6 +22,9 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { TabsContent } from "@/components/ui/tabs";
+import Security from "@/constants/md/security.mdx";
+// Importing mdx file
+import Terms from "@/constants/md/terms.mdx";
 // Importing register schema util
 import { registerFormSchema } from "@/schema/register-schema";
 
@@ -27,7 +32,8 @@ export function RegisterSection() {
     const registerForm = useForm<z.infer<typeof registerFormSchema>>({
         resolver: zodResolver(registerFormSchema),
         defaultValues: {
-            full_name: "",
+            first_name: "",
+            last_name: "",
             phone_number: "",
             terms: false,
         },
@@ -46,23 +52,52 @@ export function RegisterSection() {
             >
                 <FieldGroup>
                     <Controller
-                        name="full_name"
+                        name="first_name"
                         control={registerForm.control}
                         render={({ field, fieldState }) => (
                             <Field data-invalid={fieldState.invalid}>
                                 <FieldLabel
                                     className="text-slate-600 block text-xs font-bold"
-                                    htmlFor="login_form_fullname"
+                                    htmlFor="login_form_first_name"
                                 >
-                                    نام و نام خانوادگی
+                                    نام
                                 </FieldLabel>
                                 <Input
                                     {...field}
-                                    id="login_form_fullname"
+                                    id="login_form_first_name"
                                     aria-invalid={fieldState.invalid}
-                                    placeholder="لظفا نام کامل خود را وارد کنید"
+                                    placeholder="لظفا نام خود را وارد کنید"
                                     autoComplete="name"
-                                    name="full_name"
+                                    name="first_name"
+                                    type="text"
+                                    required
+                                    dir="rtl"
+                                    className="border border-slate-200 px-4 py-5 text-right text-sm font-normal outline-none focus:border-primary"
+                                />
+                                {fieldState.invalid && (
+                                    <FieldError errors={[fieldState.error]} />
+                                )}
+                            </Field>
+                        )}
+                    />
+                    <Controller
+                        name="last_name"
+                        control={registerForm.control}
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
+                                <FieldLabel
+                                    className="text-slate-600 block text-xs font-bold"
+                                    htmlFor="login_form_last_name"
+                                >
+                                    نام خانوادگی
+                                </FieldLabel>
+                                <Input
+                                    {...field}
+                                    id="login_form_last_name"
+                                    aria-invalid={fieldState.invalid}
+                                    placeholder="لظفا نام خانوادگی خود را وارد کنید"
+                                    autoComplete="name"
+                                    name="last_name"
                                     type="text"
                                     required
                                     dir="rtl"
@@ -124,14 +159,20 @@ export function RegisterSection() {
                                 <FieldLabel
                                     htmlFor="terms_checkbox"
                                     className={cn(
-                                        "font-normal text-xs",
+                                        "font-normal text-xs min-w-0 flex flex-wrap items-center",
                                         fieldState.invalid
                                             ? ""
                                             : "text-slate-500",
                                     )}
                                 >
-                                    شرایط استفاده و حریم خصوصی فروشگاه تی گیم را
-                                    می‌پذیرم.
+                                    <MdxDialog text="شرایط استفاده">
+                                        <Terms />
+                                    </MdxDialog>
+                                    <span>و</span>
+                                    <MdxDialog text="حریم خصوصی">
+                                        <Security />
+                                    </MdxDialog>
+                                    <span>فروشگاه تی گیم را می پذیرم.</span>
                                 </FieldLabel>
                             </Field>
                         )}

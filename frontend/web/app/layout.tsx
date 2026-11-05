@@ -4,7 +4,7 @@ import { Vazirmatn } from "next/font/google";
 import { Banner } from "@/components/global/banner";
 // IMPORT: Importing navigation from components
 import { Footer } from "@/components/global/footer";
-import { Navigation } from "@/components/global/navigation";
+import { Navigation } from "@/components/public/navigation";
 // Importing Direction provider from global ui component
 import { DirectionProvider } from "@/components/ui/direction";
 import { Toaster } from "@/components/ui/toast";

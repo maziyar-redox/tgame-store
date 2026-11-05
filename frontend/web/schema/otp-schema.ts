@@ -9,6 +9,6 @@ export const otpFormSchema = z.object({
         .string()
         .refine(
             (value) => /^\d{6}$/.test(digitsFaToEn(value).replace(/\D/g, "")),
-            { message: "کد وارد شده صحیح نمیباشد" },
+            { error: "کد وارد شده صحیح نمیباشد" },
         ),
 });

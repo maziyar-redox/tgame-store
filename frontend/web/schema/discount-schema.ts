@@ -12,7 +12,7 @@ export const discountFormSchema = z.object({
                     digitsFaToEn(value).replace(/\D/g, ""),
                 ),
             {
-                message: "کد وارد شده صحیح نمیباشد",
+                error: "کد وارد شده صحیح نمیباشد",
             },
         )
         .optional(),

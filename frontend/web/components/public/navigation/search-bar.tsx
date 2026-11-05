@@ -14,7 +14,7 @@ import { useMediaQuery } from "usehooks-ts";
 // Importing form utilities
 import type * as z from "zod";
 // Importing component from local ui components
-import { SearchingState } from "@/components/global/navigation/searching-state";
+import { SearchingState } from "@/components/public/navigation/searching-state";
 // Importing From Global Ui Components
 import { buttonVariants } from "@/components/ui/button";
 // Importing From Global Ui Components

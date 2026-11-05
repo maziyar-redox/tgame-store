@@ -1,7 +1,8 @@
 // Importing metadata from nextjs
 import type { Metadata } from "next";
-// Added not found component
-import { NotFoundComponent } from "@/components/global/error/notfound/not-found";
+// Added not found components
+import { NotFoundComponent } from "@/components/global/error/notfound";
+import { NotFoundPageItems } from "@/components/global/error/notfound/items";
 
 // Managing metadata
 export const metadata: Metadata = {
@@ -14,6 +15,12 @@ export const metadata: Metadata = {
     },
 };
 
-export default function NotFound() {
-    return <NotFoundComponent />;
+export default async function NotFound() {
+    return (
+        <NotFoundComponent>
+            <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
+                <NotFoundPageItems />
+            </div>
+        </NotFoundComponent>
+    );
 }
