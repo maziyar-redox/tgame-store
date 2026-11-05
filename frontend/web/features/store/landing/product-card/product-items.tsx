@@ -16,7 +16,7 @@ import { Button } from "@/shared/components/ui/button";
 // Importing currency and discount calc
 import { currencyFormmater, discountCalculator } from "@/shared/lib/currency";
 // Import typing for main page product
-import type { MainProductProps } from "@/shared/types/main/product";
+import type { MainProductProps } from "@/shared/types/features/landing/product";
 
 export function ProductItems({
     id,

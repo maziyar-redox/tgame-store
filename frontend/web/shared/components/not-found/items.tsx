@@ -1,17 +1,15 @@
 "use client";
 
-// Importing digits to fa function
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-// Importing icons
 import { CaretLeftIcon } from "@phosphor-icons/react";
-// Importing nextjs utils
+
 import Link from "next/link";
-// Importing Constant page data from local
+
 import { notFoundErrorItems } from "@/shared/constants/errors";
 
-export function NotFoundPageItems() {
+export function NotFoundItems() {
     return (
-        <>
+        <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
             {notFoundErrorItems.map((items) => (
                 <Link
                     key={items.id}
@@ -35,6 +33,6 @@ export function NotFoundPageItems() {
                     />
                 </Link>
             ))}
-        </>
+        </div>
     );
 }

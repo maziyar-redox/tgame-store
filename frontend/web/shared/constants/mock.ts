@@ -1,4 +1,4 @@
-import type { MainProductProps } from "@/shared/types/main/product";
+import type { MainProductProps } from "@/shared/types/features/landing/product";
 
 export const mainProducts: MainProductProps[] = [
     {

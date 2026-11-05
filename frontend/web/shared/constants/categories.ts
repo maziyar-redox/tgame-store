@@ -6,7 +6,7 @@ import {
     WatchIcon,
 } from "@phosphor-icons/react";
 
-import type { MainCategoriesProps } from "@/shared/types/main/categories";
+import type { MainCategoriesProps } from "@/shared/types/features/landing/categories";
 
 const categories: MainCategoriesProps[] = [
     {

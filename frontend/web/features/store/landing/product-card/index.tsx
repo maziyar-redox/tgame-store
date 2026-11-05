@@ -8,7 +8,7 @@ import {
     CarouselItem,
 } from "@/shared/components/ui/carousel";
 // Import typing for main page product
-import type { MainProductProps } from "@/shared/types/main/product";
+import type { MainProductProps } from "@/shared/types/features/landing/product";
 
 export function ProductCarousel({
     products,

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-import { NotFoundComponent } from "@/shared/components/not-found";
-import { NotFoundPageItems } from "@/shared/components/not-found/items";
+import { NotFoundWrapper } from "@/shared/components/not-found";
+import { NotFoundItems } from "@/shared/components/not-found/items";
 
 // Managing metadata
 export const metadata: Metadata = {
@@ -16,10 +16,8 @@ export const metadata: Metadata = {
 
 export default async function NotFound() {
     return (
-        <NotFoundComponent>
-            <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
-                <NotFoundPageItems />
-            </div>
-        </NotFoundComponent>
+        <NotFoundWrapper>
+            <NotFoundItems />
+        </NotFoundWrapper>
     );
 }

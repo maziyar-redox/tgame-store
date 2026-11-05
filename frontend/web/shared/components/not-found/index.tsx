@@ -11,7 +11,7 @@ import Link from "next/link";
 // Importing button variants
 import { buttonVariants } from "@/shared/components/ui/button";
 
-export function NotFoundComponent({
+export function NotFoundWrapper({
     children,
 }: {
     readonly children: React.ReactNode;
