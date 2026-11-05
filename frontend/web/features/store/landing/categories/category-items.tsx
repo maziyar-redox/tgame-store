@@ -1,10 +1,9 @@
 "use client";
 
-// Importing tailwindmerge utils
 import { cn } from "cn";
-// Importing nextjs utils
+
 import Link from "next/link";
-// Importing category props
+
 import type { MainCategoriesProps } from "@/shared/types/features/landing/categories";
 
 export function CategoryItems({

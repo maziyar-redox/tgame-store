@@ -1,13 +1,11 @@
 "use client";
 
-// Importing tailwindMerge utils
 import { cn } from "cn";
+
 import Image from "next/image";
-// Importing next utils
 import Link from "next/link";
-// Importing global ui utils
+
 import { buttonVariants } from "@/shared/components/ui/button";
-// Importing Env
 import { env } from "@/shared/schema/env-schema";
 
 export function Offer() {

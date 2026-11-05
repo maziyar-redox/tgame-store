@@ -1,6 +1,3 @@
-"use client";
-
-// Importing local ui components
 import { LeftSection } from "@/features/store/landing/hero/left-section";
 import { RightSection } from "@/features/store/landing/hero/right-section";
 

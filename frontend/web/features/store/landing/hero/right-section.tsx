@@ -1,12 +1,10 @@
 "use client";
 
-// Importing Icons
 import { ShieldCheckIcon } from "@phosphor-icons/react";
-// Importing motion animation lib
 import { motion } from "motion/react";
-// Importing nextjs utils
+
 import Image from "next/image";
-// Importing Env
+
 import { env } from "@/shared/schema/env-schema";
 
 export function RightSection() {

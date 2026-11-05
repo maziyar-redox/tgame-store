@@ -1,23 +1,22 @@
 "use client";
 
-// Importing icons
 import { CaretLeftIcon } from "@phosphor-icons/react";
-// Importing nextjs utils
+
 import Link from "next/link";
 
-export function Favorite({ children }: { children: React.ReactNode }) {
+export function Gamers({ children }: { children: React.ReactNode }) {
     return (
         <section
-            id="favorite"
+            id="gamer"
             className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12"
         >
             <div className="mb-6 flex items-end justify-between">
                 <div>
                     <p className="mb-1 text-xs font-bold text-primary">
-                        پر طرفدار ترین
+                        مخصوص گیمرها
                     </p>
                     <h2 className="text-xl font-black sm:text-2xl">
-                        پر بازدید ترین محصولات
+                        تجهیزات گیمینگ
                     </h2>
                 </div>
                 <Link

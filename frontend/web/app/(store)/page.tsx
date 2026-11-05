@@ -5,8 +5,8 @@ export const revalidate = 3600;
 
 import { AnimationWrapper } from "@/features/store/landing/animation";
 import { Categories } from "@/features/store/landing/categories";
-import { Favorite } from "@/features/store/landing/favorite";
-import { Gamer } from "@/features/store/landing/gamer";
+import { Favorites } from "@/features/store/landing/favorites";
+import { Gamers } from "@/features/store/landing/gamers";
 import { HeroSection } from "@/features/store/landing/hero";
 import { Offer } from "@/features/store/landing/offer";
 import { ProductCarousel } from "@/features/store/landing/product-card";
@@ -28,14 +28,14 @@ export default async function LandingPage() {
                 </Products>
             </AnimationWrapper>
             <AnimationWrapper>
-                <Favorite>
+                <Favorites>
                     <ProductCarousel products={mainProducts} />
-                </Favorite>
+                </Favorites>
             </AnimationWrapper>
             <AnimationWrapper>
-                <Gamer>
+                <Gamers>
                     <ProductCarousel products={mainProducts} />
-                </Gamer>
+                </Gamers>
             </AnimationWrapper>
             <AnimationWrapper>
                 <Offer />

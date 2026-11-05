@@ -1,11 +1,8 @@
-"use client";
-
-// Importing icons
 import {
     HeadphonesIcon,
     ShieldCheckIcon,
     TruckIcon,
-} from "@phosphor-icons/react";
+} from "@phosphor-icons/react/ssr";
 
 export function Terms() {
     return (
@@ -13,7 +10,12 @@ export function Terms() {
             <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-slate-100 px-4 py-5 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-center gap-3 py-4">
                     <span className="text-primary">
-                        <TruckIcon name="truck" className="size-7" />
+                        <TruckIcon
+                            name="truck"
+                            weight="regular"
+                            color="currentColor"
+                            className="size-7"
+                        />
                     </span>
                     <span>
                         <b className="block text-sm">ارسال سریع</b>
@@ -24,7 +26,12 @@ export function Terms() {
                 </div>
                 <div className="flex items-center justify-center gap-3 py-4">
                     <span className="text-primary">
-                        <ShieldCheckIcon name="shield" className="size-7" />
+                        <ShieldCheckIcon
+                            name="shield"
+                            weight="regular"
+                            color="currentColor"
+                            className="size-7"
+                        />
                     </span>
                     <span>
                         <b className="block text-sm">ضمانت اصالت</b>
@@ -35,7 +42,12 @@ export function Terms() {
                 </div>
                 <div className="flex items-center justify-center gap-3 py-4">
                     <span className="text-primary">
-                        <HeadphonesIcon name="headphone" className="size-7" />
+                        <HeadphonesIcon
+                            name="headphone"
+                            weight="regular"
+                            color="currentColor"
+                            className="size-7"
+                        />
                     </span>
                     <span>
                         <b className="block text-sm">پشتیبانی تخصصی</b>

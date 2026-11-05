@@ -1,12 +1,11 @@
 "use client";
 
-// Importing icons
 import { CaretLeftIcon } from "@phosphor-icons/react";
-// Importing nextjs utils
+
 import Link from "next/link";
-// Importing local ui
+
 import { CategoryItems } from "@/features/store/landing/categories/category-items";
-// Importing category items
+
 import { categories } from "@/shared/constants/categories";
 
 export function Categories() {

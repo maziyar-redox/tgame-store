@@ -1,13 +1,12 @@
 "use client";
 
-// Importing local ui components
 import { ProductItems } from "@/features/store/landing/product-card/product-items";
+
 import {
     Carousel,
     CarouselContent,
     CarouselItem,
 } from "@/shared/components/ui/carousel";
-// Import typing for main page product
 import type { MainProductProps } from "@/shared/types/features/landing/product";
 
 export function ProductCarousel({

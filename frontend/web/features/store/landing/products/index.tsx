@@ -1,8 +1,7 @@
 "use client";
 
-// Importing icons
 import { CaretLeftIcon } from "@phosphor-icons/react";
-// Importing nextjs utils
+
 import Link from "next/link";
 
 export function Products({ children }: { children: React.ReactNode }) {

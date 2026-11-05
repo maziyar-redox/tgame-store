@@ -1,12 +1,10 @@
 "use client";
 
-// Importing Icons
 import { ArrowRightIcon } from "@phosphor-icons/react";
-// Importing tailwindMerge utils
 import { cn } from "cn";
-// Importing nextjs utils
+
 import Link from "next/link";
-// Importing button variants from global ui
+
 import { buttonVariants } from "@/shared/components/ui/button";
 
 export function LeftSection() {
