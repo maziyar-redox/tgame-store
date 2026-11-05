@@ -1,5 +1,5 @@
 // Importing card component for managing items in the card or checkout
-import { CardPageComponent } from "@/components/public/card/items";
+import { CardPageComponent } from "@/features/store/card/items";
 
 export default function CardPage() {
     return <CardPageComponent />;

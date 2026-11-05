@@ -1,4 +1,4 @@
-import { Account } from "@/components/panel/user/account";
+import { Account } from "@/features/panel/account";
 
 export default function UserPanelAccount() {
     return <Account />;

@@ -1,8 +1,8 @@
 // Importing metadata from nextjs
 import type { Metadata } from "next";
 // Added not found components
-import { NotFoundComponent } from "@/components/global/error/notfound";
-import { NotFoundPageItems } from "@/components/global/error/notfound/items";
+import { NotFoundComponent } from "@/shared/components/not-found";
+import { NotFoundPageItems } from "@/shared/components/not-found/items";
 
 // Managing metadata
 export const metadata: Metadata = {

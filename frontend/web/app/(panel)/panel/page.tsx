@@ -1,4 +1,4 @@
-import { Dashboard } from "@/components/panel/user/dashboard";
+import { Dashboard } from "@/features/panel/dashboard";
 
 export default function UserPanelDahboard() {
     return <Dashboard />;

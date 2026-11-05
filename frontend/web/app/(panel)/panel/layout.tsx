@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 
 // Importing sidebar component which will shared accross user panel
-import { Sidebar } from "@/components/panel/user/sidebar";
+import { Sidebar } from "@/features/panel/sidebar";
 
 // Managing page metadata
 export const metadata: Metadata = {

@@ -1,21 +1,21 @@
 // IMPORT: Vazirmatn font which applies on entire web application
 import { Vazirmatn } from "next/font/google";
+import { Navigation } from "@/features/store/navigation";
 // IMPORT: Importing banner from components
-import { Banner } from "@/components/global/banner";
+import { Banner } from "@/shared/components/banner";
 // IMPORT: Importing navigation from components
-import { Footer } from "@/components/global/footer";
-import { Navigation } from "@/components/public/navigation";
+import { Footer } from "@/shared/components/footer";
 // Importing Direction provider from global ui component
-import { DirectionProvider } from "@/components/ui/direction";
-import { Toaster } from "@/components/ui/toast";
+import { DirectionProvider } from "@/shared/components/ui/direction";
+import { Toaster } from "@/shared/components/ui/toast";
 
 // IMPORT: Global style which applies on entire application
 import "@/app/globals.css";
 
 // Tailwind css merge
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 // Importing Provider
-import { NavigationStoreProvider } from "@/provider/navigation-store-provider";
+import { NavigationStoreProvider } from "@/shared/provider/navigation-provider";
 
 const vazirmatn = Vazirmatn({
     subsets: ["arabic"],

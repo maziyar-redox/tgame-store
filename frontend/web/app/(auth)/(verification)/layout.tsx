@@ -1,5 +1,5 @@
 // Importing authentication wrapper which is client component
-import { AuthenticationLayoutOtpComponent } from "@/components/panel/authentication/otp";
+import { AuthenticationLayoutOtpComponent } from "@/features/auth/otp";
 
 export default function AuthenticationOtpLayout({
     children,

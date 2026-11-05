@@ -4,17 +4,17 @@
 export const revalidate = 3600;
 
 // Importing Main page items
-import { AnimationWrapper } from "@/components/public/main/animation";
-import { Categories } from "@/components/public/main/categories";
-import { Favorite } from "@/components/public/main/favorite";
-import { Gamer } from "@/components/public/main/gamer";
-import { HeroSection } from "@/components/public/main/hero";
-import { Offer } from "@/components/public/main/offer";
-import { ProductCarousel } from "@/components/public/main/product-card";
-import { Products } from "@/components/public/main/products";
-import { Terms } from "@/components/public/main/terms";
+import { AnimationWrapper } from "@/features/store/landing/animation";
+import { Categories } from "@/features/store/landing/categories";
+import { Favorite } from "@/features/store/landing/favorite";
+import { Gamer } from "@/features/store/landing/gamer";
+import { HeroSection } from "@/features/store/landing/hero";
+import { Offer } from "@/features/store/landing/offer";
+import { ProductCarousel } from "@/features/store/landing/product-card";
+import { Products } from "@/features/store/landing/products";
+import { Terms } from "@/features/store/landing/terms";
 // Importing main product mock
-import { mainProducts } from "@/constants/mock";
+import { mainProducts } from "@/shared/constants/mock";
 
 export default async function Root() {
     return (

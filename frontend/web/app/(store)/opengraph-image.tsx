@@ -4,7 +4,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { ImageResponse } from "next/og";
 // Importing persian reshape tool
-import { reshapePersian } from "@/lib/persian-reshape";
+import { reshapePersian } from "@/shared/lib/persian-reshape";
 
 // Image metadata type
 type sizeProps = {
