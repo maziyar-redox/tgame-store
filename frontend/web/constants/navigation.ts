@@ -1,4 +1,3 @@
-// Importing local typing
 import type { NavigationLinksProps } from "@/types/constants/navigation";
 
 // Navigation types, Containing info about nav

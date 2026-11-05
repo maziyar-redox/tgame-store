@@ -1,4 +1,3 @@
-// Importing Icon Type
 import type { Icon } from "@phosphor-icons/react";
 
 // Sidebar prop type

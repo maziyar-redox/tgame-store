@@ -1,11 +1,10 @@
-// Importing icons
 import {
     DesktopIcon,
     DeviceMobileSpeakerIcon,
     GameControllerIcon,
     HeadphonesIcon,
 } from "@phosphor-icons/react";
-// Import error typing
+
 import type { NotFoundErrorProps } from "@/types/constants/errors";
 
 // Creating Notfound constant data

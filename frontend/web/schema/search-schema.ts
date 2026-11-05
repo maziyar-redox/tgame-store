@@ -1,4 +1,3 @@
-// Importing Zod
 import * as z from "zod";
 
 // Search Schema on the navigation for searching among products

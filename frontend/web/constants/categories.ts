@@ -1,6 +1,3 @@
-// Importing typing for categories
-
-// IMporting icons
 import {
     DeviceMobileSpeakerIcon,
     GameControllerIcon,
@@ -8,6 +5,7 @@ import {
     LaptopIcon,
     WatchIcon,
 } from "@phosphor-icons/react";
+
 import type { MainCategoriesProps } from "@/types/main/categories";
 
 const categories: MainCategoriesProps[] = [

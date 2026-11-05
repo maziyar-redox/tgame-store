@@ -1,4 +1,3 @@
-// Importing Icon Type
 import type { Icon } from "@phosphor-icons/react";
 
 // Error props typing for 404 not found page items
@@ -10,5 +9,4 @@ type NotFoundErrorProps = {
     Icon: Icon;
 };
 
-// Exporting
 export type { NotFoundErrorProps };

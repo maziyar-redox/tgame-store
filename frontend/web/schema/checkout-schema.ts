@@ -1,12 +1,9 @@
-// Importing digits to fa function
-
-// Importing cities util
 import { searchCities, searchProvinces } from "@code-plate/iran-cities";
 import { digitsFaToEn } from "@persian-tools/persian-tools";
-// Importing Zod
+
 import * as z from "zod";
 
-// Checkout schema
+// Checkout schema for shopping card
 export const checkoutFormSchema = z
     .object({
         terms: z.boolean().refine((val) => val === true, {

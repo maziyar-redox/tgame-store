@@ -1,9 +1,8 @@
-// Importing digits to fa function
 import { digitsFaToEn } from "@persian-tools/persian-tools";
-// Importing Zod
+
 import * as z from "zod";
 
-// User otp schema
+// User otp schema for otp code verification
 export const otpFormSchema = z.object({
     code: z
         .string()

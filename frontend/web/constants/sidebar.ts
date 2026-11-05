@@ -1,6 +1,3 @@
-// Importing local typing
-
-// Importing icons
 import {
     ChatTextIcon,
     CubeIcon,
@@ -10,6 +7,7 @@ import {
     ShieldCheckIcon,
     UserIcon,
 } from "@phosphor-icons/react";
+
 import type { SidebarLinksProps } from "@/types/constants/sidebar";
 
 // Sidebar types, Containing info about nav

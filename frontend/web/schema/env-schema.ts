@@ -1,8 +1,8 @@
-// Importing createEnvObject
 import { createEnv } from "@t3-oss/env-nextjs";
-// Importing z object
+
 import { z } from "zod";
 
+// Env schema for managing specific env variables
 export const env = createEnv({
     // Server-side variables (never exposed to the browser)
     server: {

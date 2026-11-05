@@ -1,6 +1,6 @@
-// Importing Zod
 import * as z from "zod";
 
+// Category schema for filtering items in category page
 export const categoryFormSchema = z.object({
     term: z
         .string()

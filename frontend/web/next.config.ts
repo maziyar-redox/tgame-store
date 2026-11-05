@@ -1,10 +1,6 @@
-// Importing next config
-
-// Importing mdx utils
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
-// Importing env
 import { env } from "@/schema/env-schema";
 
 const nextConfig: NextConfig = {
@@ -16,7 +12,9 @@ const nextConfig: NextConfig = {
     },
     experimental: {
         imgOptTimeoutInSeconds: 30,
-        optimizePackageImports: ["@phosphor-icons/react"],
+        optimizePackageImports: [
+            "@phosphor-icons/react"
+        ],
     },
     allowedDevOrigins: ["192.168.100.*"],
 };

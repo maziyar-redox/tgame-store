@@ -1,8 +1,8 @@
-// Importing converting tools
 import { digitsFaToEn } from "@persian-tools/persian-tools";
-// Importing Zod
+
 import * as z from "zod";
 
+// Discount schema for applying discount code
 export const discountFormSchema = z.object({
     code: z
         .string()

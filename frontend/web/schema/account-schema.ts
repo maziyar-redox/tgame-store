@@ -1,11 +1,10 @@
-// Importing digits to fa function
 import {
     digitsFaToEn,
     isPhoneNumberValid,
     verifyCardNumber,
     verifyIranianNationalId,
 } from "@persian-tools/persian-tools";
-// Importing Zod
+
 import * as z from "zod";
 
 // Account schema for user registration
