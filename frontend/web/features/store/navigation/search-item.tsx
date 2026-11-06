@@ -1,10 +1,10 @@
 "use client";
 
 import { cn } from "cn";
-
 import Image from "next/image";
 import Link from "next/link";
-
+import { useState } from "react";
+import { Skeleton } from "@/shared/components/ui/skeleton";
 import { currencyFormmater, discountCalculator } from "@/shared/lib/currency";
 
 type SearchItemProps = {
@@ -24,6 +24,8 @@ export function SearchItem({
     price,
     discount,
 }: SearchItemProps) {
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
     return (
         <Link
             href={link}
@@ -62,10 +64,20 @@ export function SearchItem({
                 src={img}
                 width={100}
                 height={100}
-                className="rounded-md aspect-square object-center object-cover"
+                className={cn(
+                    "rounded-md aspect-square object-center object-cover",
+                    isLoaded ? "block" : "hidden",
+                )}
                 alt={title}
                 loading="eager"
                 quality={50}
+                onLoad={() => setIsLoaded(true)}
+            />
+            <Skeleton
+                className={cn(
+                    "rounded-md aspect-square object-center object-cover size-25",
+                    isLoaded ? "hidden" : "block",
+                )}
             />
         </Link>
     );

@@ -8,7 +8,7 @@ export function Gamers({ children }: { children: React.ReactNode }) {
     return (
         <section
             id="gamer"
-            className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12"
+            className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8 lg:py-6"
         >
             <div className="mb-6 flex items-end justify-between">
                 <div>

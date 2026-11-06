@@ -10,6 +10,8 @@ import { Gamers } from "@/features/store/landing/gamers";
 import { HeroSection } from "@/features/store/landing/hero";
 import { Offer } from "@/features/store/landing/offer";
 import { ProductCarousel } from "@/features/store/landing/product-card";
+import { ProductItem } from "@/features/store/landing/product-card/product-item";
+import { SkeletonItem } from "@/features/store/landing/product-card/skeleton-item";
 import { Products } from "@/features/store/landing/products";
 import { Terms } from "@/features/store/landing/terms";
 
@@ -24,17 +26,23 @@ export default async function LandingPage() {
             </AnimationWrapper>
             <AnimationWrapper>
                 <Products>
-                    <ProductCarousel products={mainProducts} />
+                    <ProductCarousel>
+                        <SkeletonItem />
+                    </ProductCarousel>
                 </Products>
             </AnimationWrapper>
             <AnimationWrapper>
                 <Favorites>
-                    <ProductCarousel products={mainProducts} />
+                    <ProductCarousel>
+                        <ProductItem products={mainProducts} />
+                    </ProductCarousel>
                 </Favorites>
             </AnimationWrapper>
             <AnimationWrapper>
                 <Gamers>
-                    <ProductCarousel products={mainProducts} />
+                    <ProductCarousel>
+                        <ProductItem products={mainProducts} />
+                    </ProductCarousel>
                 </Gamers>
             </AnimationWrapper>
             <AnimationWrapper>

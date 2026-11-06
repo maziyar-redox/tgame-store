@@ -1,19 +1,8 @@
 "use client";
 
-import { ProductItems } from "@/features/store/landing/product-card/product-items";
+import { Carousel, CarouselContent } from "@/shared/components/ui/carousel";
 
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-} from "@/shared/components/ui/carousel";
-import type { MainProductProps } from "@/shared/types/features/landing/product";
-
-export function ProductCarousel({
-    products,
-}: {
-    products: MainProductProps[];
-}) {
+export function ProductCarousel({ children }: { children: React.ReactNode }) {
     return (
         <Carousel
             dir="rtl"
@@ -23,25 +12,7 @@ export function ProductCarousel({
                 align: "start",
             }}
         >
-            <CarouselContent>
-                {products.map((category) => (
-                    <CarouselItem
-                        key={category.id}
-                        className="basis-1/2 sm:basis-1/3 lg:basis-1/4 xl:basis-1/5"
-                    >
-                        <ProductItems
-                            id={category.id}
-                            title={category.title}
-                            model={category.model}
-                            image={category.image}
-                            price={category.price}
-                            discount={category.discount}
-                            isAvailable={category.isAvailable}
-                            isFavorite={category.isFavorite}
-                        />
-                    </CarouselItem>
-                ))}
-            </CarouselContent>
+            <CarouselContent className="pt-3 pb-14">{children}</CarouselContent>
         </Carousel>
     );
 }

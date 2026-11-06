@@ -12,7 +12,7 @@ import { Skeleton } from "@/shared/components/ui/skeleton";
 import { currencyFormmater, discountCalculator } from "@/shared/lib/currency";
 import type { MainProductProps } from "@/shared/types/features/landing/product";
 
-export function ProductItems({
+export function ProductCard({
     id,
     title,
     model,
