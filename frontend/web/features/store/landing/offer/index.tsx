@@ -1,14 +1,16 @@
 "use client";
 
 import { cn } from "cn";
-
 import Image from "next/image";
 import Link from "next/link";
-
+import { useState } from "react";
 import { buttonVariants } from "@/shared/components/ui/button";
+import { Skeleton } from "@/shared/components/ui/skeleton";
 import { env } from "@/shared/schema/env-schema";
 
 export function Offer() {
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
     return (
         <section
             id="offers"
@@ -43,7 +45,19 @@ export function Offer() {
                         height={500}
                         src={`${env.NEXT_PUBLIC_S3_BUCKET_URL}/${env.NEXT_PUBLIC_MAIN_PAGE_TERMS}.jpg`}
                         alt="دسته بازی در نور آبی"
-                        className="absolute inset-0 h-full w-full object-cover"
+                        className={cn(
+                            "absolute inset-0 h-full w-full object-cover",
+                            isLoaded ? "block" : "hidden",
+                        )}
+                        loading="eager"
+                        onLoad={() => setIsLoaded(true)}
+                        quality={75}
+                    />
+                    <Skeleton
+                        className={cn(
+                            "absolute inset-0 h-full w-full object-cover",
+                            isLoaded ? "hidden" : "block",
+                        )}
                     />
                     <div className="hidden sm:block absolute inset-0 bg-linear-to-l from-transparent to-brand-navy sm:bg-linear-to-r" />
                     <div className="block sm:hidden absolute inset-0 bg-linear-to-t from-transparent to-brand-navy sm:bg-linear-to-r" />

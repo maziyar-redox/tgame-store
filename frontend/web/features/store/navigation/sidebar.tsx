@@ -3,56 +3,19 @@
 import { cn } from "cn";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { type RefObject, useEffect, useRef, useState } from "react";
 
 import { Logo } from "@/features/store/navigation/logo";
 import { Sheet, SheetContent } from "@/shared/components/ui/sheet";
 import { navigationLinks } from "@/shared/constants/navigation";
 import { useNavigationStore } from "@/shared/provider/navigation-provider";
 
-// Button Ref typing
-type btnRef = RefObject<HTMLDivElement | null>;
-
 export function Sidebar() {
     const { isOpen, setIsOpen } = useNavigationStore((state) => state);
-    const navRef = useRef<HTMLElement>(null);
     const pathname = usePathname();
-    const [path, setPath] = useState<string>(pathname ?? "");
-
-    useEffect(() => {
-        if (pathname !== path && isOpen) {
-            setIsOpen(false);
-            setPath(pathname);
-            return;
-        }
-
-        if (!isOpen) return;
-
-        const handleClickOutside = (event: MouseEvent): void => {
-            // If click is outside the nav, close it
-            if (
-                navRef.current &&
-                !navRef.current.contains(event.target as Node)
-            ) {
-                setIsOpen(false);
-            }
-        };
-
-        // Add listener on next tick to avoid catching the opening click
-        const timeoutId = setTimeout(() => {
-            document.addEventListener("mousedown", handleClickOutside);
-        }, 0);
-
-        return () => {
-            clearTimeout(timeoutId);
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [isOpen, setIsOpen, pathname, path]);
 
     return (
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <Sheet open={isOpen} onOpenChange={(open: boolean) => setIsOpen(open)}>
             <SheetContent
-                ref={navRef as btnRef}
                 dir="rtl"
                 showCloseButton={false}
                 side="right"
@@ -72,6 +35,7 @@ export function Sidebar() {
                                 ? "bg-accent text-primary"
                                 : "hover:bg-accent text-slate-500 hover:text-primary",
                         )}
+                        onClick={() => setIsOpen(!isOpen)}
                     >
                         {item.text}
                     </Link>

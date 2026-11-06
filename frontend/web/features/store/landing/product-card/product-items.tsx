@@ -1,21 +1,15 @@
 "use client";
 
-// Importing persian tools
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-// Importing Icon
 import { BasketIcon, HeartIcon } from "@phosphor-icons/react";
-// Importing merging util
 import { cn } from "cn";
-// Importing nextjs utils
 import Image from "next/image";
 import Link from "next/link";
-// Importing react hook
 import { useState } from "react";
-// Importing button component
+
 import { Button } from "@/shared/components/ui/button";
-// Importing currency and discount calc
+import { Skeleton } from "@/shared/components/ui/skeleton";
 import { currencyFormmater, discountCalculator } from "@/shared/lib/currency";
-// Import typing for main page product
 import type { MainProductProps } from "@/shared/types/features/landing/product";
 
 export function ProductItems({
@@ -29,6 +23,7 @@ export function ProductItems({
     isFavorite,
 }: MainProductProps) {
     const [isLiked, setIsLiked] = useState(isFavorite);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
     return (
         <article className="group overflow-hidden rounded-2xl border border-slate-100 bg-white p-2 shadow-[0_8px_30px_rgba(15,46,100,.04)] transition hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(15,46,100,.1)] sm:rounded-3xl sm:p-3 select-none h-full">
@@ -46,9 +41,17 @@ export function ProductItems({
                         className={cn(
                             "h-full w-full object-cover transition duration-500 group-hover:scale-105",
                             isAvailable ? "" : "grayscale-100",
+                            isLoaded ? "block" : "hidden",
                         )}
                         loading="eager"
+                        onLoad={() => setIsLoaded(true)}
                         quality={75}
+                    />
+                    <Skeleton
+                        className={cn(
+                            "h-full w-full object-cover",
+                            isLoaded ? "hidden" : "block",
+                        )}
                     />
                 </Link>
                 <span
