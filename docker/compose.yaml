@@ -1,0 +1,43 @@
+name: tgame
+
+services:
+  web:
+    image: tgame-web:local
+    build:
+        context: ..
+        dockerfile: docker/web.Dockerfile
+        args:
+            BASE_API_URL: ${BASE_API_URL:?Set BASE_API_URL in frontend/web/.env.production}
+            MAIN_PAGE_BANNER: ${MAIN_PAGE_BANNER:?Set MAIN_PAGE_BANNER in frontend/web/.env.production}
+            MAIN_PAGE_TERMS: ${MAIN_PAGE_TERMS:?Set MAIN_PAGE_TERMS in frontend/web/.env.production}
+            S3_BUCKET_URL: ${S3_BUCKET_URL:?Set S3_BUCKET_URL in frontend/web/.env.production}
+            NEXT_PUBLIC_MAIN_PAGE_BANNER: ${NEXT_PUBLIC_MAIN_PAGE_BANNER:?Set NEXT_PUBLIC_MAIN_PAGE_BANNER in frontend/web/.env.production}
+            NEXT_PUBLIC_MAIN_PAGE_TERMS: ${NEXT_PUBLIC_MAIN_PAGE_TERMS:?Set NEXT_PUBLIC_MAIN_PAGE_TERMS in frontend/web/.env.production}
+            NEXT_PUBLIC_S3_BUCKET_URL: ${NEXT_PUBLIC_S3_BUCKET_URL:?Set NEXT_PUBLIC_S3_BUCKET_URL in frontend/web/.env.production}
+
+    # Runtime server-side environment. This file is not copied into the image.
+    env_file:
+        - ../frontend/web/.env.production
+
+    environment:
+        NODE_ENV: production
+        PORT: "3000"
+        HOSTNAME: 0.0.0.0
+
+    ports:
+        - "${WEB_PORT:-3000}:3000"
+
+    restart: unless-stopped
+    init: true
+
+# Future services will be added here, each with its own Dockerfile:
+#
+#  admin:
+#    build:
+#      context: ..
+#      dockerfile: docker/admin.Dockerfile
+#
+#  api:
+#    build:
+#      context: ..
+#      dockerfile: docker/api.Dockerfile

@@ -1,0 +1,39 @@
+# Git
+.git
+.git/**
+
+# Dependencies and framework output
+**/node_modules
+**/.next
+**/.turbo
+**/out
+**/build
+**/coverage
+
+# Local environment files: never send these to the Docker build context
+.env
+.env.*
+**/.env
+**/.env.*
+**/.env*
+
+# Local/editor/OS files
+**/.DS_Store
+**/*.log
+**/*.tsbuildinfo
+**/.vercel
+**/.idea
+**/.vscode
+
+# Python artifacts (not needed by the web image)
+**/__pycache__
+**/*.py[cod]
+.venv
+**/.venv
+.pytest_cache
+.mypy_cache
+.ruff_cache
+
+# Documentation and repository metadata not needed by the web image
+CHANGELOG.md
+docs
