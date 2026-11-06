@@ -1,7 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { ImageResponse } from "next/og";
-
 import { reshapePersian } from "@/shared/lib/persian-reshape";
 
 // Image metadata type
@@ -22,8 +21,7 @@ export const contentType = "image/png";
 // Main text
 const titleText = reshapePersian("تی گیم شاپ.");
 const subtitleText = reshapePersian("صفحه اصلی");
-const headingText = reshapePersian("تجربه‌ی بازی،");
-const subHeadingText = reshapePersian("سریع تر از همیشه");
+const routeText = reshapePersian("خانه");
 
 // Image generation
 export default async function Image() {
@@ -168,33 +166,34 @@ export default async function Image() {
                 <div
                     style={{
                         position: "relative",
-                        zIndex: 2,
                         flex: 1,
                         display: "flex",
                         flexDirection: "row-reverse",
                         alignItems: "center",
-                        padding: "0 78px",
+                        justifyContent: "center",
+                        padding: "0 0",
                     }}
                 >
-                    <h1
+                    {/* Brand */}
+                    <div
                         style={{
-                            margin: "-25px 0 0",
-                            color: "white",
-                            fontSize: "76px",
-                            fontWeight: 900,
-                            lineHeight: 1.35,
-                            letterSpacing: "-4px",
                             display: "flex",
+                            alignItems: "center",
+                            gap: "15px",
                             flexDirection: "column",
-                            justifyContent: "center",
-                            alignItems: "flex-end",
                         }}
                     >
-                        <span>{headingText}</span>
-                        <span style={{ color: "rgba(255, 255, 255, 0.63)" }}>
-                            {subHeadingText}
+                        <span
+                            style={{
+                                fontSize: "64px",
+                                fontWeight: 900,
+                                letterSpacing: "-1.3px",
+                                color: "white",
+                            }}
+                        >
+                            {routeText}
                         </span>
-                    </h1>
+                    </div>
                 </div>
             </div>
         </div>,
