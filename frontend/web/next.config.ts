@@ -4,6 +4,7 @@ import type { NextConfig } from "next";
 import { env } from "@/shared/schema/env-schema";
 
 const nextConfig: NextConfig = {
+    output: "standalone",
     reactCompiler: true,
     images: {
         remotePatterns: [new URL(`${env.S3_BUCKET_URL}/*`)],
@@ -14,9 +15,11 @@ const nextConfig: NextConfig = {
         imgOptTimeoutInSeconds: 30,
         optimizePackageImports: ["@phosphor-icons/react"],
     },
-    allowedDevOrigins: ["192.168.100.*"],
+    allowedDevOrigins: ["192.168.100.*"]
 };
 
-const withMDX = createMDX({});
+const withMDX = createMDX({
+    extension: /\.(md|mdx)$/,
+});
 
 export default withMDX(nextConfig);
