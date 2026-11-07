@@ -76,7 +76,6 @@ export default async function Image() {
                 <div
                     style={{
                         position: "relative",
-                        zIndex: 2,
                         height: "116px",
                         margin: "0 62px",
                         display: "flex",

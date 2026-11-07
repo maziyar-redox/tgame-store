@@ -4,6 +4,7 @@ import { cn } from "cn";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 import {
     NavigationMenu,
@@ -12,12 +13,47 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
 } from "@/shared/components/ui/navigation-menu";
+import { Skeleton } from "@/shared/components/ui/skeleton";
 import { categoryLinks } from "@/shared/constants/navigation";
+
+function ImageComponent({
+    ImageSrc,
+    ImageAlt,
+}: {
+    ImageSrc: string;
+    ImageAlt: string;
+}) {
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
+    return (
+        <div className="relative mb-3 aspect-4/3 overflow-hidden rounded-xl">
+            <Image
+                quality={75}
+                src={ImageSrc}
+                alt={ImageAlt}
+                fill
+                sizes="220px"
+                className={cn(
+                    "object-cover transition-transform duration-500 group-hover:scale-105",
+                    isLoaded ? "block" : "hidden",
+                )}
+                loading="eager"
+                onLoad={() => setIsLoaded(true)}
+            />
+            <Skeleton
+                className={cn(
+                    "object-cover size-55",
+                    isLoaded ? "hidden" : "block",
+                )}
+            />
+        </div>
+    );
+}
 
 export function CategoryButton() {
     const pathname = usePathname();
     return (
-        <NavigationMenu dir="rtl" className="mr-5">
+        <NavigationMenu dir="rtl" className="mr-5 hidden lg:block">
             <NavigationMenuList>
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>
@@ -45,15 +81,10 @@ export function CategoryButton() {
                                             className="group block"
                                         >
                                             {/* Category image */}
-                                            <div className="relative mb-3 aspect-4/3 overflow-hidden rounded-xl">
-                                                <Image
-                                                    src={category.image}
-                                                    alt={category.title}
-                                                    fill
-                                                    sizes="220px"
-                                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                                />
-                                            </div>
+                                            <ImageComponent
+                                                ImageSrc={category.image}
+                                                ImageAlt={category.title}
+                                            />
                                             <div className="flex items-center gap-2">
                                                 <CategoryIcon
                                                     size={22}
