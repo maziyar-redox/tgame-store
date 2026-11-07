@@ -9,7 +9,7 @@ import { navigationLinks } from "@/shared/constants/navigation";
 export function MenuItems() {
     const pathname = usePathname();
     return (
-        <nav className="mr-5 hidden items-center gap-7 text-sm font-semibold text-[#45556c] lg:flex">
+        <nav className="hidden items-center gap-7 text-sm font-semibold text-[#45556c] lg:flex">
             {navigationLinks.map((item) => (
                 <Link
                     key={item.id}
