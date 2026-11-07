@@ -7,13 +7,18 @@ import {
     GameControllerIcon,
     GraduationCapIcon,
     HeadphonesIcon,
+    HouseIcon,
     JoystickIcon,
     LaptopIcon,
     MonitorIcon,
+    PhoneIncomingIcon,
     ShieldCheckIcon,
     SwatchesIcon,
+    TicketIcon,
+    UsersThreeIcon,
     WatchIcon,
 } from "@phosphor-icons/react";
+import type { SidebarLinksProps } from "@/shared/types/constants/sidebar";
 import type {
     StoreCategoriesProps,
     StoreNavigationLinksProps,
@@ -40,6 +45,33 @@ const navigationLinks: StoreNavigationLinksProps[] = [
         id: 4,
         text: "پشتیبانی",
         link: "/support",
+    },
+];
+
+const sidebarLinks: SidebarLinksProps[] = [
+    {
+        id: 1,
+        text: "خانه",
+        link: "/",
+        Icon: HouseIcon,
+    },
+    {
+        id: 2,
+        text: "درباره ما",
+        link: "/about",
+        Icon: UsersThreeIcon,
+    },
+    {
+        id: 3,
+        text: "تماس با ما",
+        link: "/contact",
+        Icon: PhoneIncomingIcon,
+    },
+    {
+        id: 4,
+        text: "پشتیبانی",
+        link: "/support",
+        Icon: TicketIcon,
     },
 ];
 
@@ -158,4 +190,4 @@ const categoryLinks: StoreCategoriesProps[] = [
     },
 ];
 
-export { categoryLinks, navigationLinks };
+export { categoryLinks, navigationLinks, sidebarLinks };
