@@ -1,16 +1,14 @@
 "use client";
 
-// Importing zod form resolver
 import { zodResolver } from "@hookform/resolvers/zod";
-// Importing hooks form react hook form
 import { FormProvider, useForm } from "react-hook-form";
-// Importing zod
+
 import type * as z from "zod";
-// Importing components from local ui
+
 import { BreadcrumbSection } from "@/features/store/category/breadcrumb";
 import { IntroductionSection } from "@/features/store/category/introduction";
 import { SearchSection } from "@/features/store/category/search";
-// Importing schema for validation
+
 import { categoryFormSchema } from "@/shared/schema/category-schema";
 
 export function CategoryPageComponent() {

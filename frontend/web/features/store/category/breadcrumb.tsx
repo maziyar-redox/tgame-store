@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-// Importing from global ui component
+
 import {
     Breadcrumb,
     BreadcrumbItem,
