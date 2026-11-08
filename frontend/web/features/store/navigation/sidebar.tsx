@@ -25,7 +25,7 @@ export function Sidebar() {
                 showCloseButton={false}
                 side="right"
                 data-lang="fa"
-                className="rtl:data-[side=right]:data-ending-style:translate-x-10 rtl:data-[side=right]:data-starting-style:translate-x-10 rounded-tl-4xl rounded-bl-4xl pt-6 pb-10 overflow-y-scroll"
+                className="rtl:data-[side=right]:data-ending-style:translate-x-10 rtl:data-[side=right]:data-starting-style:translate-x-10 rounded-tl-4xl rounded-bl-4xl pt-6 pb-10 overflow-y-scroll scrollbar-thumb-transparent"
             >
                 <div className="flex justify-center items-center mb-7">
                     <Logo />

@@ -61,4 +61,14 @@ export const mainProducts: MainProductProps[] = [
         isAvailable: false,
         isFavorite: true,
     },
+    {
+        id: "7",
+        title: "پلی استیشن 5",
+        model: "PS5",
+        image: "https://tgame-test.s3.ir-central1.arvanstorage.ir/3.jpg",
+        price: "5000",
+        discount: "4",
+        isAvailable: false,
+        isFavorite: true,
+    },
 ];
