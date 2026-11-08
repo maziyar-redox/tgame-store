@@ -1,13 +1,11 @@
 "use client";
 
-// Importing icons
 import { SlidersHorizontalIcon } from "@phosphor-icons/react";
 import { cn } from "cn";
-// Importing react state
 import { useState } from "react";
+
 import { Button } from "@/shared/components/ui/button";
 import { Checkbox } from "@/shared/components/ui/checkbox";
-// Importing from global ui
 import {
     Drawer,
     DrawerClose,
@@ -18,11 +16,12 @@ import {
 import { Field, FieldGroup, FieldLabel } from "@/shared/components/ui/field";
 import { Slider } from "@/shared/components/ui/slider";
 import { Switch } from "@/shared/components/ui/switch";
-// Importing currency formatter from local utils
 import { currencyFormmater } from "@/shared/lib/currency";
 
-export function FilterSectionSm() {
-    const [priceValue, setPriceValue] = useState([100_000, 1_000_000_000]);
+export function DrawerFilterSection() {
+    const [priceValue, setPriceValue] = useState<number[]>([
+        100_000, 1_000_000_000,
+    ]);
     return (
         <div className="w-full">
             <Drawer showSwipeHandle>

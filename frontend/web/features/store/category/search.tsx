@@ -1,12 +1,10 @@
 "use client";
 
-// Importing icons
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
-// Importing react hook items
 import { Controller, useFormContext } from "react-hook-form";
-// Importing mobile filter section from local ui
-import { FilterSectionSm } from "@/features/store/category/filter";
-// Importing field group from global ui
+
+import { DrawerFilterSection } from "@/features/store/category/drawer-filter";
+
 import { Field, FieldGroup } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
 import {
@@ -71,7 +69,7 @@ export function SearchSection() {
                 )}
             />
             <div className="flex items-center gap-2">
-                <FilterSectionSm />
+                <DrawerFilterSection />
                 <span className="hidden text-xs text-slate-400 sm:block">
                     مرتب‌سازی:
                 </span>

@@ -1,3 +1,5 @@
+// biome-ignore-all lint: This file contains generated code
+
 import fs from "node:fs/promises";
 import path from "node:path";
 import { ImageResponse } from "next/og";
@@ -21,7 +23,6 @@ export const contentType = "image/png";
 // Main text
 const titleText = reshapePersian("تی گیم شاپ.");
 const subtitleText = reshapePersian("صفحه اصلی");
-const routeText = reshapePersian("خانه");
 
 // Image generation
 export default async function Image() {
@@ -55,7 +56,7 @@ export default async function Image() {
                     overflow: "hidden",
                     border: "1px solid rgba(255, 255, 255, 0.1)",
                     borderRadius: "4px",
-                    backgroundColor: "#0866ff",
+                    backgroundColor: "#0150FB",
                     boxShadow: "0 28px 80px rgba(0, 0, 0, 0.48)",
                 }}
             >
@@ -182,16 +183,12 @@ export default async function Image() {
                             flexDirection: "column",
                         }}
                     >
-                        <span
-                            style={{
-                                fontSize: "64px",
-                                fontWeight: 900,
-                                letterSpacing: "-1.3px",
-                                color: "white",
-                            }}
-                        >
-                            {routeText}
-                        </span>
+                        <img
+                            src="https://tgame-test.s3.ir-central1.arvanstorage.ir/vector.png"
+                            width={400}
+                            height={400}
+                            alt="لوگو"
+                        />
                     </div>
                 </div>
             </div>
