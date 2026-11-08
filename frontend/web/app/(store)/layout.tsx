@@ -3,9 +3,11 @@ import { Navigation } from "@/features/store/navigation";
 import { Banner } from "@/shared/components/banner";
 import { Footer } from "@/shared/components/footer";
 import { NavigationStoreProvider } from "@/shared/provider/navigation-provider";
+import { env } from "@/shared/schema/env-schema";
 
 // Creating main page metadata
 export const metadata: Metadata = {
+    metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL || "https://tgame1store.ir"),
     title: "تی گیم | خرید آنلاین محصولات تکنولوژی، گیم و لوازم جانبی",
     description:
         "خرید آنلاین جدیدترین محصولات تکنولوژی، کنسول و بازیهای ویدیویی، لوازم جانبی و گجتهای هوشمند با قیمت مناسب، ضمانت اصالت کالا و ارسال سریع به سراسر ایران.",

@@ -16,6 +16,7 @@ export const env = createEnv({
         NEXT_PUBLIC_MAIN_PAGE_BANNER: z.string(),
         NEXT_PUBLIC_MAIN_PAGE_TERMS: z.string(),
         NEXT_PUBLIC_S3_BUCKET_URL: z.string(),
+        NEXT_PUBLIC_SITE_URL: z.url(),
     },
     // Next.js requires you to manually pass the runtime env values
     runtimeEnv: {
@@ -26,5 +27,6 @@ export const env = createEnv({
         NEXT_PUBLIC_MAIN_PAGE_BANNER: process.env.NEXT_PUBLIC_MAIN_PAGE_BANNER,
         NEXT_PUBLIC_MAIN_PAGE_TERMS: process.env.NEXT_PUBLIC_MAIN_PAGE_TERMS,
         NEXT_PUBLIC_S3_BUCKET_URL: process.env.NEXT_PUBLIC_S3_BUCKET_URL,
+        NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
     },
 });

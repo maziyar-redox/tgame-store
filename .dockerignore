@@ -11,11 +11,11 @@
 **/coverage
 
 # Local environment files: never send these to the Docker build context
-.env
-.env.*
-**/.env
-**/.env.*
-**/.env*
+# .env
+# .env.*
+# **/.env
+# **/.env.*
+# **/.env*
 
 # Local/editor/OS files
 **/.DS_Store
