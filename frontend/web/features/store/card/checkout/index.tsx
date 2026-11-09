@@ -1,26 +1,23 @@
 "use client";
 
-// Importing zod provider
 import { zodResolver } from "@hookform/resolvers/zod";
-// Importing icons
 import { ArrowRightIcon } from "@phosphor-icons/react";
-// Importing nextjs utils
 import Link from "next/link";
-// Importing form provider for registering methods under hood
 import { FormProvider, useForm } from "react-hook-form";
-// Importing z utils
 import type * as z from "zod";
-// Importing local ui components
+
 import { Payment } from "@/features/store/card/checkout/payment";
 import { PersonalInformation } from "@/features/store/card/checkout/personal-info";
 import { Posting } from "@/features/store/card/checkout/posting";
-import { Summary } from "@/features/store/card/checkout/summary";
-// Importing from local ui components
 import { Timeline } from "@/features/store/card/checkout/timeline";
-// Importing Checkout form schema
+
 import { checkoutFormSchema } from "@/shared/schema/checkout-schema";
 
-export function CheckoutPageComponent() {
+export function CheckoutLayoutWrapper({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
     const checkoutForm = useForm<z.infer<typeof checkoutFormSchema>>({
         resolver: zodResolver(checkoutFormSchema),
         defaultValues: {
@@ -66,7 +63,7 @@ export function CheckoutPageComponent() {
                         <Posting />
                         <Payment />
                     </div>
-                    <Summary />
+                    {children}
                 </form>
             </FormProvider>
         </main>

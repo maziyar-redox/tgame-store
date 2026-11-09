@@ -1,18 +1,21 @@
 "use client";
 
-// Importing trash icon
 import {
     CheckIcon,
     MinusIcon,
     PlusIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-// Importing nextjs utils
+import { cn } from "cn";
 import Image from "next/image";
-// Importing from global ui components
+import { useState } from "react";
+
 import { Button } from "@/shared/components/ui/button";
+import { Skeleton } from "@/shared/components/ui/skeleton";
 
 export function Items() {
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
     return (
         <article className="grid grid-cols-[92px_1fr] gap-3 rounded-2xl border border-slate-100 bg-white p-3 shadow-[0_8px_30px_rgba(15,46,100,.04)] sm:grid-cols-[130px_1fr] sm:gap-5 sm:p-4">
             <div className="aspect-square overflow-hidden rounded-xl bg-slate-50 sm:rounded-2xl">
@@ -20,8 +23,19 @@ export function Items() {
                     width={500}
                     height={500}
                     src="/2.jpg"
-                    alt=""
-                    className="h-full w-full object-cover"
+                    alt="ss"
+                    className={cn(
+                        "h-full w-full object-cover",
+                        isLoaded ? "block" : "hidden",
+                    )}
+                    onLoad={() => setIsLoaded(true)}
+                    onError={() => setIsLoaded(false)}
+                />
+                <Skeleton
+                    className={cn(
+                        "h-full w-full object-cover",
+                        isLoaded ? "hidden" : "block",
+                    )}
                 />
             </div>
             <div className="min-w-0">

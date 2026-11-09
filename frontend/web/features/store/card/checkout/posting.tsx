@@ -1,10 +1,7 @@
 "use client";
 
-// Importing icons
 import { TruckIcon } from "@phosphor-icons/react";
-// Importing useFormContext for using form in chckout page
 import { Controller, useFormContext } from "react-hook-form";
-// Importing shadcn ui utils
 import {
     Field,
     FieldContent,

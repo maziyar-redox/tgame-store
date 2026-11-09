@@ -1,5 +1,11 @@
-import { SuccessPageComponent } from "@/features/store/card/result";
+import { SuccessLayoutWrapper } from "@/features/store/card/result";
+import { Failure } from "@/features/store/card/result/state";
 
 export default async function SuccessPage() {
-    return <SuccessPageComponent />;
+    return (
+        <SuccessLayoutWrapper>
+            {/* <Success /> */}
+            <Failure />
+        </SuccessLayoutWrapper>
+    );
 }

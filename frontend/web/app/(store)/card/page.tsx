@@ -1,5 +1,12 @@
-import { CardPageComponent } from "@/features/store/card/items";
+import { CardLayoutWrapper } from "@/features/store/card/items";
+import { Items } from "@/features/store/card/items/items";
 
 export default async function CardPage() {
-    return <CardPageComponent />;
+    return (
+        <CardLayoutWrapper>
+            <Items />
+            <Items />
+            <Items />
+        </CardLayoutWrapper>
+    );
 }

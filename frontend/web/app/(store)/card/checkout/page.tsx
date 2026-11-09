@@ -1,5 +1,10 @@
-import { CheckoutPageComponent } from "@/features/store/card/checkout";
+import { CheckoutLayoutWrapper } from "@/features/store/card/checkout";
+import { Summary } from "@/features/store/card/checkout/summary";
 
 export default async function CheckoutPage() {
-    return <CheckoutPageComponent />;
+    return (
+        <CheckoutLayoutWrapper>
+            <Summary />
+        </CheckoutLayoutWrapper>
+    );
 }

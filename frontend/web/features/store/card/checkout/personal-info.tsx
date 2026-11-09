@@ -1,12 +1,9 @@
 "use client";
 
-// Importing persian tools
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-// Importing icon
 import { UserIcon } from "@phosphor-icons/react";
-// Importing useFormContext for using form in chckout page
 import { Controller, useFormContext } from "react-hook-form";
-// importing shadcn ui global ui items
+
 import {
     Field,
     FieldError,

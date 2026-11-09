@@ -1,19 +1,17 @@
 "use client";
 
-// Importing phosphor icons
 import { LockSimpleIcon } from "@phosphor-icons/react";
-// Importing tailwindMerge
 import { cn } from "cn";
-// Importing next utils image
 import Image from "next/image";
+import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { Button } from "@/shared/components/ui/button";
-// Importing shadcn ui utils
 import { Checkbox } from "@/shared/components/ui/checkbox";
 import { Field, FieldGroup, FieldLabel } from "@/shared/components/ui/field";
-// Importing Cnotroller option
+import { Skeleton } from "@/shared/components/ui/skeleton";
 
 export function Summary() {
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const checkoutForm = useFormContext();
 
     return (
@@ -27,7 +25,18 @@ export function Summary() {
                             width={500}
                             height={500}
                             alt=""
-                            className="h-full w-full object-cover"
+                            className={cn(
+                                "h-full w-full object-cover",
+                                isLoaded ? "block" : "hidden",
+                            )}
+                            onLoad={() => setIsLoaded(true)}
+                            onError={() => setIsLoaded(false)}
+                        />
+                        <Skeleton
+                            className={cn(
+                                "h-full w-full object-cover",
+                                isLoaded ? "hidden" : "block",
+                            )}
                         />
                         <span className="absolute bottom-0 right-0 grid size-5 place-items-center rounded-tl-lg bg-brand-navy text-[9px] text-white">
                             ۲

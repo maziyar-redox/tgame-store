@@ -1,25 +1,17 @@
 "use client";
 
-// Importing resolvers
 import { zodResolver } from "@hookform/resolvers/zod";
-// Importing persian tools
 import { digitsFaToEn } from "@persian-tools/persian-tools";
-// Importing icons
 import { ArrowLeftIcon, LockIcon } from "@phosphor-icons/react";
-// Importing next utils
 import Link from "next/link";
 import { useEffect } from "react";
-// Importing react hook form utils
 import { Controller, useForm, useFormState } from "react-hook-form";
-// Importing toast from sonner package
 import { toast } from "sonner";
-// Importing zod utils
 import type * as z from "zod";
-// Importing global ui components
+
 import { Button } from "@/shared/components/ui/button";
 import { Field, FieldGroup } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
-// Importing schema validation for discount
 import { discountFormSchema } from "@/shared/schema/discount-schema";
 
 export function Status() {

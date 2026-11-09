@@ -1,6 +1,5 @@
 "use client";
 
-// Importing icons typings from phosphor icons
 import {
     CheckIcon,
     CreditCardIcon,

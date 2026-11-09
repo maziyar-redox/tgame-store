@@ -1,10 +1,26 @@
 import type { Metadata } from "next";
 
-// Creating main page metadata
+import { env } from "@/shared/schema/env-schema";
+
+// Creating checkout page metadata
 export const metadata: Metadata = {
-    title: "تی گیم | خرید آنلاین محصولات تکنولوژی، گیم و لوازم جانبی",
-    description:
-        "خرید آنلاین جدیدترین محصولات تکنولوژی، کنسول و بازیهای ویدیویی، لوازم جانبی و گجتهای هوشمند با قیمت مناسب، ضمانت اصالت کالا و ارسال سریع به سراسر ایران.",
+    metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL || "https://tgame1store.ir"),
+    title: {
+        default: "سبد خرید",
+        template: "%s | تی گیم",
+        absolute: "تی گیم | سبد خرید",
+    },
+    robots: {
+        index: false,
+        follow: false,
+        googleBot: {
+            index: false,
+            follow: false,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+        },
+    },
 };
 
 export default async function SuccessLayout({

@@ -1,10 +1,9 @@
 "use client";
 
-// Importing icons
 import { BasketIcon } from "@phosphor-icons/react";
 import { cn } from "cn";
-// Importing next utils
 import Link from "next/link";
+
 import { buttonVariants } from "@/shared/components/ui/button";
 
 export function EmptyCard() {
