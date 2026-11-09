@@ -1,14 +1,14 @@
-// Importing next config
+import path from "node:path";
 
-// Importing mdx utils
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
-// Importing env
-import { env } from "@/schema/env-schema";
+import { env } from "@/shared/schema/env-schema";
 
 const nextConfig: NextConfig = {
+    output: "standalone",
     reactCompiler: true,
+    outputFileTracingRoot: path.join(import.meta.dirname, "../.."),
     images: {
         remotePatterns: [new URL(`${env.S3_BUCKET_URL}/*`)],
         minimumCacheTTL: 86400,
@@ -21,6 +21,8 @@ const nextConfig: NextConfig = {
     allowedDevOrigins: ["192.168.100.*"],
 };
 
-const withMDX = createMDX({});
+const withMDX = createMDX({
+    extension: /\.(md|mdx)$/,
+});
 
 export default withMDX(nextConfig);

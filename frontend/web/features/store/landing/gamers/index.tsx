@@ -1,0 +1,33 @@
+"use client";
+
+import { CaretLeftIcon } from "@phosphor-icons/react";
+
+import Link from "next/link";
+
+export function Gamers({ children }: { children: React.ReactNode }) {
+    return (
+        <section
+            id="gamer"
+            className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8 lg:py-6"
+        >
+            <div className="mb-6 flex items-end justify-between">
+                <div>
+                    <p className="mb-1 text-xs font-bold text-primary">
+                        مخصوص گیمرها
+                    </p>
+                    <h2 className="text-xl font-black sm:text-2xl">
+                        تجهیزات گیمینگ
+                    </h2>
+                </div>
+                <Link
+                    href="#"
+                    className="hidden items-center gap-1 text-xs font-bold text-slate-500 hover:text-primary transition-all sm:flex"
+                >
+                    مشاهده همه
+                    <CaretLeftIcon name="chevron" className="size-4" />
+                </Link>
+            </div>
+            {children}
+        </section>
+    );
+}

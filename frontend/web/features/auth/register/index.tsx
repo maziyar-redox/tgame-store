@@ -1,0 +1,184 @@
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { digitsEnToFa, digitsFaToEn } from "@persian-tools/persian-tools";
+import { ArrowLeftIcon } from "@phosphor-icons/react";
+import { cn } from "cn";
+import { Controller, useForm } from "react-hook-form";
+import type * as z from "zod";
+
+import { MdxDialog } from "@/features/auth/register/mdx-dialog";
+
+import { Button } from "@/shared/components/ui/button";
+import { Checkbox } from "@/shared/components/ui/checkbox";
+import {
+    Field,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+} from "@/shared/components/ui/field";
+import { Input } from "@/shared/components/ui/input";
+import { TabsContent } from "@/shared/components/ui/tabs";
+import Security from "@/shared/constants/md/security.mdx";
+import Terms from "@/shared/constants/md/terms.mdx";
+import { registerFormSchema } from "@/shared/schema/register-schema";
+
+export function RegisterSection() {
+    const registerForm = useForm<z.infer<typeof registerFormSchema>>({
+        resolver: zodResolver(registerFormSchema),
+        defaultValues: {
+            first_name: "",
+            last_name: "",
+            phone_number: "",
+            terms: false,
+        },
+    });
+
+    function onRegister(data: z.infer<typeof registerFormSchema>) {
+        console.log(digitsFaToEn(data.phone_number));
+    }
+
+    return (
+        <TabsContent value="register">
+            <form
+                id="register_form"
+                className="mt-6 space-y-4"
+                onSubmit={registerForm.handleSubmit(onRegister)}
+            >
+                <FieldGroup>
+                    <Controller
+                        name="first_name"
+                        control={registerForm.control}
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
+                                <FieldLabel
+                                    className="text-slate-600 block text-xs font-bold"
+                                    htmlFor="login_form_first_name"
+                                >
+                                    نام
+                                </FieldLabel>
+                                <Input
+                                    {...field}
+                                    id="login_form_first_name"
+                                    aria-invalid={fieldState.invalid}
+                                    placeholder="لظفا نام خود را وارد کنید"
+                                    autoComplete="name"
+                                    type="text"
+                                    required
+                                    dir="rtl"
+                                    className="border border-slate-200 px-4 py-5 text-right text-sm font-normal outline-none focus:border-primary"
+                                />
+                                {fieldState.invalid && (
+                                    <FieldError errors={[fieldState.error]} />
+                                )}
+                            </Field>
+                        )}
+                    />
+                    <Controller
+                        name="last_name"
+                        control={registerForm.control}
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
+                                <FieldLabel
+                                    className="text-slate-600 block text-xs font-bold"
+                                    htmlFor="login_form_last_name"
+                                >
+                                    نام خانوادگی
+                                </FieldLabel>
+                                <Input
+                                    {...field}
+                                    id="login_form_last_name"
+                                    aria-invalid={fieldState.invalid}
+                                    placeholder="لظفا نام خانوادگی خود را وارد کنید"
+                                    autoComplete="name"
+                                    type="text"
+                                    required
+                                    dir="rtl"
+                                    className="border border-slate-200 px-4 py-5 text-right text-sm font-normal outline-none focus:border-primary"
+                                />
+                                {fieldState.invalid && (
+                                    <FieldError errors={[fieldState.error]} />
+                                )}
+                            </Field>
+                        )}
+                    />
+                    <Controller
+                        name="phone_number"
+                        control={registerForm.control}
+                        render={({ field, fieldState }) => (
+                            <Field data-invalid={fieldState.invalid}>
+                                <FieldLabel
+                                    className="text-slate-600 block text-xs font-bold"
+                                    htmlFor="login_form_phone"
+                                >
+                                    شماره موبایل
+                                </FieldLabel>
+                                <Input
+                                    {...field}
+                                    value={digitsEnToFa(field.value)}
+                                    id="login_form_phone"
+                                    aria-invalid={fieldState.invalid}
+                                    placeholder={digitsEnToFa("09121234567")}
+                                    autoComplete="tel"
+                                    type="tel"
+                                    required
+                                    dir="ltr"
+                                    className="border border-slate-200 px-4 py-5 text-left text-sm font-normal outline-none focus:border-primary"
+                                />
+                                {fieldState.invalid && (
+                                    <FieldError errors={[fieldState.error]} />
+                                )}
+                            </Field>
+                        )}
+                    />
+                    <Controller
+                        name="terms"
+                        control={registerForm.control}
+                        render={({ field, fieldState }) => (
+                            <Field
+                                orientation="horizontal"
+                                data-invalid={fieldState.invalid}
+                            >
+                                <Checkbox
+                                    id="terms_checkbox"
+                                    name={field.name}
+                                    aria-invalid={fieldState.invalid}
+                                    checked={field.value}
+                                    onCheckedChange={(checked) => {
+                                        field.onChange(checked);
+                                    }}
+                                />
+                                <FieldLabel
+                                    htmlFor="terms_checkbox"
+                                    className={cn(
+                                        "font-normal text-xs min-w-0 flex flex-wrap items-center",
+                                        fieldState.invalid
+                                            ? ""
+                                            : "text-slate-500",
+                                    )}
+                                >
+                                    <MdxDialog text="شرایط استفاده">
+                                        <Terms />
+                                    </MdxDialog>
+                                    <span>و</span>
+                                    <MdxDialog text="حریم خصوصی">
+                                        <Security />
+                                    </MdxDialog>
+                                    <span>فروشگاه تی گیم را می پذیرم.</span>
+                                </FieldLabel>
+                            </Field>
+                        )}
+                    />
+                    <Button
+                        type="submit"
+                        size="xl"
+                        className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary text-sm font-bold text-white shadow-lg shadow-blue-200"
+                    >
+                        دریافت کد تأیید{" "}
+                        <ArrowLeftIcon name="arrow" className="size-4" />
+                    </Button>
+                </FieldGroup>
+            </form>
+        </TabsContent>
+    );
+}
