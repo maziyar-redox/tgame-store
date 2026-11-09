@@ -29,10 +29,10 @@ export function CategoryPageComponent() {
     }
 
     return (
-        <FormProvider {...categoryForm}>
-            <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-9 lg:px-8">
-                <BreadcrumbSection />
-                <IntroductionSection />
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-9 lg:px-8">
+            <BreadcrumbSection />
+            <IntroductionSection />
+            <FormProvider {...categoryForm}>
                 <form onSubmit={categoryForm.handleSubmit(onSubmit)}>
                     <SearchSection />
                     <div className="grid gap-6 lg:grid-cols-[240px_1fr]">
@@ -41,7 +41,7 @@ export function CategoryPageComponent() {
                         </aside>
                     </div>
                 </form>
-            </div>
-        </FormProvider>
+            </FormProvider>
+        </div>
     );
 }

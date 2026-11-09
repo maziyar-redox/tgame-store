@@ -28,6 +28,7 @@ function ImageComponent() {
                     isLoaded ? "block" : "hidden",
                 )}
                 onLoad={() => setIsLoaded(true)}
+                onError={() => setIsLoaded(false)}
             />
         </div>
     );

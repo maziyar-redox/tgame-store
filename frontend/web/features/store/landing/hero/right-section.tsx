@@ -26,6 +26,7 @@ export function RightSection() {
                     loading="eager"
                     quality={75}
                     onLoad={() => setIsLoaded(true)}
+                    onError={() => setIsLoaded(false)}
                 />
                 <Skeleton
                     className={cn(

@@ -45,6 +45,7 @@ export function ProductCard({
                         )}
                         loading="eager"
                         onLoad={() => setIsLoaded(true)}
+                        onError={() => setIsLoaded(false)}
                         quality={75}
                     />
                     <Skeleton

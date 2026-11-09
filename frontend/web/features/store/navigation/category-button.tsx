@@ -39,6 +39,7 @@ function ImageComponent({
                 )}
                 loading="eager"
                 onLoad={() => setIsLoaded(true)}
+                onError={() => setIsLoaded(false)}
             />
             <Skeleton
                 className={cn(
