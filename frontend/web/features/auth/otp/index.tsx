@@ -1,10 +1,7 @@
 "use client";
 
-// Importing digits to fa function
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-// Importing icons
 import { ChatCircleDotsIcon } from "@phosphor-icons/react";
-// Importing components from global ui
 import { Card, CardContent } from "@/shared/components/ui/card";
 
 export function AuthenticationLayoutOtpComponent({

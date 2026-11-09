@@ -27,7 +27,7 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: "*",
                 allow: "/",
-                disallow: ["/cart", "/checkout"],
+                disallow: ["/cart", "/checkout", "/otp"],
             },
         ],
         sitemap: "https://tgame1store.ir/sitemap.xml",

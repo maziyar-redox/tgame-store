@@ -1,34 +1,27 @@
 "use client";
 
-// Importing shcema validation utils
 import { zodResolver } from "@hookform/resolvers/zod";
-// Importing digits to fa function
 import { digitsEnToFa, digitsFaToEn } from "@persian-tools/persian-tools";
-// Importing icons
 /* import { ArrowLeftIcon } from "@phosphor-icons/react";
-// Importing patterns from lib
 import { REGEXP_ONLY_DIGITS } from "input-otp"; */
-// Importing nextjs utils
 import Link from "next/link";
 /* import { useRouter } from "next/navigation";
 import { useEffect } from "react"; */
 import { Controller, useForm } from "react-hook-form";
 import type * as z from "zod";
+
 import { Button } from "@/shared/components/ui/button";
-// Importing global ui components
 import {
     Field,
     FieldError,
     FieldGroup,
     FieldLabel,
 } from "@/shared/components/ui/field";
-// Importing components from global ui
 import {
     InputOTP,
     InputOTPGroup,
     InputOTPSlot,
 } from "@/shared/components/ui/input-otp";
-// Importing login schema util
 import { otpFormSchema } from "@/shared/schema/otp-schema";
 
 export function OtpField() {
@@ -136,7 +129,7 @@ export function OtpField() {
                 تایید و ورود
             </Button>
             <Link
-                href="/auth/register"
+                href="/register"
                 className="text-base text-center font-semibold text-slate-500"
             >
                 ویرایش شماره موبایل

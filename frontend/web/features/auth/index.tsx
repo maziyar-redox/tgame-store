@@ -2,16 +2,12 @@
 
 "use client";
 
-// Importing Icons
 import { LockIcon } from "@phosphor-icons/react";
-// Importing merging utils
 import { cn } from "cn";
-// Importing nextjs utils
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-// Importing hooks
 import { useIsMounted } from "usehooks-ts";
-// Importing components from global ui
+
 import { Card, CardContent } from "@/shared/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/shared/components/ui/tabs";
 
@@ -25,13 +21,13 @@ export function AuthenticationLayoutWrapper({
     const isMounted = useIsMounted();
 
     const [data, setData] = useState<"login" | "register">(
-        pathname === "/auth/login" ? "login" : "register",
+        pathname === "/login" ? "login" : "register",
     );
 
     useEffect(() => {
-        if (isMounted())
-            setData(pathname === "/auth/login" ? "login" : "register");
+        if (isMounted()) setData(pathname === "/login" ? "login" : "register");
     }, [isMounted]);
+
     return (
         <main className="relative grid min-h-[calc(100vh-110px)] place-items-center overflow-hidden px-4 py-10">
             <div className="absolute -right-32 top-10 size-80 rounded-full bg-blue-200/30 blur-3xl" />
@@ -43,23 +39,20 @@ export function AuthenticationLayoutWrapper({
                             <span className="size-5 rounded-md border-[3px] border-white" />
                         </span>
                         <h1 className="mt-4 text-2xl font-black text-brand-navy">
-                            {pathname === "/auth/login" && "ورود به تکنو"}
-                            {pathname === "/auth/register" &&
-                                "ساخت حساب کاربری"}
+                            {pathname === "/login" && "ورود به تکنو"}
+                            {pathname === "/register" && "ساخت حساب کاربری"}
                         </h1>
                         <p className="mt-2 text-sm leading-6 text-slate-400">
-                            {pathname === "/auth/login" &&
+                            {pathname === "/login" &&
                                 "برای مشاهده سفارش‌ها و مدیریت حساب وارد شوید"}
-                            {pathname === "/auth/register" &&
+                            {pathname === "/register" &&
                                 "با ثبت‌نام، تجربه خرید سریع‌تر و ساده‌تری داشته باشید"}
                         </p>
                     </div>
                     <Tabs
                         onValueChange={(value) => {
                             router.push(
-                                value === "login"
-                                    ? "/auth/login"
-                                    : "/auth/register",
+                                value === "login" ? "/login" : "/register",
                             );
                         }}
                         defaultValue={data}

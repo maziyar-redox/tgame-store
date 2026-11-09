@@ -1,17 +1,14 @@
 "use client";
 
-// Importing shcema validation utils
 import { zodResolver } from "@hookform/resolvers/zod";
-// Importing digits to fa function
 import { digitsEnToFa, digitsFaToEn } from "@persian-tools/persian-tools";
-// Importing icons
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { cn } from "cn";
 import { Controller, useForm } from "react-hook-form";
 import type * as z from "zod";
-// Importing from local ui
+
 import { MdxDialog } from "@/features/auth/register/mdx-dialog";
-// Importing global ui components
+
 import { Button } from "@/shared/components/ui/button";
 import { Checkbox } from "@/shared/components/ui/checkbox";
 import {
@@ -23,9 +20,7 @@ import {
 import { Input } from "@/shared/components/ui/input";
 import { TabsContent } from "@/shared/components/ui/tabs";
 import Security from "@/shared/constants/md/security.mdx";
-// Importing mdx file
 import Terms from "@/shared/constants/md/terms.mdx";
-// Importing register schema util
 import { registerFormSchema } from "@/shared/schema/register-schema";
 
 export function RegisterSection() {

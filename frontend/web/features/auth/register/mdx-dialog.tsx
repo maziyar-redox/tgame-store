@@ -1,4 +1,3 @@
-// Importing ui from global ui
 import { Button } from "@/shared/components/ui/button";
 import {
     Dialog,

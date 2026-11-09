@@ -1,14 +1,11 @@
 "use client";
 
-// Importing shcema validation utils
 import { zodResolver } from "@hookform/resolvers/zod";
-// Importing digits to fa function
 import { digitsEnToFa, digitsFaToEn } from "@persian-tools/persian-tools";
-// Importing icons
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { Controller, useForm } from "react-hook-form";
 import type * as z from "zod";
-// Importing global ui components
+
 import { Button } from "@/shared/components/ui/button";
 import {
     Field,
@@ -18,7 +15,6 @@ import {
 } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
 import { TabsContent } from "@/shared/components/ui/tabs";
-// Importing login schema util
 import { loginFormSchema } from "@/shared/schema/login-schema";
 
 export function LoginSection() {
