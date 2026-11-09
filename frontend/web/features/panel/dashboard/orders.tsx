@@ -1,7 +1,38 @@
-// Importing digits converter
+"use client";
+
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-// Importing Image from next image
+import { cn } from "cn";
 import Image from "next/image";
+import { useState } from "react";
+import { Skeleton } from "@/shared/components/ui/skeleton";
+
+function ImageComponent() {
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
+    return (
+        <>
+            <Image
+                src="https://tgame-test.s3.ir-central1.arvanstorage.ir/3.jpg"
+                alt=""
+                loading="eager"
+                className={cn(
+                    "size-14 rounded-xl border-2 border-white object-cover",
+                    isLoaded ? "block" : "hidden",
+                )}
+                width={400}
+                height={400}
+                onLoad={() => setIsLoaded(true)}
+                onError={() => setIsLoaded(false)}
+            />
+            <Skeleton
+                className={cn(
+                    "size-14 rounded-xl border-2 border-white object-cover",
+                    isLoaded ? "hidden" : "block",
+                )}
+            />
+        </>
+    );
+}
 
 export function Orders() {
     return (
@@ -11,7 +42,7 @@ export function Orders() {
                     <div>
                         {/* <span className={`rounded-full px-3 py-1 text-[10px] font-bold ${status === "در حال ارسال" ? "bg-blue-50 text-[#0866ff]" : "bg-emerald-50 text-emerald-600"}`}>{status as string}</span> */}
                         <span className="rounded-full px-3 py-1 text-xs font-bold bg-blue-50 text-primary">
-                            درحال ارسال
+                            درحال ارسال{" "}
                         </span>
                         <span className="mr-3 text-xs text-slate-400">
                             شماره سفارش: RTX-3123
@@ -21,20 +52,8 @@ export function Orders() {
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                     <div className="flex -space-x-3 space-x-reverse">
-                        <Image
-                            src="https://tgame-test.s3.ir-central1.arvanstorage.ir/3.jpg"
-                            alt=""
-                            className="size-14 rounded-xl border-2 border-white object-cover"
-                            width={400}
-                            height={400}
-                        />
-                        <Image
-                            src="https://tgame-test.s3.ir-central1.arvanstorage.ir/3.jpg"
-                            alt=""
-                            className="size-14 rounded-xl border-2 border-white object-cover"
-                            width={400}
-                            height={400}
-                        />
+                        <ImageComponent />
+                        <ImageComponent />
                     </div>
                     <button
                         type="button"
@@ -49,7 +68,7 @@ export function Orders() {
                     <div>
                         {/* <span className={`rounded-full px-3 py-1 text-[10px] font-bold ${status === "در حال ارسال" ? "bg-blue-50 text-[#0866ff]" : "bg-emerald-50 text-emerald-600"}`}>{status as string}</span> */}
                         <span className="rounded-full px-3 py-1 text-xs font-bold bg-blue-50 text-primary">
-                            درحال ارسال
+                            درحال ارسال{" "}
                         </span>
                         <span className="mr-3 text-xs text-slate-400">
                             شماره سفارش: RTX-3123
@@ -59,20 +78,8 @@ export function Orders() {
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                     <div className="flex -space-x-3 space-x-reverse">
-                        <Image
-                            src="https://tgame-test.s3.ir-central1.arvanstorage.ir/3.jpg"
-                            alt=""
-                            className="size-14 rounded-xl border-2 border-white object-cover"
-                            width={400}
-                            height={400}
-                        />
-                        <Image
-                            src="https://tgame-test.s3.ir-central1.arvanstorage.ir/3.jpg"
-                            alt=""
-                            className="size-14 rounded-xl border-2 border-white object-cover"
-                            width={400}
-                            height={400}
-                        />
+                        <ImageComponent />
+                        <ImageComponent />
                     </div>
                     <button
                         type="button"

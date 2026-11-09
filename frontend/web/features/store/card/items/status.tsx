@@ -90,7 +90,6 @@ export function Status() {
                                     className="min-w-0 h-10 py-4 border border-slate-200 px-3 text-xs outline-none focus:border-primary"
                                     placeholder="کد تخفیف"
                                     id="discount_form"
-                                    name="discount"
                                     required={false}
                                     type="text"
                                     autoComplete="off"

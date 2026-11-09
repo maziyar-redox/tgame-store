@@ -24,6 +24,7 @@ export function Items() {
                     height={500}
                     src="/2.jpg"
                     alt="ss"
+                    loading="eager"
                     className={cn(
                         "h-full w-full object-cover",
                         isLoaded ? "block" : "hidden",

@@ -48,7 +48,6 @@ export function PersonalInformation() {
                                 placeholder="نام و نام خانوادگی"
                                 autoComplete="name"
                                 dir="rtl"
-                                name="full_name"
                                 required
                                 type="text"
                                 className="border border-slate-200 px-4 py-5 text-right text-sm font-normal outline-none focus:border-primary"
@@ -79,7 +78,6 @@ export function PersonalInformation() {
                                 autoComplete="tel"
                                 required
                                 type="tel"
-                                name="phone_number"
                                 dir="ltr"
                                 className="border border-slate-200 px-4 py-5 text-left text-sm font-normal outline-none focus:border-primary"
                             />
@@ -108,7 +106,6 @@ export function PersonalInformation() {
                                 autoComplete="off"
                                 required
                                 type="text"
-                                name="province"
                                 dir="rtl"
                                 className="border border-slate-200 px-4 py-5 text-right text-sm font-normal outline-none focus:border-primary"
                             />
@@ -137,7 +134,6 @@ export function PersonalInformation() {
                                 autoComplete="off"
                                 required
                                 type="text"
-                                name="city"
                                 dir="rtl"
                                 className="border border-slate-200 px-4 py-5 text-right text-sm font-normal outline-none focus:border-primary"
                             />
@@ -197,7 +193,6 @@ export function PersonalInformation() {
                                 placeholder={digitsEnToFa("1234567890")}
                                 autoComplete="postal-code"
                                 type="number"
-                                name="postal_code"
                                 required
                                 dir="ltr"
                                 className="border border-slate-200 px-4 py-5 text-left text-sm font-normal outline-none focus:border-primary"

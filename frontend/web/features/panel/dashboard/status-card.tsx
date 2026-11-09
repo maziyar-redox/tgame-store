@@ -1,8 +1,6 @@
 "use client";
 
-// Importing digit converter
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-// Importing icon type
 import type { Icon } from "@phosphor-icons/react";
 
 export function StatusCard({

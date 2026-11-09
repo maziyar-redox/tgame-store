@@ -1,8 +1,7 @@
 "use client";
 
-// Importing icons from react icons
 import { UserIcon } from "@phosphor-icons/react";
-// Importing status card
+
 import { StatusCard } from "@/features/panel/dashboard/status-card";
 
 export function Status() {

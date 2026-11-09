@@ -1,15 +1,11 @@
 "use client";
 
-// Importing icons
 import { SignOutIcon } from "@phosphor-icons/react";
-// Importing merge util
 import { cn } from "cn";
-// Importing nextjs utils
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-// Importing global ui
+
 import { Button, buttonVariants } from "@/shared/components/ui/button";
-// Importing constant data
 import { sidebarLinks } from "@/shared/constants/sidebar";
 
 export function Sidebar() {
@@ -25,7 +21,7 @@ export function Sidebar() {
                     <span className="text-xs text-slate-400">کاربر تی گیم</span>
                 </div>
             </div>
-            <nav className="flex gap-1 overflow-x-auto p-2 lg:block">
+            <nav className="flex gap-1 overflow-x-auto p-2 lg:block border-b border-slate-100">
                 {sidebarLinks.map((val) => (
                     <Link
                         key={val.id}

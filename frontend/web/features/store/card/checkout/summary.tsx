@@ -25,6 +25,7 @@ export function Summary() {
                             width={500}
                             height={500}
                             alt=""
+                            loading="eager"
                             className={cn(
                                 "h-full w-full object-cover",
                                 isLoaded ? "block" : "hidden",

@@ -1,10 +1,7 @@
 "use client";
 
-// Importing merging utils
 import { cn } from "cn";
-// Importing next utils
 import Link from "next/link";
-// Importing buttons from local ui
 import { buttonVariants } from "@/shared/components/ui/button";
 
 export function Banner() {

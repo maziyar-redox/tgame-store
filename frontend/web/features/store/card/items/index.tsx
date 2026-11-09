@@ -16,7 +16,7 @@ export function CardLayoutWrapper({ children }: { children: React.ReactNode }) {
                 <section className="space-y-3">
                     {children}
                     <Link
-                        href="/categories"
+                        href="/category"
                         className="mt-2 inline-flex items-center gap-2 rounded-xl px-2 py-3 text-sm font-bold text-primary"
                     >
                         <ArrowRightIcon name="arrow" className="size-4" />
