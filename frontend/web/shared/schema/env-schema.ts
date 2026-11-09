@@ -10,6 +10,8 @@ export const env = createEnv({
         MAIN_PAGE_BANNER: z.string(),
         MAIN_PAGE_TERMS: z.string(),
         S3_BUCKET_URL: z.string(),
+        BETTER_AUTH_SECRET: z.base64(),
+        BETTER_AUTH_URL: z.url(),
     },
     // Client-side variables (must start with NEXT_PUBLIC_)
     client: {
@@ -28,5 +30,7 @@ export const env = createEnv({
         NEXT_PUBLIC_MAIN_PAGE_TERMS: process.env.NEXT_PUBLIC_MAIN_PAGE_TERMS,
         NEXT_PUBLIC_S3_BUCKET_URL: process.env.NEXT_PUBLIC_S3_BUCKET_URL,
         NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+        BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
+        BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
     },
 });
