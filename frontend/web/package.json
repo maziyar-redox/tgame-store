@@ -19,6 +19,7 @@
         "@phosphor-icons/react": "^2.1.10",
         "@shadcn/react": "^0.3.1",
         "@types/mdx": "^2.0.14",
+        "better-auth": "^1.7.18",
         "class-variance-authority": "^0.7.1",
         "cn": "^0.5.2",
         "embla-carousel-react": "^8.6.0",
