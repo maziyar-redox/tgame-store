@@ -63,7 +63,6 @@ export function RegisterSection() {
                                     aria-invalid={fieldState.invalid}
                                     placeholder="لظفا نام خود را وارد کنید"
                                     autoComplete="name"
-                                    name="first_name"
                                     type="text"
                                     required
                                     dir="rtl"
@@ -92,7 +91,6 @@ export function RegisterSection() {
                                     aria-invalid={fieldState.invalid}
                                     placeholder="لظفا نام خانوادگی خود را وارد کنید"
                                     autoComplete="name"
-                                    name="last_name"
                                     type="text"
                                     required
                                     dir="rtl"
@@ -122,7 +120,6 @@ export function RegisterSection() {
                                     aria-invalid={fieldState.invalid}
                                     placeholder={digitsEnToFa("09121234567")}
                                     autoComplete="tel"
-                                    name="phone_number"
                                     type="tel"
                                     required
                                     dir="ltr"

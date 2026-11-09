@@ -55,7 +55,6 @@ export function LoginSection() {
                                     aria-invalid={fieldState.invalid}
                                     placeholder={digitsEnToFa("09121234567")}
                                     autoComplete="tel"
-                                    name="phone_number"
                                     type="tel"
                                     dir="ltr"
                                     required

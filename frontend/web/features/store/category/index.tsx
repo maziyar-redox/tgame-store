@@ -8,7 +8,7 @@ import { AsideFilterSection } from "@/features/store/category/aside-filter";
 import { BreadcrumbSection } from "@/features/store/category/breadcrumb";
 import { IntroductionSection } from "@/features/store/category/introduction";
 import { SearchSection } from "@/features/store/category/search";
-
+import { Button } from "@/shared/components/ui/button";
 import { categoryFormSchema } from "@/shared/schema/category-schema";
 
 export function CategoryPageComponent() {
@@ -17,9 +17,8 @@ export function CategoryPageComponent() {
         defaultValues: {
             term: "",
             sort: "POPULAR",
-            priceMin: 0,
-            priceMax: 1_000_000_000,
-            brand: "",
+            priceRange: [100_000, 1_000_000_000],
+            brand: [],
             quantity: true,
         },
     });
@@ -33,7 +32,13 @@ export function CategoryPageComponent() {
             <BreadcrumbSection />
             <IntroductionSection />
             <FormProvider {...categoryForm}>
-                <form onSubmit={categoryForm.handleSubmit(onSubmit)}>
+                <form
+                    onSubmit={categoryForm.handleSubmit(onSubmit)}
+                    id="category-form"
+                >
+                    <Button type="submit" className="sr-only">
+                        اعمال فیلترها
+                    </Button>
                     <SearchSection />
                     <div className="grid gap-6 lg:grid-cols-[240px_1fr]">
                         <aside className="hidden h-fit rounded-2xl border border-slate-100 bg-white p-5 lg:block">

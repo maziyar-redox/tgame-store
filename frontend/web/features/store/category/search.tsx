@@ -59,7 +59,6 @@ export function SearchSection() {
                             aria-invalid={fieldState.invalid}
                             placeholder="جستجو میان محصولات..."
                             autoComplete="on"
-                            name="search_input"
                             type="text"
                             dir="rtl"
                             required={false}

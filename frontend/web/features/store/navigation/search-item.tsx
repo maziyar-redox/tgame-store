@@ -72,6 +72,7 @@ export function SearchItem({
                 loading="eager"
                 quality={50}
                 onLoad={() => setIsLoaded(true)}
+                onError={() => setIsLoaded(false)}
             />
             <Skeleton
                 className={cn(
