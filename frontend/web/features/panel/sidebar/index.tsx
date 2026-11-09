@@ -11,7 +11,7 @@ import { sidebarLinks } from "@/shared/constants/sidebar";
 export function Sidebar() {
     const pathname = usePathname();
     return (
-        <aside className="overflow-hidden rounded-2xl border border-slate-100 bg-white lg:sticky lg:top-28">
+        <aside className="overflow-hidden rounded-2xl border border-slate-100 bg-white lg:sticky lg:top-28 hidden lg:block">
             <div className="hidden border-b border-slate-100 p-5 lg:flex lg:items-center lg:gap-3">
                 <span className="grid size-11 shrink-0 place-items-center overflow-hidden rounded-full bg-blue-50 font-black text-[#0866ff]">
                     ع

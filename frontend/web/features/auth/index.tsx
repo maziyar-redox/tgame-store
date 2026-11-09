@@ -29,10 +29,10 @@ export function AuthenticationLayoutWrapper({
     }, [isMounted]);
 
     return (
-        <main className="relative grid min-h-[calc(100vh-110px)] h-screen place-items-center overflow-hidden px-4 py-10">
+        <main className="relative grid sm:min-h-[calc(100vh-110px)] h-screen sm:overflow-hidden overflow-x-hidden place-items-center px-4 py-10">
             <div className="absolute -right-32 top-10 size-80 rounded-full bg-blue-200/30 blur-3xl" />
             <div className="absolute -left-32 bottom-0 size-96 rounded-full bg-cyan-100/40 blur-3xl" />
-            <Card className="relative w-full max-w-md rounded-[28px] border ring-0 border-white bg-white p-5 shadow-[0_25px_80px_rgba(8,55,125,.12)] sm:p-8">
+            <Card className="relative w-full max-w-md rounded-[28px] border ring-0 border-white bg-white p-5 shadow-[0_25px_80px_rgba(8,55,125,.12)] sm:p-8 ov">
                 <CardContent>
                     <div className="text-center">
                         <span className="mx-auto grid size-12 place-items-center rounded-2xl bg-primary shadow-lg shadow-blue-200">

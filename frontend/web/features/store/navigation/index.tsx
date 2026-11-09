@@ -1,9 +1,9 @@
+import { CategoryButton } from "@/features/store/navigation/category-button";
 import { Logo } from "@/features/store/navigation/logo";
 import { MenuItems } from "@/features/store/navigation/menu-items";
 import { NavigationButton } from "@/features/store/navigation/navigation-button";
 import { Sidebar } from "@/features/store/navigation/sidebar";
 import { UtilitySection } from "@/features/store/navigation/utility-section";
-import { CategoryButton } from "./category-button";
 
 export function Navigation() {
     return (

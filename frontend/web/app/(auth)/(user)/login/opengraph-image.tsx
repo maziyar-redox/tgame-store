@@ -5,6 +5,8 @@ import path from "node:path";
 import { ImageResponse } from "next/og";
 import { reshapePersian } from "@/shared/lib/persian-reshape";
 
+export const dynamic = "force-static";
+
 // Image metadata type
 type sizeProps = {
     width: number;
