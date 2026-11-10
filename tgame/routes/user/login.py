@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Body, HTTPException, status
 from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 from sqlmodel import select
 from typing import Annotated
 from secrets import randbelow
@@ -37,6 +38,7 @@ user_login = APIRouter(
             },
         },
         status.HTTP_401_UNAUTHORIZED: {
+            "model": ResponseUserLogin,
             "description": "Phone number was not correct and access is not granted",
             "content": {
                 "application/json": {
@@ -48,6 +50,7 @@ user_login = APIRouter(
             },
         },
         status.HTTP_422_UNPROCESSABLE_CONTENT: {
+            "model": ResponseUserLogin,
             "description": "Validation error for login schema",
             "content": {
                 "application/json": {
@@ -69,6 +72,7 @@ user_login = APIRouter(
             },
         },
         status.HTTP_429_TOO_MANY_REQUESTS: {
+            "model": ResponseUserLogin,
             "description": "Too many request",
             "content": {
                 "application/json": {
@@ -80,6 +84,7 @@ user_login = APIRouter(
             },
         },
         status.HTTP_500_INTERNAL_SERVER_ERROR: {
+            "model": ResponseUserLogin,
             "description": "Internal server error",
             "content": {
                 "application/json": {
