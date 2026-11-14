@@ -154,7 +154,8 @@ async def UserRegisterHandler(
             first_name=requestBody.first_name,
             last_name=requestBody.last_name,
             phone_number=requestBody.phone_number,
-            verified=False
+            verified=False,
+            name=f"{requestBody.first_name} {requestBody.last_name}"
         )
 
         # Then commit it to database
