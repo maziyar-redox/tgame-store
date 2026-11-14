@@ -1,8 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { digitsEnToFa } from "@persian-tools/persian-tools";
+import { digitsEnToFa, digitsFaToEn } from "@persian-tools/persian-tools";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
+import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import type * as z from "zod";
@@ -16,10 +17,17 @@ import {
 } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
 import { TabsContent } from "@/shared/components/ui/tabs";
+import { useAuthenticationStore } from "@/shared/provider/authentication-provider";
 import { loginFormSchema } from "@/shared/schema/login-schema";
 
 export function LoginSection() {
     const [isPending, startTransition] = useTransition();
+
+    const router = useRouter();
+
+    const { setPhoneNumber, setCountDown } = useAuthenticationStore(
+        (store) => store,
+    );
 
     const loginForm = useForm<z.infer<typeof loginFormSchema>>({
         resolver: zodResolver(loginFormSchema),
@@ -38,6 +46,11 @@ export function LoginSection() {
                         message: isLogin.message,
                     });
                 }
+
+                setPhoneNumber(digitsFaToEn(data.phone_number));
+                setCountDown(120);
+
+                router.push("/otp");
             });
         } catch (_err) {
             loginForm.setError("phone_number", {

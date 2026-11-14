@@ -4,7 +4,7 @@ import { digitsFaToEn } from "@persian-tools/persian-tools";
 import { isAPIError } from "better-auth/api";
 
 import type * as z from "zod";
-import { auth } from "@/shared/lib/auth";
+import { auth } from "@/shared/lib/auth/auth";
 import { loginFormSchema } from "@/shared/schema/login-schema";
 
 type LoginProps = {
@@ -26,17 +26,22 @@ export async function Login(
             };
         }
 
-        const sendOtp = await auth.api.sendPhoneNumberOTP({
+        const loginUser = await auth.api.signInPhoneNumber({
             body: {
-                phoneNumber: digitsFaToEn(data.phone_number),
+                phone_number: digitsFaToEn(data.phone_number),
             },
         });
 
-        console.log(sendOtp);
+        if (loginUser.success === true) {
+            return {
+                message: "کد ارسال شد.",
+                success: true,
+            };
+        }
 
         return {
-            message: "ff",
-            success: success,
+            message: "مشکلی پیش آمده. لطفا بعدا تلاش کنید.",
+            success: false,
         };
     } catch (error) {
         if (isAPIError(error)) {

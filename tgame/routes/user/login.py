@@ -27,6 +27,7 @@ user_login = APIRouter(
     status_code=200,
     responses={
         status.HTTP_200_OK: {
+            "model": ResponseUserLogin,
             "description": "Phone number was correct and access is granted for otp verification",
             "content": {
                 "application/json": {
@@ -55,18 +56,8 @@ user_login = APIRouter(
             "content": {
                 "application/json": {
                     "example": {
-                        "detail": [
-                            {
-                                "loc": [
-                                    "string",
-                                    0
-                                ],
-                                "msg": "string",
-                                "type": "string",
-                                "input": "string",
-                                "ctx": {}
-                            }
-                        ]
+                        "status": "false",
+                        "detail": "fail",
                     },
                 },
             },

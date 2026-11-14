@@ -7,6 +7,8 @@
 /.pnp
 .pnp.js
 
+/tgame/alembic/versions
+
 # testing
 /coverage
 

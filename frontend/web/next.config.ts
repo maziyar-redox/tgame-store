@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
         imgOptTimeoutInSeconds: 30,
         optimizePackageImports: ["@phosphor-icons/react"],
     },
-    allowedDevOrigins: ["192.168.100.*"],
+    allowedDevOrigins: ["192.168.100.*", "172.20.10.*"],
 };
 
 const withMDX = createMDX({

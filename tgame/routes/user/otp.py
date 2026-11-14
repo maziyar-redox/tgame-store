@@ -28,19 +28,31 @@ user_otp = APIRouter(
     status_code=200,
     responses={
         status.HTTP_200_OK: {
+            "model": ResponseUserOtp,
             "description": "otp code was correct and access is granted",
             "content": {
                 "application/json": {
                     "example": {
                         "status": "true",
-                        "detail": "success",
-                        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-                        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
-                    },
+                        "detail": "authenticated successfully",
+                        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMWExZGEwZS1lNGNkLTcwYTgtYjU2MS0yN2YxOWVjNjc0YjUiLCJwaG9uZSI6IjkxMTc0NjI3NTEiLCJmaXJzdF9uYW1lIjoiXHUwNjQ1XHUwNjI3XHUwNjMyXHUwNmNjXHUwNjI3XHUwNjMxIiwibGFzdF9uYW1lIjoiXHUwNjM5XHUwNmNjXHUwNjMzXHUwNmNjIFx1MDY0Nlx1MDY5OFx1MDYyN1x1MDYyZiIsImlhdCI6MTc5NDY1OTgxNCwiZXhwIjoxNzk0NjY3MDE0LCJpc3MiOiJ0Z2FtZS1zdG9yZSIsImF1ZCI6InRnYW1lLXVzZXJzIiwidHlwZSI6ImFjY2VzcyJ9.vpyy6u1MFr9F_uVLk3Pxc_-Q4BEN0QTxsb8l3efmY7k",
+                        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMWExZGEwZS1lNGNkLTcwYTgtYjU2MS0yN2YxOWVjNjc0YjUiLCJwaG9uZSI6IjkxMTc0NjI3NTEiLCJmaXJzdF9uYW1lIjoiXHUwNjQ1XHUwNjI3XHUwNjMyXHUwNmNjXHUwNjI3XHUwNjMxIiwibGFzdF9uYW1lIjoiXHUwNjM5XHUwNmNjXHUwNjMzXHUwNmNjIFx1MDY0Nlx1MDY5OFx1MDYyN1x1MDYyZiIsImlhdCI6MTc5NDY1OTgxNCwiZXhwIjoxNzk0NjY3MDE0LCJpc3MiOiJ0Z2FtZS1zdG9yZSIsImF1ZCI6InRnYW1lLXVzZXJzIiwidHlwZSI6ImFjY2VzcyJ9.vpyy6u1MFr9F_uVLk3Pxc_-Q4BEN0QTxsb8l3efmY7k",
+                        "user": {
+                            "verified": "true",
+                            "first_name": "مازیار",
+                            "last_name": "عیسی نژاد",
+                            "created_at": "2026-11-14T12:36:11.597904Z",
+                            "id": "01a1da0e-e4cd-70a8-b561-27f19ec674b5",
+                            "phone_number": "9117462751",
+                            "last_login": "2026-11-14T12:36:11.597887Z",
+                            "updated_at": "2026-11-14T12:36:11.597914Z"
+                        }
+                    }
                 },
             },
         },
         status.HTTP_401_UNAUTHORIZED: {
+            "model": ResponseUserOtp,
             "description": "Otp code was not correct and access is not granted",
             "content": {
                 "application/json": {
@@ -52,27 +64,19 @@ user_otp = APIRouter(
             },
         },
         status.HTTP_422_UNPROCESSABLE_CONTENT: {
+            "model": ResponseUserOtp,
             "description": "Validation error for otp schema",
             "content": {
                 "application/json": {
                     "example": {
-                        "detail": [
-                            {
-                                "loc": [
-                                    "string",
-                                    0
-                                ],
-                                "msg": "string",
-                                "type": "string",
-                                "input": "string",
-                                "ctx": {}
-                            }
-                        ]
+                        "status": "false",
+                        "detail": "fail"
                     },
                 },
             },
         },
         status.HTTP_429_TOO_MANY_REQUESTS: {
+            "model": ResponseUserOtp,
             "description": "Too many request",
             "content": {
                 "application/json": {
@@ -84,6 +88,7 @@ user_otp = APIRouter(
             },
         },
         status.HTTP_500_INTERNAL_SERVER_ERROR: {
+            "model": ResponseUserOtp,
             "description": "Internal server error",
             "content": {
                 "application/json": {
@@ -131,7 +136,9 @@ async def UserVerifyOtpHandler(
             raise HTTPException(status_code=401, detail="Unauthorized operation detected")
 
         # If code was wrong, then do nothing
-        if isOtpCached.otpCode != requestBody.otp_code:
+        verifyOtp = OTPCacheContainer.Verify(phoneNumber=requestBody.phone_number, otpCode=requestBody.otp_code)
+
+        if verifyOtp == False:
             raise HTTPException(status_code=401, detail="Otp code is wrong")
 
         # If user is not verified, update it
@@ -161,7 +168,13 @@ async def UserVerifyOtpHandler(
         accessToken = jwt.encode(payload=accessTokenPayload, key=settings.TOKEN_JWT_SECRET, algorithm=settings.TOKEN_ALGORITHM)
         # refreshToken = jwt.encode(payload=accessTokenPayload, key=settings.TOKEN_JWT_SECRET, algorithm=settings.TOKEN_ALGORITHM)
 
-        return ResponseUserOtp(status=True, detail="authenticated successfully", access_token=accessToken)
+        return ResponseUserOtp(
+            status=True,
+            detail="authenticated successfully",
+            access_token=accessToken,
+            refresh_token=accessToken,
+            user=isUserExists
+        )
     except HTTPException as e:
         raise HTTPException(status_code=e.status_code, detail=e.detail)
     except Exception as e:

@@ -3,13 +3,29 @@
 import { SignOutIcon } from "@phosphor-icons/react";
 import { cn } from "cn";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-
+import { usePathname, useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { Logout } from "@/actions/auth/logout";
 import { Button, buttonVariants } from "@/shared/components/ui/button";
 import { sidebarLinks } from "@/shared/constants/sidebar";
 
 export function Sidebar() {
     const pathname = usePathname();
+    const [isPending, startTransition] = useTransition();
+    const router = useRouter();
+
+    function onLogout() {
+        startTransition(async () => {
+            const isLogout = await Logout();
+
+            if (isLogout.success === false) {
+                console.log(isLogout);
+                return;
+            }
+
+            router.refresh();
+        });
+    }
     return (
         <aside className="overflow-hidden rounded-2xl border border-slate-100 bg-white lg:sticky lg:top-28 hidden lg:block">
             <div className="hidden border-b border-slate-100 p-5 lg:flex lg:items-center lg:gap-3">
@@ -43,6 +59,8 @@ export function Sidebar() {
                 variant="empty"
                 size="empty"
                 className="m-2 hidden w-[calc(100%-16px)] items-center gap-3 rounded-xl px-3 py-3 text-xs font-bold text-rose-500 hover:bg-rose-50 lg:flex"
+                onClick={onLogout}
+                disabled={isPending}
             >
                 <SignOutIcon name="logout" className="size-4" />
                 خروج از حساب

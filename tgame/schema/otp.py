@@ -2,6 +2,8 @@ from pydantic import BaseModel, Field, field_validator
 
 from tgame.repos.phone_number import phoneNumberNormalizer
 
+from tgame.db.model.user import User
+
 class RequestUserOtp(BaseModel):
     """ 
         Route request for verifying otp for users in shop
@@ -66,11 +68,16 @@ class ResponseUserOtp(BaseModel):
         title="Access Token",
         examples=["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"]
     )
-    """ refresh_token: str = Field(
+    refresh_token: str = Field(
         description="Refresh token key in json schema",
         title="Refresh Token",
         examples=["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"]
-    ) """
+    )
+    user: User = Field(
+        description="User object which retruns user data",
+        title="User schema",
+        examples=["user: id..."]
+    )
 
     model_config = {
         "json_schema_extra": {

@@ -26,6 +26,7 @@ user_register = APIRouter(
     status_code=200,
     responses={
         status.HTTP_200_OK: {
+            "model": ResponseUserRegister,
             "description": "Registration was successful and otp code has been sent",
             "content": {
                 "application/json": {
@@ -37,6 +38,7 @@ user_register = APIRouter(
             },
         },
         status.HTTP_401_UNAUTHORIZED: {
+            "model": ResponseUserRegister,
             "description": "Registration was not successful and otp code has not been sent",
             "content": {
                 "application/json": {
@@ -48,27 +50,19 @@ user_register = APIRouter(
             },
         },
         status.HTTP_422_UNPROCESSABLE_CONTENT: {
+            "model": ResponseUserRegister,
             "description": "Validation error for register schema",
             "content": {
                 "application/json": {
                     "example": {
-                        "detail": [
-                            {
-                                "loc": [
-                                    "string",
-                                    0
-                                ],
-                                "msg": "string",
-                                "type": "string",
-                                "input": "string",
-                                "ctx": {}
-                            }
-                        ]
+                        "status": "false",
+                        "detail": "fail",
                     },
                 },
             },
         },
         status.HTTP_429_TOO_MANY_REQUESTS: {
+            "model": ResponseUserRegister,
             "description": "Too many request",
             "content": {
                 "application/json": {
@@ -80,6 +74,7 @@ user_register = APIRouter(
             },
         },
         status.HTTP_500_INTERNAL_SERVER_ERROR: {
+            "model": ResponseUserRegister,
             "description": "Internal server error",
             "content": {
                 "application/json": {
