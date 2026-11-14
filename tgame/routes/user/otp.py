@@ -156,7 +156,7 @@ async def UserVerifyOtpHandler(
         TEHRAN_TZ = ZoneInfo("Asia/Tehran")
         now = datetime.now(TEHRAN_TZ)
 
-        isUserExistsOldLogin = isUserExists
+        isUserExistsOldLogin = isUserExists.model_copy()
         
         isUserExists.last_login = now
         session.add(isUserExists)
@@ -167,10 +167,10 @@ async def UserVerifyOtpHandler(
         #refreshTokenExpire = now + timedelta(minutes=settings.TOKEN_ACCESS_TOKEN_EXPIRE_MINUTES)
 
         accessTokenPayload = {
-            "sub": str(isUserExists.id),
-            "phone": isUserExists.phone_number,
-            "first_name": isUserExists.first_name,
-            "last_name": isUserExists.last_name,
+            "sub": str(isUserExistsOldLogin.id),
+            "phone": isUserExistsOldLogin.phone_number,
+            "first_name": isUserExistsOldLogin.first_name,
+            "last_name": isUserExistsOldLogin.last_name,
             "iat": int(now.timestamp()),
             "exp": int((accessTokenExpire).timestamp()),
             "iss": "tgame-store",

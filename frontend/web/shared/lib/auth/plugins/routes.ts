@@ -257,10 +257,14 @@ export const verifyPhoneNumber = (_opts: RequiredPhoneNumberOptions) =>
                 await ctx.context.internalAdapter.createUser<UserWithPhoneNumber>(
                     {
                         ...additionalFields,
-                        email: "",
-                        name: "",
+                        email: data.user.email || "",
+                        name: data.user.name,
+                        emailVerified: data.user.verified,
+                        image: data.user.image,
                     },
-                    { method: "phone-number" },
+                    {
+                        method: "phone-number",
+                    },
                 );
 
             const session = await ctx.context.internalAdapter.createSession(

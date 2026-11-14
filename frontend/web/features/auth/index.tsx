@@ -39,7 +39,7 @@ export function AuthenticationLayoutWrapper({
                             <span className="size-5 rounded-md border-[3px] border-white" />
                         </span>
                         <h1 className="mt-4 text-2xl font-black text-brand-navy">
-                            {pathname === "/login" && "ورود به تکنو"}
+                            {pathname === "/login" && "ورود به تی گیم"}
                             {pathname === "/register" && "ساخت حساب کاربری"}
                         </h1>
                         <p className="mt-2 text-sm leading-6 text-slate-400">

@@ -7,12 +7,15 @@ import { usePathname, useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { Logout } from "@/actions/auth/logout";
 import { Button, buttonVariants } from "@/shared/components/ui/button";
+import { Skeleton } from "@/shared/components/ui/skeleton";
 import { sidebarLinks } from "@/shared/constants/sidebar";
+import { useSession } from "@/shared/lib/auth/auth-client";
 
 export function Sidebar() {
     const pathname = usePathname();
     const [isPending, startTransition] = useTransition();
     const router = useRouter();
+    const { data: session, isPending: pending, error } = useSession();
 
     function onLogout() {
         startTransition(async () => {
@@ -26,16 +29,33 @@ export function Sidebar() {
             router.refresh();
         });
     }
+
     return (
         <aside className="overflow-hidden rounded-2xl border border-slate-100 bg-white lg:sticky lg:top-28 hidden lg:block">
             <div className="hidden border-b border-slate-100 p-5 lg:flex lg:items-center lg:gap-3">
-                <span className="grid size-11 shrink-0 place-items-center overflow-hidden rounded-full bg-blue-50 font-black text-[#0866ff]">
-                    ع
-                </span>
-                <div className="min-w-0">
-                    <b className="block truncate text-sm">مازیار عیسی نژاد</b>
-                    <span className="text-xs text-slate-400">کاربر تی گیم</span>
-                </div>
+                {pending && !error ? (
+                    <>
+                        <Skeleton className="grid size-11 shrink-0 place-items-center overflow-hidden rounded-full" />
+                        <div className="min-w-0">
+                            <Skeleton className="block w-20 h-3.5" />
+                            <Skeleton className="block w-14 h-2.5 mt-4" />
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <span className="grid size-11 shrink-0 place-items-center overflow-hidden rounded-full bg-blue-50 font-black text-[#0866ff]">
+                            {session?.user.name.charAt(0)}
+                        </span>
+                        <div className="min-w-0">
+                            <b className="block truncate text-sm">
+                                {session?.user.name}
+                            </b>
+                            <span className="text-xs text-slate-400">
+                                کاربر تی گیم
+                            </span>
+                        </div>
+                    </>
+                )}
             </div>
             <nav className="flex gap-1 overflow-x-auto p-2 lg:block border-b border-slate-100">
                 {sidebarLinks.map((val) => (
