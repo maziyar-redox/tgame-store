@@ -9,8 +9,8 @@ from tgame.db.model.user import User
 
 from tgame.schema.register import RequestUserRegister, ResponseUserRegister
 
-from tgame.repos.otp_cache import OTPCacheContainer
-from tgame.repos.auth.rate_limiter import phoneNumberDep
+from tgame.repos.cache.otp_cache import OTPCacheContainer
+from tgame.repos.auth.auth_limiter import phoneNumberRateLimit
 
 from tgame.services.sms import SMSClass
 
@@ -90,7 +90,7 @@ user_register = APIRouter(
     response_model=ResponseUserRegister,
     deprecated=False,
     include_in_schema=True,
-    dependencies=[phoneNumberDep],
+    dependencies=[phoneNumberRateLimit],
 )
 async def UserRegisterHandler(
     requestBody: Annotated[

@@ -16,9 +16,8 @@ from tgame.repos.rate_limit import RateLimiter
 
 from tgame.schema.login import RequestUserLogin
 from tgame.schema.register import RequestUserRegister
-from tgame.schema.otp import RequestUserOtp
 
-RegisterPayload = RequestUserRegister | RequestUserOtp | RequestUserLogin
+RegisterPayload = RequestUserRegister | RequestUserLogin
 adapter = TypeAdapter(RegisterPayload)
 
 def which_model(payload: dict):
@@ -70,7 +69,7 @@ _phone_limiter = Limiter(
     PerPhoneBucketFactory(MonotonicClock()),
 )
 
-phoneNumberDep = Depends(
+phoneNumberRateLimit = Depends(
     RateLimiter(
         limiter=_phone_limiter,
         identifier=phoneNumberIdentifier

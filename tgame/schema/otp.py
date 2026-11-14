@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field, field_validator
+from pydantic.json_schema import SkipJsonSchema
 
 from tgame.repos.phone_number import phoneNumberNormalizer
 
@@ -73,10 +74,9 @@ class ResponseUserOtp(BaseModel):
         title="Refresh Token",
         examples=["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"]
     )
-    user: User = Field(
-        description="User object which retruns user data",
-        title="User schema",
-        examples=["user: id..."]
+    user: SkipJsonSchema[User] = Field(
+        description="User object",
+        title="User",
     )
 
     model_config = {

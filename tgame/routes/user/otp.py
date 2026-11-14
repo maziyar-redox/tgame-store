@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 from sqlmodel import select
 from typing import Annotated
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 from tgame.core.config import settings
 
@@ -13,8 +14,7 @@ from tgame.db.model.user import User
 
 from tgame.schema.otp import RequestUserOtp, ResponseUserOtp
 
-from tgame.repos.otp_cache import OTPCacheContainer
-from tgame.repos.auth.rate_limiter import phoneNumberDep
+from tgame.repos.cache.otp_cache import OTPCacheContainer
 
 user_otp = APIRouter(
     tags=["User Authentication"]
@@ -44,6 +44,10 @@ user_otp = APIRouter(
                             "created_at": "2026-11-14T12:36:11.597904Z",
                             "id": "01a1da0e-e4cd-70a8-b561-27f19ec674b5",
                             "phone_number": "9117462751",
+                            "email": "example@gmail.com",
+                            "email_verfied": "true",
+                            "name": "مازیار عیسی نژاد",
+                            "image": "null",
                             "last_login": "2026-11-14T12:36:11.597887Z",
                             "updated_at": "2026-11-14T12:36:11.597914Z"
                         }
@@ -104,7 +108,8 @@ user_otp = APIRouter(
     response_model=ResponseUserOtp,
     deprecated=False,
     include_in_schema=True,
-    dependencies=[phoneNumberDep]
+    dependencies=[],
+    response_model_exclude={"User"},
 )
 async def UserVerifyOtpHandler(
     requestBody: Annotated[
@@ -148,7 +153,15 @@ async def UserVerifyOtpHandler(
             await session.commit()
             await session.refresh(isUserExists)
 
-        now = datetime.now(timezone.utc)
+        TEHRAN_TZ = ZoneInfo("Asia/Tehran")
+        now = datetime.now(TEHRAN_TZ)
+
+        isUserExistsOldLogin = isUserExists
+        
+        isUserExists.last_login = now
+        session.add(isUserExists)
+        await session.commit()
+        await session.refresh(isUserExists)
         
         accessTokenExpire = now + timedelta(minutes=settings.TOKEN_ACCESS_TOKEN_EXPIRE_MINUTES)
         #refreshTokenExpire = now + timedelta(minutes=settings.TOKEN_ACCESS_TOKEN_EXPIRE_MINUTES)
@@ -173,7 +186,7 @@ async def UserVerifyOtpHandler(
             detail="authenticated successfully",
             access_token=accessToken,
             refresh_token=accessToken,
-            user=isUserExists
+            user=isUserExistsOldLogin
         )
     except HTTPException as e:
         raise HTTPException(status_code=e.status_code, detail=e.detail)

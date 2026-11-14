@@ -1,3 +1,4 @@
+from pydantic import EmailStr
 from sqlmodel import SQLModel, Field
 from uuid import uuid7, UUID
 from zoneinfo import ZoneInfo
@@ -18,7 +19,7 @@ class User(SQLModel, table=True):
     phone_number: str = Field(default=None, min_length=10, max_length=10, unique=True, index=True, nullable=False)
     verified: bool = Field(nullable=False, default=False)
     image: str | None = Field(default=None, nullable=True)
-    email: str | None = Field(default=None, nullable=True, unique=True, index=True)
+    email: EmailStr | None = Field(default=None, nullable=True, unique=True, index=True)
     email_verified: bool = Field(default=False, nullable=False, sa_column_kwargs={"server_default": "false"})
     name: str = Field(min_length=4, max_length=64)
     last_login: datetime = Field(default_factory=now_tehran)
