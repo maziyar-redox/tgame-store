@@ -2,13 +2,28 @@
 
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { ChatCircleDotsIcon } from "@phosphor-icons/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { Card, CardContent } from "@/shared/components/ui/card";
+import { Skeleton } from "@/shared/components/ui/skeleton";
+import { useAuthenticationStore } from "@/shared/provider/authentication-provider";
 
 export function AuthenticationLayoutOtpComponent({
     children,
 }: {
     children: React.ReactNode;
 }) {
+    const router = useRouter();
+    const { phoneNumber } = useAuthenticationStore((store) => store);
+
+    useEffect(() => {
+        if (!phoneNumber) {
+            router.push("/login");
+        }
+
+        return () => {};
+    }, [phoneNumber, router.push]);
+
     return (
         <main className="relative grid min-h-[calc(100vh-110px)] h-screen place-items-center overflow-hidden px-4 py-10">
             <div className="absolute -right-32 top-10 size-80 rounded-full bg-blue-200/30 blur-3xl" />
@@ -18,17 +33,25 @@ export function AuthenticationLayoutOtpComponent({
                     <span className="mx-auto grid size-14 place-items-center rounded-2xl bg-blue-50 text-[#0866ff]">
                         <ChatCircleDotsIcon name="message" className="size-7" />
                     </span>
-                    <h1 className="mt-5 text-2xl font-black text-center">
-                        تأیید شماره موبایل
-                    </h1>
-                    <p className="mt-2 text-xs leading-6 text-slate-400 text-center">
-                        کد ۶ رقمی ارسال‌شده به شماره
-                        <b className="text-slate-700" dir="ltr">
-                            {" "}
-                            {digitsEnToFa("09117462751")}{" "}
-                        </b>
-                        را وارد کنید.
-                    </p>
+                    {phoneNumber === null ? (
+                        <Skeleton className="w-full h-4 mt-5" />
+                    ) : (
+                        <>
+                            <h1 className="mt-5 text-2xl font-black text-center">
+                                تأیید شماره موبایل
+                            </h1>
+                            <p className="mt-2 text-xs leading-6 text-slate-400 text-center">
+                                کد ۶ رقمی ارسال‌شده به شماره
+                                <b className="text-slate-700" dir="ltr">
+                                    {" "}
+                                    {digitsEnToFa(
+                                        phoneNumber || "undefined",
+                                    )}{" "}
+                                </b>
+                                را وارد کنید.
+                            </p>
+                        </>
+                    )}
                     <div dir="ltr" className="mt-7">
                         {children}
                     </div>

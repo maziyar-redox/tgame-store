@@ -1,15 +1,14 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { digitsEnToFa, digitsFaToEn } from "@persian-tools/persian-tools";
-/* import { ArrowLeftIcon } from "@phosphor-icons/react";
-import { REGEXP_ONLY_DIGITS } from "input-otp"; */
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 import Link from "next/link";
-/* import { useRouter } from "next/navigation";
-import { useEffect } from "react"; */
+import { useRouter } from "next/navigation";
+import { useEffect, useState, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useCountdown } from "usehooks-ts";
 import type * as z from "zod";
-
+import { Verify } from "@/actions/auth/verify";
 import { Button } from "@/shared/components/ui/button";
 import {
     Field,
@@ -22,30 +21,83 @@ import {
     InputOTPGroup,
     InputOTPSlot,
 } from "@/shared/components/ui/input-otp";
+import { Skeleton } from "@/shared/components/ui/skeleton";
+import { useAuthenticationStore } from "@/shared/provider/authentication-provider";
 import { otpFormSchema } from "@/shared/schema/otp-schema";
 
 export function OtpField() {
+    const [isExpired, setIsExpired] = useState<boolean>(false);
+    const { countDown, setCountDown, phoneNumber } = useAuthenticationStore(
+        (store) => store,
+    );
+    const router = useRouter();
+    const [isPending, startTransition] = useTransition();
     const {
         control,
-        /* formState: { isValid }, */
+        formState: { isValid },
+        setError,
     } = useForm<z.infer<typeof otpFormSchema>>({
         resolver: zodResolver(otpFormSchema),
         defaultValues: {
             code: "",
         },
     });
-    /* const router = useRouter(); */
 
-    // const firstName = useWatch({ control: otpForm.control, name: "code" });
+    const formatTime = (totalMinutes: number) => {
+        const hours = Math.floor(totalMinutes / 60);
+        const mins = totalMinutes % 60;
+        return `${hours}:${String(mins).padStart(2, "0")}`;
+    };
 
-    /* useEffect(() => {
-        if (isValid) {
-            router.push("/");
+    const [count, { startCountdown }] = useCountdown({
+        countStart: countDown || 0,
+        intervalMs: 1000,
+    });
+
+    useEffect(() => {
+        if (count === 0) {
+            setIsExpired(true);
+        }
+
+        return () => {
+            startCountdown();
+            setCountDown(count - 1);
         };
-    }, [isValid]); */
+    }, [count, setCountDown, startCountdown]);
 
     function onSubmit(data: z.infer<typeof otpFormSchema>) {
-        console.log(digitsFaToEn(data.code));
+        try {
+            if (count === 0) {
+                return control.setError("code", {
+                    message: "اعتبار کد تمام شده. لطفا دوباره درخواست بدهید.",
+                });
+            }
+
+            if (!isValid) {
+                return control.setError("code", {
+                    message: "لطفا کد صحیح وارد کنید.",
+                });
+            }
+
+            startTransition(async () => {
+                const isVerify = await Verify({
+                    phone_number: phoneNumber as string,
+                    code: data.code,
+                });
+
+                if (isVerify.success === false) {
+                    return setError("code", {
+                        message: isVerify.message,
+                    });
+                }
+
+                router.refresh();
+            });
+        } catch (_error) {
+            setError("code", {
+                message: "مشکلی پیش آمده. لطفا دوباره تلاش کنید",
+            });
+        }
     }
 
     return (
@@ -59,10 +111,7 @@ export function OtpField() {
                     control={control}
                     render={({ field, fieldState }) => (
                         <Field data-invalid={fieldState.invalid}>
-                            <FieldLabel
-                                className="text-slate-600 block text-xs font-bold text-right"
-                                htmlFor="otp_form"
-                            >
+                            <FieldLabel className="text-slate-600 block text-xs font-bold text-right">
                                 کد یکبار مصرف
                             </FieldLabel>
                             <InputOTP
@@ -111,17 +160,29 @@ export function OtpField() {
                                 </InputOTPGroup>
                             </InputOTP>
                             {fieldState.invalid && (
-                                <FieldError errors={[fieldState.error]} />
+                                <FieldError
+                                    dir="rtl"
+                                    errors={[fieldState.error]}
+                                    className="text-right"
+                                />
                             )}
                         </Field>
                     )}
                 />
             </FieldGroup>
-            <p className="text-xs text-slate-400 text-center">
-                ارسال مجدد کد تا
-                <b className="text-primary"> {digitsEnToFa("1:48")} </b>
-            </p>
+            {phoneNumber === null ? (
+                <Skeleton className="w-full h-4" />
+            ) : (
+                <p className="text-xs text-slate-400 text-center">
+                    ارسال مجدد کد تا
+                    <b className="text-primary">
+                        {" "}
+                        {digitsEnToFa(formatTime(countDown))}{" "}
+                    </b>
+                </p>
+            )}
             <Button
+                disabled={isPending || isExpired || !phoneNumber}
                 type="submit"
                 size="xl"
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary text-sm font-bold text-white shadow-lg shadow-blue-200"

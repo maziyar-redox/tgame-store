@@ -11,7 +11,7 @@ import { HeroSection } from "@/features/store/landing/hero";
 import { Offer } from "@/features/store/landing/offer";
 import { ProductCarousel } from "@/features/store/landing/product-card";
 import { ProductItem } from "@/features/store/landing/product-card/product-item";
-import { SkeletonItem } from "@/features/store/landing/product-card/skeleton-item";
+// import { SkeletonItem } from "@/features/store/landing/product-card/skeleton-item";
 import { Products } from "@/features/store/landing/products";
 import { Terms } from "@/features/store/landing/terms";
 
@@ -27,7 +27,7 @@ export default async function LandingPage() {
             <AnimationWrapper>
                 <Products>
                     <ProductCarousel>
-                        <SkeletonItem />
+                        <ProductItem products={mainProducts} />
                     </ProductCarousel>
                 </Products>
             </AnimationWrapper>

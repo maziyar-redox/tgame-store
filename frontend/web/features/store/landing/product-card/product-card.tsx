@@ -5,10 +5,11 @@ import { BasketIcon, HeartIcon } from "@phosphor-icons/react";
 import { cn } from "cn";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
 import { Button } from "@/shared/components/ui/button";
 import { Skeleton } from "@/shared/components/ui/skeleton";
+import { useSession } from "@/shared/lib/auth/auth-client";
 import { currencyFormmater, discountCalculator } from "@/shared/lib/currency";
 import type { MainProductProps } from "@/shared/types/features/landing/product";
 
@@ -22,8 +23,29 @@ export function ProductCard({
     isAvailable,
     isFavorite,
 }: MainProductProps) {
+    const router = useRouter();
+    const [isPending, startTransition] = useTransition();
     const [isLiked, setIsLiked] = useState(isFavorite);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
+    const { data: sesssion, isPending: isSessionPending, error } = useSession();
+
+    function handleLike() {
+        try {
+            startTransition(async () => {
+                if (isSessionPending || error) {
+                    return;
+                }
+
+                if (!sesssion) {
+                    return router.push("/login");
+                }
+
+                setIsLiked(!isLiked);
+            });
+        } catch (_error) {
+            setIsLiked(false);
+        }
+    }
 
     return (
         <article className="group overflow-hidden rounded-2xl border border-slate-100 bg-white p-2 shadow-[0_8px_30px_rgba(15,46,100,.04)] transition hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(15,46,100,.1)] sm:rounded-3xl sm:p-3 select-none h-full">
@@ -65,8 +87,9 @@ export function ProductCard({
                     ٪ {digitsEnToFa(discount)}
                 </span>
                 <button
+                    disabled={isPending}
                     type="button"
-                    onClick={() => setIsLiked(!isLiked)}
+                    onClick={handleLike}
                     className={cn(
                         "absolute left-2 top-2 grid size-8 place-items-center rounded-full bg-white/90 shadow-sm transition-all ease-in-out duration-200",
                         isLiked

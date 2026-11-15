@@ -4,11 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { digitsEnToFa, digitsFaToEn } from "@persian-tools/persian-tools";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { cn } from "cn";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import type * as z from "zod";
-
+import { Register } from "@/actions/auth/register";
 import { MdxDialog } from "@/features/auth/register/mdx-dialog";
-
 import { Button } from "@/shared/components/ui/button";
 import { Checkbox } from "@/shared/components/ui/checkbox";
 import {
@@ -21,9 +22,16 @@ import { Input } from "@/shared/components/ui/input";
 import { TabsContent } from "@/shared/components/ui/tabs";
 import Security from "@/shared/constants/md/security.mdx";
 import Terms from "@/shared/constants/md/terms.mdx";
+import { useAuthenticationStore } from "@/shared/provider/authentication-provider";
 import { registerFormSchema } from "@/shared/schema/register-schema";
 
 export function RegisterSection() {
+    const router = useRouter();
+    const [isPending, startTransition] = useTransition();
+    const { setPhoneNumber, setCountDown } = useAuthenticationStore(
+        (store) => store,
+    );
+
     const registerForm = useForm<z.infer<typeof registerFormSchema>>({
         resolver: zodResolver(registerFormSchema),
         defaultValues: {
@@ -35,7 +43,26 @@ export function RegisterSection() {
     });
 
     function onRegister(data: z.infer<typeof registerFormSchema>) {
-        console.log(digitsFaToEn(data.phone_number));
+        try {
+            startTransition(async () => {
+                const isRegister = await Register(data);
+
+                if (isRegister.success === false) {
+                    return registerForm.setError("phone_number", {
+                        message: isRegister.message,
+                    });
+                }
+
+                setPhoneNumber(digitsFaToEn(data.phone_number));
+                setCountDown(120);
+
+                return router.push("/otp");
+            });
+        } catch (_err) {
+            registerForm.setError("phone_number", {
+                message: "مشکلی پیش آمده. لطفا دوباره تلاش کنید",
+            });
+        }
     }
 
     return (
@@ -170,6 +197,7 @@ export function RegisterSection() {
                         )}
                     />
                     <Button
+                        disabled={isPending}
                         type="submit"
                         size="xl"
                         className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary text-sm font-bold text-white shadow-lg shadow-blue-200"

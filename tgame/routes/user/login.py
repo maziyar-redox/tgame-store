@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Body, HTTPException, status
 from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 from sqlmodel import select
 from typing import Annotated
 from secrets import randbelow
@@ -9,8 +10,8 @@ from tgame.db.model.user import User
 
 from tgame.schema.login import RequestUserLogin, ResponseUserLogin
 
-from tgame.repos.otp_cache import OTPCacheContainer
-from tgame.repos.auth.rate_limiter import phoneNumberDep
+from tgame.repos.cache.otp_cache import OTPCacheContainer
+from tgame.repos.auth.auth_limiter import phoneNumberRateLimit
 
 from tgame.services.sms import SMSClass
 
@@ -26,6 +27,7 @@ user_login = APIRouter(
     status_code=200,
     responses={
         status.HTTP_200_OK: {
+            "model": ResponseUserLogin,
             "description": "Phone number was correct and access is granted for otp verification",
             "content": {
                 "application/json": {
@@ -37,6 +39,7 @@ user_login = APIRouter(
             },
         },
         status.HTTP_401_UNAUTHORIZED: {
+            "model": ResponseUserLogin,
             "description": "Phone number was not correct and access is not granted",
             "content": {
                 "application/json": {
@@ -48,27 +51,19 @@ user_login = APIRouter(
             },
         },
         status.HTTP_422_UNPROCESSABLE_CONTENT: {
+            "model": ResponseUserLogin,
             "description": "Validation error for login schema",
             "content": {
                 "application/json": {
                     "example": {
-                        "detail": [
-                            {
-                                "loc": [
-                                    "string",
-                                    0
-                                ],
-                                "msg": "string",
-                                "type": "string",
-                                "input": "string",
-                                "ctx": {}
-                            }
-                        ]
+                        "status": "false",
+                        "detail": "fail",
                     },
                 },
             },
         },
         status.HTTP_429_TOO_MANY_REQUESTS: {
+            "model": ResponseUserLogin,
             "description": "Too many request",
             "content": {
                 "application/json": {
@@ -80,6 +75,7 @@ user_login = APIRouter(
             },
         },
         status.HTTP_500_INTERNAL_SERVER_ERROR: {
+            "model": ResponseUserLogin,
             "description": "Internal server error",
             "content": {
                 "application/json": {
@@ -95,7 +91,7 @@ user_login = APIRouter(
     response_model=ResponseUserLogin,
     deprecated=False,
     include_in_schema=True,
-    dependencies=[phoneNumberDep]
+    dependencies=[phoneNumberRateLimit]
 )
 async def UserLoginHandler(
     requestBody: Annotated[

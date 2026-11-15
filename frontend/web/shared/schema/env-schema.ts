@@ -6,17 +6,19 @@ import { z } from "zod";
 export const env = createEnv({
     // Server-side variables (never exposed to the browser)
     server: {
-        BASE_API_URL: z.url(),
+        BASE_API_URL: z.string(),
         MAIN_PAGE_BANNER: z.string(),
         MAIN_PAGE_TERMS: z.string(),
         S3_BUCKET_URL: z.string(),
+        BETTER_AUTH_SECRET: z.string(),
+        BETTER_AUTH_URL: z.string(),
     },
     // Client-side variables (must start with NEXT_PUBLIC_)
     client: {
         NEXT_PUBLIC_MAIN_PAGE_BANNER: z.string(),
         NEXT_PUBLIC_MAIN_PAGE_TERMS: z.string(),
         NEXT_PUBLIC_S3_BUCKET_URL: z.string(),
-        NEXT_PUBLIC_SITE_URL: z.url(),
+        NEXT_PUBLIC_SITE_URL: z.string(),
     },
     // Next.js requires you to manually pass the runtime env values
     runtimeEnv: {
@@ -28,5 +30,7 @@ export const env = createEnv({
         NEXT_PUBLIC_MAIN_PAGE_TERMS: process.env.NEXT_PUBLIC_MAIN_PAGE_TERMS,
         NEXT_PUBLIC_S3_BUCKET_URL: process.env.NEXT_PUBLIC_S3_BUCKET_URL,
         NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+        BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
+        BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
     },
 });

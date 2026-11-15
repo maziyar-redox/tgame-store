@@ -1,7 +1,9 @@
 // Importing local ui library
 
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 // Importing icon
 import { AtIcon, DeviceMobileSpeakerIcon } from "@phosphor-icons/react";
+import { useEffect } from "react";
 // Importing from context
 import { Controller, useFormContext } from "react-hook-form";
 import {
@@ -11,12 +13,30 @@ import {
     FieldLabel,
 } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
+import { useSession } from "@/shared/lib/auth/auth-client";
 
 export function UserInfo() {
     const accountForm = useFormContext();
+
+    const { data: session, isPending, error } = useSession();
+
+    useEffect(() => {
+        if (!error && !isPending && session) {
+            accountForm.setValue("first_name", session.user.first_name);
+            accountForm.setValue("last_name", session.user.last_name);
+            accountForm.setValue("email", session.user.email);
+            accountForm.setValue(
+                "phone_number",
+                digitsEnToFa(session.user.phone_number),
+            );
+        }
+
+        return () => {};
+    }, [isPending, session, error, accountForm.setValue]);
     return (
         <FieldGroup className="grid gap-4 sm:grid-cols-2">
             <Controller
+                disabled={isPending && !error}
                 name="first_name"
                 control={accountForm.control}
                 render={({ field, fieldState }) => (
@@ -46,6 +66,7 @@ export function UserInfo() {
                 )}
             />
             <Controller
+                disabled={isPending && !error}
                 name="last_name"
                 control={accountForm.control}
                 render={({ field, fieldState }) => (
@@ -75,6 +96,7 @@ export function UserInfo() {
                 )}
             />
             <Controller
+                disabled={isPending && !error}
                 name="email"
                 control={accountForm.control}
                 render={({ field, fieldState }) => (
@@ -110,6 +132,7 @@ export function UserInfo() {
                 )}
             />
             <Controller
+                disabled={isPending && !error}
                 name="phone_number"
                 control={accountForm.control}
                 render={({ field, fieldState }) => (
@@ -130,7 +153,7 @@ export function UserInfo() {
                                 name="phone_number"
                                 type="tel"
                                 required
-                                dir="rtl"
+                                dir="ltr"
                                 className="w-full rounded-xl border border-slate-200 px-4 py-5.5 text-sm font-normal outline-none transition focus:border-primary focus:ring-3 focus:ring-blue-50 placeholder:text-right pr-11"
                             />
                             <DeviceMobileSpeakerIcon
@@ -145,6 +168,7 @@ export function UserInfo() {
                 )}
             />
             <Controller
+                disabled={isPending && !error}
                 name="national_code"
                 control={accountForm.control}
                 render={({ field, fieldState }) => (

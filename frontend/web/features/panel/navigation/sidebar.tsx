@@ -3,7 +3,9 @@
 import { SignOutIcon } from "@phosphor-icons/react";
 import { cn } from "cn";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { Logout } from "@/actions/auth/logout";
 import { Logo } from "@/features/panel/navigation/logo";
 import { Button } from "@/shared/components/ui/button";
 import { Sheet, SheetContent } from "@/shared/components/ui/sheet";
@@ -13,6 +15,21 @@ import { useNavigationStore } from "@/shared/provider/navigation-provider";
 export function Sidebar() {
     const { isOpen, setIsOpen } = useNavigationStore((state) => state);
     const pathname = usePathname();
+    const router = useRouter();
+    const [isPending, startTransition] = useTransition();
+
+    function onLogout() {
+        startTransition(async () => {
+            const isLogout = await Logout();
+
+            if (isLogout.success === false) {
+                console.log(isLogout);
+                return;
+            }
+
+            router.refresh();
+        });
+    }
 
     return (
         <Sheet open={isOpen} onOpenChange={(open: boolean) => setIsOpen(open)}>
@@ -57,6 +74,8 @@ export function Sidebar() {
                     variant="empty"
                     size="empty"
                     className="items-center justify-start gap-3 rounded-xl px-3 py-3 text-xs font-bold text-rose-500 hover:bg-rose-50 flex"
+                    onClick={onLogout}
+                    disabled={isPending}
                 >
                     <SignOutIcon name="logout" size={20} />
                     خروج از حساب
