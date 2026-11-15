@@ -4,6 +4,12 @@ import { phoneNumber } from "@/shared/lib/auth/plugins";
 import { env } from "@/shared/schema/env-schema";
 
 const auth = betterAuth({
+    appName: "Tgame Shop",
+    baseURL: {
+        allowedHosts: ["tgame1store.ir", "www.tgame1store.ir"],
+        protocol: "https",
+        fallback: "https://tgame1store.ir",
+    },
     session: {
         expiresIn: 60 * 60 * 24 * 7,
         updateAge: 60 * 60 * 24,
