@@ -2,6 +2,8 @@
 
 import { BreadcrumbSection } from "@/features/store/contact/breadcrumb";
 import { Main } from "@/features/store/contact/main";
+import { ContactForm } from "./contact-form";
+import { MapSection } from "./map";
 import { Ways } from "./ways";
 
 export function ContactPageWrapper() {
@@ -10,6 +12,10 @@ export function ContactPageWrapper() {
             <BreadcrumbSection />
             <Main />
             <Ways />
+            <section className="mt-12 grid gap-7 lg:grid-cols-[.9fr_1.1fr]">
+                <ContactForm />
+                <MapSection />
+            </section>
         </main>
     );
 }
