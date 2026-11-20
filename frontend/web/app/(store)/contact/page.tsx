@@ -4,7 +4,6 @@
 import { ContactPageWrapper } from "@/features/store/contact";
 
 // Also this route use ISR rendering strategy and have webhooks for revalidating caching pattern
-export const revalidate = 3600;
 
 export default async function ContactPage() {
     return <ContactPageWrapper />;

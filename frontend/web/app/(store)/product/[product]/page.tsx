@@ -7,7 +7,6 @@ import { ProductOverView } from "@/features/store/product/product-overview";
 import { ProductSections } from "@/features/store/product/product-sections";
 
 // Also this route use ISR rendering strategy and have webhooks for revalidating caching pattern
-export const revalidate = 3600;
 
 export default async function ProductPage() {
     return (
