@@ -14,7 +14,7 @@ import {
     PhoneIncomingIcon,
     ShieldCheckIcon,
     SwatchesIcon,
-    /* TicketIcon, */
+    TicketIcon,
     UsersThreeIcon,
     WatchIcon,
 } from "@phosphor-icons/react";
@@ -41,11 +41,11 @@ const navigationLinks: StoreNavigationLinksProps[] = [
         text: "تماس با ما",
         link: "/contact",
     },
-    /* {
+    {
         id: 4,
         text: "سوالات متداول",
         link: "/faq",
-    }, */
+    },
 ];
 
 const sidebarLinks: SidebarLinksProps[] = [
@@ -67,12 +67,12 @@ const sidebarLinks: SidebarLinksProps[] = [
         link: "/contact",
         Icon: PhoneIncomingIcon,
     },
-    /* {
+    {
         id: 4,
         text: "سوالات متداول",
         link: "/faq",
         Icon: TicketIcon,
-    }, */
+    },
 ];
 
 const categoryLinks: StoreCategoriesProps[] = [
