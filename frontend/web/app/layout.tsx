@@ -5,6 +5,7 @@ import { DirectionProvider } from "@/shared/components/ui/direction";
 import { Toaster } from "@/shared/components/ui/toast";
 
 import "@/app/globals.css";
+import { Suspense } from "react";
 
 const vazirmatn = Vazirmatn({
     subsets: ["arabic"],
@@ -25,7 +26,7 @@ export default async function RootLayout({
         >
             <body className="min-h-screen flex flex-col bg-surface-soft">
                 <DirectionProvider direction="rtl">
-                    {children}
+                    <Suspense>{children}</Suspense>
                 </DirectionProvider>
                 <Toaster className={cn("antialiased", vazirmatn.className)} />
             </body>
