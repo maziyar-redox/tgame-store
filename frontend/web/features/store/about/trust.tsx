@@ -1,6 +1,5 @@
-"use client";
-
-import { CheckIcon } from "@phosphor-icons/react";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
+import { CheckIcon } from "@phosphor-icons/react/ssr";
 
 function EnamadBadge() {
     return (
@@ -52,16 +51,16 @@ function EnamadBadge() {
     );
 }
 
-export function Trust() {
+export function TrustSection() {
     return (
         <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8 lg:pb-20">
-            <div className="grid items-center gap-7 overflow-hidden rounded-[28px] border border-blue-100 bg-[#eaf3ff] p-6 sm:p-9 lg:grid-cols-[1fr_220px] lg:p-12">
+            <div className="grid items-center gap-7 overflow-hidden rounded-[28px] border border-blue-100 bg-brand-surface p-6 sm:p-9 lg:grid-cols-[1fr_220px] lg:p-12">
                 <div>
                     <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1.5 text-xs font-bold text-primary">
                         <CheckIcon name="check" className="size-4" /> خرید امن و
                         قابل پیگیری
                     </span>
-                    <h2 className="mt-5 text-2xl font-black text-[#092253] sm:text-3xl">
+                    <h2 className="mt-5 text-2xl font-black text-brand-navy sm:text-3xl">
                         اعتماد شما، معتبرترین نشان ماست
                     </h2>
                     <p className="mt-4 max-w-3xl text-sm leading-8 text-slate-600">
@@ -73,7 +72,7 @@ export function Trust() {
                         {[
                             "پرداخت امن",
                             "ضمانت اصالت",
-                            "۷ روز بازگشت",
+                            "7 روز بازگشت",
                             "حفظ حریم خصوصی",
                         ].map((item) => (
                             <span
@@ -84,9 +83,10 @@ export function Trust() {
                                     <CheckIcon
                                         name="check"
                                         className="size-3"
+                                        weight="regular"
                                     />
                                 </span>
-                                {item}
+                                {digitsEnToFa(item)}
                             </span>
                         ))}
                     </div>
