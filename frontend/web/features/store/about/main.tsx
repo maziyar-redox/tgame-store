@@ -5,6 +5,7 @@ import { cn } from "cn";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+
 import { Button, buttonVariants } from "@/shared/components/ui/button";
 import { Skeleton } from "@/shared/components/ui/skeleton";
 
@@ -50,7 +51,7 @@ export function MainSection() {
                     <span className="text-blue-400">ساده‌تر انتخاب کنید.</span>
                 </h1>
                 <p className="mt-5 max-w-xl text-sm leading-8 text-blue-100/75 sm:text-base">
-                    تکنو از یک ایدهٔ ساده شروع شد: خرید کالای دیجیتال نباید
+                    تی گیم از یک ایدهٔ ساده شروع شد: خرید کالای دیجیتال نباید
                     پیچیده باشد. ما محصولات معتبر را با اطلاعات دقیق، مشاورهٔ
                     تخصصی و تجربه‌ای شفاف کنار هم آورده‌ایم تا با خیال راحت،
                     انتخاب درست‌تری داشته باشید.
