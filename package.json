@@ -1,5 +1,5 @@
 {
-    "name": "tmod-frontend",
+    "name": "tmod",
     "private": true,
     "author": "Maziyar Isanezhad",
     "type": "module",
@@ -8,7 +8,9 @@
         "nextjs",
         "full-stack",
         "devops",
-        "admin-panel"
+        "admin-panel",
+        "web",
+        "ecommerce"
     ],
     "repository": "https://github.com/maziyar-redox/tmod-game",
     "workspaces": [
@@ -25,7 +27,8 @@
         "lint": "turbo run lint",
         "format": "turbo run format",
         "commit": "cz",
-        "prepare": "node .husky/install.mjs"
+        "prepare": "node .husky/install.mjs",
+        "update": "syncpack update --target latest"
     },
     "packageManager": "npm@12.1.0",
     "engines": {
@@ -40,7 +43,7 @@
         "husky": "^9.1.7",
         "lefthook": "^2.2.2",
         "syncpack": "^15.3.3",
-        "turbo": "^2.11.10"
+        "turbo": "^2.11.11"
     },
     "lint-staged": {
         "frontend/web/*.{ts,tsx}": [

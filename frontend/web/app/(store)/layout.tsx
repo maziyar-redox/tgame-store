@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 export default function StoreLayout({
     children,
 }: {
-    children: React.ReactNode;
+    readonly children: React.ReactNode;
 }) {
     return (
         <div>

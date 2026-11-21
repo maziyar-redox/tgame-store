@@ -43,8 +43,8 @@ const navigationLinks: StoreNavigationLinksProps[] = [
     },
     {
         id: 4,
-        text: "پشتیبانی",
-        link: "/support",
+        text: "سوالات متداول",
+        link: "/faq",
     },
 ];
 
@@ -69,8 +69,8 @@ const sidebarLinks: SidebarLinksProps[] = [
     },
     {
         id: 4,
-        text: "پشتیبانی",
-        link: "/support",
+        text: "سوالات متداول",
+        link: "/faq",
         Icon: TicketIcon,
     },
 ];

@@ -9,6 +9,17 @@ const nextConfig: NextConfig = {
     output: "standalone",
     reactCompiler: true,
     outputFileTracingRoot: path.join(import.meta.dirname, "../.."),
+    cacheComponents: true,
+    partialPrefetching: true,
+    logging: {
+        fetches: {
+            fullUrl: true,
+            hmrRefreshes: true,
+        },
+        serverFunctions: true,
+        incomingRequests: true,
+        browserToTerminal: true,
+    },
     images: {
         remotePatterns: [new URL(`${env.S3_BUCKET_URL}/*`)],
         minimumCacheTTL: 86400,
@@ -17,6 +28,9 @@ const nextConfig: NextConfig = {
     experimental: {
         imgOptTimeoutInSeconds: 30,
         optimizePackageImports: ["@phosphor-icons/react"],
+        instantInsights: {
+            validationLevel: "warning",
+        },
     },
     allowedDevOrigins: ["192.168.100.*", "172.20.10.*"],
 };
